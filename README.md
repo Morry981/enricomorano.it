@@ -1,7 +1,7 @@
 # Portfolio di Enrico Morano
 
 Ciao! 👋 こんにちは
-Sono Enrico Morano, e questo è il repository del mio portfolio personale. Ho creato questo spazio per raccontare la mia storia professionale, mostrare i progetti a cui ho lavorato e condividere le competenze che ho acquisito nel tempo.
+Sono Enrico Morano e questo è il repository del mio portfolio personale. Ho creato questo spazio per raccontare la mia storia professionale, mostrare i progetti a cui ho lavorato e condividere le competenze che ho acquisito nel tempo.
 
 Questo non è solo un elenco di lavori, ma una narrazione del mio percorso come sviluppatore e creativo.
 
@@ -9,7 +9,8 @@ Questo non è solo un elenco di lavori, ma una narrazione del mio percorso come 
 
 ## 🚀 Progetti
 
-Troverai una selezione dei progetti che mi rappresentano di più. Ogni progetto è una storia a sé, fatta di sfide, soluzioni creative e tecnologie innovative.
+Troverai una selezione dei progetti che mi rappresentano di più.
+Ogni progetto è una storia a sé, fatta di sfide, soluzioni creative e tecnologie innovative.
 
 _Verrà aggiornata man mano che nuovi progetti prendono vita!_
 
