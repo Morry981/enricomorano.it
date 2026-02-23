@@ -2,17 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Chi sono">
-	<main>
-		<h1>Chi sono</h1>
-		<p>Questa è la pagina "Chi sono".</p>
-	</main>
+<Layout title="Chi Sono | Enrico Morano">
+    <main class="max-w-4xl mx-auto px-8 py-20">
+        <h1 class="text-5xl font-bold mb-8">Chi <span class="text-accent">Sono</span></h1>
+        <div class="prose prose-invert prose-lg text-light/90">
+            <p>
+                Sono un professionista nel mondo dello sviluppo web, con un occhio di riguardo per l'estetica e l'esperienza utente.
+            </p>
+            <p>
+                In questa pagina troverai maggiori dettagli sulla mia storia professionale e personale.
+            </p>
+        </div>
+    </main>
 </Layout>
-
-<style>
-	main {
-		padding: 2rem;
-		max-width: 800px;
-		margin: 0 auto;
-	}
-</style>

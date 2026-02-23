@@ -10,6 +10,12 @@
     },
     "dependencies": {
         "@astrojs/node": "^9.5.4",
-        "astro": "^5.17.3"
+        "@astrojs/vue": "^5.1.4",
+        "@tailwindcss/vite": "^4.2.0",
+        "@vueuse/motion": "^3.0.3",
+        "astro": "^5.17.3",
+        "lucide-vue-next": "^0.575.0",
+        "tailwindcss": "^4.2.0",
+        "vue": "^3.5.28"
     }
 }

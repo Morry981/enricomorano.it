@@ -42,16 +42,21 @@ pnpm install
 
 ## Development Conventions
 
-*   **Components:** Use `.astro` files for components. Keep logic in the frontmatter script (fence `---`).
+*   **Indentation:** Use exactly **4 spaces** for all files.
+*   **Language:** 
+    *   User-facing content and comments explaining logic: **Italian**.
+    *   Code symbols (variables, functions, classes), filenames, and routes: **English**.
+*   **Tech Stack:** Astro v5, Tailwind CSS v4, Vue.js 3, VueUse/Motion for animations.
+*   **Components:** Use `.astro` files for layouts/pages and Vue components for interactive UI elements. Keep logic in the frontmatter script (fence `---`) for Astro files.
 *   **TypeScript:** Use TypeScript interfaces for component `Props`.
     ```typescript
     interface Props {
-      title?: string;
+        title?: string;
     }
     const { title } = Astro.props;
     ```
-*   **Styling:** Prefer scoped styles within the `<style>` block of components. Use `<style is:global>` only when necessary in Layouts.
-*   **SSR:** The project is configured for SSR (`output: 'server'`). Ensure code running in components is safe for server execution (or strictly client-side if using `client:*` directives, though none are currently in use).
+*   **Styling:** Use **Tailwind CSS v4** utility classes. Define custom theme variables in `src/styles/global.css`.
+*   **SSR:** The project is configured for SSR (`output: 'server'`).
 
 ## Deployment
 
