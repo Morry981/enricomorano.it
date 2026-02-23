@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
+import Cursor from '../components/Cursor.vue';
 
 interface Props {
     title?: string;
@@ -20,6 +21,7 @@ const { title = 'Enrico Morano' } = Astro.props;
         <ClientRouter />
     </head>
     <body class="bg-zinc-950 text-zinc-50 antialiased">
+        <Cursor client:load />
         <Nav />
         <slot />
     </body>
