@@ -7,7 +7,7 @@ import { ref, onMounted } from 'vue';
 
 const mailtoLink = ref('#'); // Default to # until JS constructs it
 
-const USER = 'info';
+const USER = 'web';
 const DOMAIN = 'enricomorano.it';
 
 const revealEmail = () => {
@@ -35,7 +35,7 @@ onMounted(() => {
 
 /* Pseudo-elements to display the email without putting it directly in HTML */
 .spam-filter::before {
-    content: "info@";
+    content: "web@";
 }
 
 .spam-filter::after {

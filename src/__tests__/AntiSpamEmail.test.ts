@@ -10,7 +10,7 @@ describe('AntiSpamEmail.vue', () => {
     await wrapper.vm.$nextTick(); 
 
     // Verifichiamo che l'href sia corretto
-    expect(wrapper.attributes('href')).toBe('mailto:info@enricomorano.it');
+    expect(wrapper.attributes('href')).toBe('mailto:web@enricomorano.it');
   });
 
   it('mostra il testo email tramite pseudo-elementi CSS', async () => {
