@@ -1,8 +1,8 @@
 <template>
     <footer 
         v-if="isVisible"
-        class="fixed bottom-0 left-0 right-0 p-4 bg-dark/80 backdrop-blur-sm 
-               border-t border-white/10 text-center transition-transform duration-500 z-40"
+        class="fixed bottom-0 left-0 right-0 p-4 bg-dark/80 backdrop-blur-sm
+               border-t border-[var(--border)] text-center transition-transform duration-500 z-40"
         :class="{'translate-y-full': !isScrolledDown}"
     >
         <div class="max-w-6xl mx-auto text-sm text-secondary flex flex-col md:flex-row justify-between items-center gap-4">

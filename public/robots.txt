@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://enricomorano.it/sitemap-index.xml
+Sitemap: https://enricomorano.it/sitemap.xml

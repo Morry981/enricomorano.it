@@ -1,14 +1,19 @@
 @import "tailwindcss";
 @plugin "@toolwind/corner-shape";
 
+/* Token statici: uguali in entrambi i temi */
 @theme {
     --color-primary: #3D5A80;
-    --color-secondary: #98C1D9;
     --color-accent: #EE6C4D;
-    --color-dark: #293241;
-    --color-light: #E0FBFC;
 
     --font-sans: "Inter", "system-ui", sans-serif;
+}
+
+/* Token semantici: puntano alle CSS var dinamiche del tema */
+@theme inline {
+    --color-dark: var(--bg);
+    --color-light: var(--fg);
+    --color-secondary: var(--fg-secondary);
 }
 
 /* Variabili semantiche di tema — dark di default */
