@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.vue';
+
 const currentPath = Astro.url.pathname;
 
 const links = [
@@ -18,38 +20,44 @@ const links = [
             EM
         </a>
 
-        <!-- Menu desktop -->
-        <ul class="hidden md:flex space-x-6" role="list">
-            {links.map(({ href, label }) => {
-                const isActive = href === '/'
-                    ? currentPath === '/'
-                    : currentPath.startsWith(href);
-                return (
-                    <li>
-                        <a
-                            href={href}
-                            class={`nav-link${isActive ? ' text-accent' : ''}`}
-                            aria-current={isActive ? 'page' : undefined}
-                        >
-                            {label}
-                        </a>
-                    </li>
-                );
-            })}
-        </ul>
+        <!-- Desktop: link + toggle tema -->
+        <div class="hidden md:flex items-center gap-6">
+            <ul class="flex space-x-6" role="list">
+                {links.map(({ href, label }) => {
+                    const isActive = href === '/'
+                        ? currentPath === '/'
+                        : currentPath.startsWith(href);
+                    return (
+                        <li>
+                            <a
+                                href={href}
+                                class={`nav-link${isActive ? ' text-accent' : ''}`}
+                                aria-current={isActive ? 'page' : undefined}
+                            >
+                                {label}
+                            </a>
+                        </li>
+                    );
+                })}
+            </ul>
+            <ThemeToggle client:load />
+        </div>
 
-        <!-- Pulsante hamburger (mobile) -->
-        <button
-            id="nav-toggle"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            aria-label="Apri menu"
-            class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/10 transition-colors"
-        >
-            <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar1"></span>
-            <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar2"></span>
-            <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar3"></span>
-        </button>
+        <!-- Mobile: toggle tema + hamburger -->
+        <div class="flex md:hidden items-center gap-2">
+            <ThemeToggle client:load />
+            <button
+                id="nav-toggle"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+                aria-label="Apri menu"
+                class="flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/10 transition-colors"
+            >
+                <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar1"></span>
+                <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar2"></span>
+                <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar3"></span>
+            </button>
+        </div>
     </nav>
 
     <!-- Menu mobile -->
@@ -92,7 +100,6 @@ const links = [
         toggle.setAttribute('aria-label', isOpen ? 'Chiudi menu' : 'Apri menu');
         menu?.setAttribute('aria-hidden', String(!isOpen));
 
-        // Animazione barre hamburger → X
         if (isOpen) {
             bar1?.classList.add('rotate-45', 'translate-y-2');
             bar2?.classList.add('opacity-0');
@@ -104,7 +111,6 @@ const links = [
         }
     });
 
-    // Chiudi il menu cliccando fuori
     document.addEventListener('click', (e) => {
         if (!toggle?.contains(e.target as Node) && !menu?.contains(e.target as Node)) {
             menu?.classList.add('hidden');

@@ -24,9 +24,15 @@ const animate = () => {
     rafId = requestAnimationFrame(animate);
 };
 
+let hoverPending = false;
 const checkHover = (e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    isHovering.value = !!target.closest('a, button, .interactive');
+    if (hoverPending) return;
+    hoverPending = true;
+    requestAnimationFrame(() => {
+        const target = e.target as HTMLElement;
+        isHovering.value = !!target.closest('a, button, .interactive');
+        hoverPending = false;
+    });
 };
 
 onMounted(() => {
