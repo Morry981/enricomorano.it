@@ -5,11 +5,28 @@
                border-t border-white/10 text-center transition-transform duration-500 z-40"
         :class="{'translate-y-full': !isScrolledDown}"
     >
-        <div class="max-w-6xl mx-auto text-sm text-secondary flex flex-col md:flex-row justify-between items-center">
+        <div class="max-w-6xl mx-auto text-sm text-secondary flex flex-col md:flex-row justify-between items-center gap-4">
             <p>&copy; {{ currentYear }} Enrico Morano. Tutti i diritti riservati.</p>
-            <div class="mt-2 md:mt-0">
-                <AntiSpamEmail client:load />
-                <!-- Puoi aggiungere qui icone social, link alla privacy policy, ecc. -->
+            <div class="flex items-center gap-6">
+                <AntiSpamEmail />
+                <a
+                    href="https://github.com/Morry981"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Profilo GitHub di Enrico Morano"
+                    class="hover:text-light transition-colors"
+                >
+                    GitHub
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/enrico-morano/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Profilo LinkedIn di Enrico Morano"
+                    class="hover:text-light transition-colors"
+                >
+                    LinkedIn
+                </a>
             </div>
         </div>
     </footer>

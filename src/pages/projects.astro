@@ -1,12 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-// Array di placeholder per simulare molti progetti
-const projects = Array.from({ length: 12 }, (_, i) => ({
-    title: `Progetto ${i + 1}`,
-    description: "Descrizione breve del progetto realizzato con tecnologie moderne.",
-    category: i % 2 === 0 ? "Web Design" : "Sviluppo Vue"
-}));
+import { projects } from '../data/projects';
 ---
 
 <Layout title="Progetti | Enrico Morano">
@@ -16,37 +10,65 @@ const projects = Array.from({ length: 12 }, (_, i) => ({
                 I miei <span class="text-accent">Progetti</span>
             </h1>
             <p class="text-secondary text-xl max-w-2xl">
-                Una selezione dei miei lavori più recenti, spaziando dal web design allo sviluppo frontend avanzato.
+                Una selezione dei miei lavori più recenti, dal web design allo sviluppo full stack.
             </p>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-                <div class="group p-1 bg-primary/5 border border-primary/20 rounded-2xl hover:border-accent/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(238,108,77,0.1)]">
+                <article class="group p-1 bg-primary/5 border border-primary/20 rounded-2xl hover:border-accent/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(238,108,77,0.1)]">
                     <div class="bg-dark p-6 rounded-[calc(1rem-4px)] h-full flex flex-col">
                         <span class="text-xs font-bold uppercase tracking-widest text-secondary mb-2">
                             {project.category}
                         </span>
-                        <h3 class="text-2xl font-bold mb-3 group-hover:text-accent transition-colors">
+                        <h2 class="text-2xl font-bold mb-3 group-hover:text-accent transition-colors">
                             {project.title}
-                        </h3>
-                        <p class="text-light/60 mb-6 flex-grow">
+                        </h2>
+                        <p class="text-light/60 mb-4 flex-grow">
                             {project.description}
                         </p>
-                        <div class="flex items-center text-accent font-semibold group-hover:translate-x-2 transition-transform cursor-pointer">
-                            Scopri di più 
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            {project.tags.map((tag) => (
+                                <span class="text-xs px-2 py-1 bg-primary/20 text-secondary rounded-full">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                        <div class="flex gap-4">
+                            {project.url && (
+                                <a
+                                    href={project.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center text-accent font-semibold group-hover:translate-x-1 transition-transform"
+                                    aria-label={`Visita il progetto ${project.title}`}
+                                >
+                                    Demo
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            )}
+                            {project.repo && (
+                                <a
+                                    href={project.repo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center text-secondary/70 hover:text-light font-semibold transition-colors"
+                                    aria-label={`Repository GitHub di ${project.title}`}
+                                >
+                                    GitHub
+                                </a>
+                            )}
                         </div>
                     </div>
-                </div>
+                </article>
             ))}
         </div>
-        
+
         <footer class="mt-20 text-center py-10 border-t border-primary/10">
             <p class="text-secondary/50 italic">
-                Altri progetti in arrivo...
+                Nuovi progetti in arrivo — resta sintonizzato.
             </p>
         </footer>
     </main>
