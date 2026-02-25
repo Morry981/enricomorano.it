@@ -13,8 +13,8 @@ const skills = [
 
 <template>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[180px]">
-        <div 
-            v-for="(skill, index) in skills" 
+        <article
+            v-for="(skill, index) in skills"
             :key="skill.name"
             v-motion
             :initial="{ opacity: 0, y: 50 }"
@@ -27,13 +27,13 @@ const skills = [
             }"
         >
             <div class="flex justify-between items-start">
-                <component :is="skill.icon" class="w-10 h-10 text-accent group-hover:scale-110 transition-transform duration-500" />
-                <span class="text-secondary/30 font-bold">0{{ index + 1 }}</span>
+                <component :is="skill.icon" class="w-10 h-10 text-accent group-hover:scale-110 transition-transform duration-500" aria-hidden="true" />
+                <span class="text-secondary/30 font-bold" aria-hidden="true">0{{ index + 1 }}</span>
             </div>
             <div>
-                <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">{{ skill.name }}</h3>
+                <h2 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">{{ skill.name }}</h2>
                 <p class="text-secondary/60 text-sm">{{ skill.desc }}</p>
             </div>
-        </div>
+        </article>
     </div>
 </template>

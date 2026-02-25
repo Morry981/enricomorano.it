@@ -6,20 +6,22 @@ const mouseY = ref(0);
 const cursorX = ref(0);
 const cursorY = ref(0);
 const isHovering = ref(false);
+const isVisible = ref(false);
+
+let rafId: number | null = null;
+let prefersReduced = false;
 
 const updateMouse = (e: MouseEvent) => {
     mouseX.value = e.clientX;
     mouseY.value = e.clientY;
+    if (!isVisible.value) isVisible.value = true;
 };
 
 const animate = () => {
-    // Effetto easing (inerzia)
     const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
-    
     cursorX.value = lerp(cursorX.value, mouseX.value, 0.15);
     cursorY.value = lerp(cursorY.value, mouseY.value, 0.15);
-    
-    requestAnimationFrame(animate);
+    rafId = requestAnimationFrame(animate);
 };
 
 const checkHover = (e: MouseEvent) => {
@@ -28,24 +30,28 @@ const checkHover = (e: MouseEvent) => {
 };
 
 onMounted(() => {
+    prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return; // nessun cursore custom se l'utente lo ha richiesto
+
     window.addEventListener('mousemove', updateMouse);
     window.addEventListener('mouseover', checkHover);
-    animate();
+    rafId = requestAnimationFrame(animate);
 });
 
 onUnmounted(() => {
     window.removeEventListener('mousemove', updateMouse);
     window.removeEventListener('mouseover', checkHover);
+    if (rafId !== null) cancelAnimationFrame(rafId);
 });
 </script>
 
 <template>
-    <div 
+    <div
+        v-if="isVisible"
         class="custom-cursor"
         :class="{ 'is-hovering': isHovering }"
-        :style="{
-            transform: `translate3d(${cursorX}px, ${cursorY}px, 0)`
-        }"
+        :style="{ transform: `translate3d(${cursorX}px, ${cursorY}px, 0)` }"
+        aria-hidden="true"
     ></div>
 </template>
 

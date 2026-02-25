@@ -1,15 +1,119 @@
 ---
+const currentPath = Astro.url.pathname;
+
+const links = [
+    { href: '/',          label: 'Home' },
+    { href: '/projects',  label: 'Progetti' },
+    { href: '/skills',    label: 'Competenze' },
+    { href: '/about-me',  label: 'Chi Sono' },
+];
 ---
+
 <header class="sticky top-4 z-50 px-4 md:px-8">
-    <nav class="max-w-6xl mx-auto p-4 bg-dark/70 backdrop-blur-lg corner-squircle border border-white/10 flex items-center justify-between">
-        <a href="/" class="text-xl font-bold text-light transition-colors hover:text-accent">
+    <nav
+        aria-label="Navigazione principale"
+        class="max-w-6xl mx-auto p-4 bg-dark/70 backdrop-blur-lg corner-squircle border border-white/10 flex items-center justify-between"
+    >
+        <a href="/" aria-label="Home — Enrico Morano" class="text-xl font-bold text-light transition-colors hover:text-accent">
             EM
         </a>
-        <ul class="flex space-x-6">
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/projects" class="nav-link">Progetti</a></li>
-            <li><a href="/skills" class="nav-link">Competenze</a></li>
-            <li><a href="/about-me" class="nav-link">Chi Sono</a></li>
+
+        <!-- Menu desktop -->
+        <ul class="hidden md:flex space-x-6" role="list">
+            {links.map(({ href, label }) => {
+                const isActive = href === '/'
+                    ? currentPath === '/'
+                    : currentPath.startsWith(href);
+                return (
+                    <li>
+                        <a
+                            href={href}
+                            class={`nav-link${isActive ? ' text-accent' : ''}`}
+                            aria-current={isActive ? 'page' : undefined}
+                        >
+                            {label}
+                        </a>
+                    </li>
+                );
+            })}
         </ul>
+
+        <!-- Pulsante hamburger (mobile) -->
+        <button
+            id="nav-toggle"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            aria-label="Apri menu"
+            class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/10 transition-colors"
+        >
+            <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar1"></span>
+            <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar2"></span>
+            <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar3"></span>
+        </button>
     </nav>
+
+    <!-- Menu mobile -->
+    <div
+        id="mobile-menu"
+        class="md:hidden hidden mt-2 max-w-6xl mx-auto bg-dark/90 backdrop-blur-lg corner-squircle border border-white/10 overflow-hidden"
+        aria-hidden="true"
+    >
+        <ul class="flex flex-col p-4 gap-1" role="list">
+            {links.map(({ href, label }) => {
+                const isActive = href === '/'
+                    ? currentPath === '/'
+                    : currentPath.startsWith(href);
+                return (
+                    <li>
+                        <a
+                            href={href}
+                            class={`block px-4 py-3 rounded-lg transition-colors hover:bg-white/10 font-medium${isActive ? ' text-accent bg-accent/10' : ' text-light'}`}
+                            aria-current={isActive ? 'page' : undefined}
+                        >
+                            {label}
+                        </a>
+                    </li>
+                );
+            })}
+        </ul>
+    </div>
 </header>
+
+<script>
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+
+    toggle?.addEventListener('click', () => {
+        const isOpen = menu?.classList.toggle('hidden') === false;
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Chiudi menu' : 'Apri menu');
+        menu?.setAttribute('aria-hidden', String(!isOpen));
+
+        // Animazione barre hamburger → X
+        if (isOpen) {
+            bar1?.classList.add('rotate-45', 'translate-y-2');
+            bar2?.classList.add('opacity-0');
+            bar3?.classList.add('-rotate-45', '-translate-y-2');
+        } else {
+            bar1?.classList.remove('rotate-45', 'translate-y-2');
+            bar2?.classList.remove('opacity-0');
+            bar3?.classList.remove('-rotate-45', '-translate-y-2');
+        }
+    });
+
+    // Chiudi il menu cliccando fuori
+    document.addEventListener('click', (e) => {
+        if (!toggle?.contains(e.target as Node) && !menu?.contains(e.target as Node)) {
+            menu?.classList.add('hidden');
+            menu?.setAttribute('aria-hidden', 'true');
+            toggle?.setAttribute('aria-expanded', 'false');
+            toggle?.setAttribute('aria-label', 'Apri menu');
+            bar1?.classList.remove('rotate-45', 'translate-y-2');
+            bar2?.classList.remove('opacity-0');
+            bar3?.classList.remove('-rotate-45', '-translate-y-2');
+        }
+    });
+</script>
