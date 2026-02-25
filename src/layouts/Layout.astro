@@ -2,14 +2,19 @@
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
+import SEO from '../components/SEO.astro';
 import Cursor from '../components/Cursor.vue';
 import Footer from '../components/Footer.vue';
 
 interface Props {
     title?: string;
+    description?: string;
 }
 
-const { title = 'Enrico Morano' } = Astro.props;
+const {
+    title = 'Enrico Morano',
+    description = 'Portfolio di Enrico Morano — sviluppatore full stack specializzato in e-commerce, Vue.js, Astro e infrastrutture VPS.',
+} = Astro.props;
 ---
 
 <html lang="it">
@@ -18,19 +23,22 @@ const { title = 'Enrico Morano' } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-        <ViewTransitions prefetch="load" />
+        <meta name="theme-color" content="#293241" />
+        <SEO title={title} description={description} />
+        <ViewTransitions prefetch="viewport" />
     </head>
     <body class="flex flex-col min-h-screen antialiased select-none">
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-accent focus:text-dark focus:rounded-lg focus:font-semibold">
+            Vai al contenuto principale
+        </a>
         <Cursor client:only="vue" />
         <Nav />
-        <main class="flex-grow">
+        <main id="main-content" class="flex-grow">
             <slot />
         </main>
         <Footer client:load />
 
         <script is:inline>
-            // Previene il drag & drop di immagini e altri elementi
             document.body.addEventListener("dragstart", (e) => {
                 e.preventDefault();
                 return false;
