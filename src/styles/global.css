@@ -84,7 +84,7 @@
     .bento-card {
         background-color: var(--surface);
         border-color: var(--border);
-        @apply border p-8 backdrop-blur-sm corner-squircle
+        @apply border p-8 backdrop-blur-sm rounded-2xl corner-squircle
                hover:border-accent/30 transition-all duration-500;
     }
 
