@@ -18,11 +18,13 @@ Stack: Astro 5 SSR | Vue 3 | Tailwind CSS v4 | TypeScript strict | pnpm
 ## 1. Home
 
 ### 1a sezione — Hero
+
 - [ ] Layout hero con immagine (asset in arrivo)
 - [ ] Headline + sottotitolo posizionamento
 - [ ] CTA primaria (contatti / scopri di più)
 
 ### 2a sezione — Competenze in evidenza
+
 - [ ] Ricerca e definizione voci competenze (vedi sezione Skills sotto)
 - [ ] Cards o blocchi sintetici con icona + titolo + 1 riga descrizione
 - [ ] Link "approfondisci" verso pagina competenza dedicata
@@ -46,12 +48,14 @@ Ogni competenza: titolo, descrizione breve (2-3 righe max), esempi concreti dove
 ## 3. Progetti / Casi studio
 
 ### Layout
+
 - [ ] Sezione timeline zig-zag verticale
 - [ ] Pallino colorato che scorre verso il basso lungo la linea centrale
 - [ ] Alternanza sx/dx dei blocchi progetto
 - [ ] Animazione scroll-driven del pallino (CSS scroll-timeline o Intersection Observer)
 
 ### Contenuti (da CV + futuri)
+
 - [ ] levanteshop.it — gestione completa e-commerce, AI automation, customer care
 - [ ] casaabc.it — sito/landing azienda principale
 - [ ] Dinamitek / in-mente.it — e-commerce, strumenti digitali, template fuori standard

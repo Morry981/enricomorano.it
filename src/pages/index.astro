@@ -1,26 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SkillsHighlight from '../components/SkillsHighlight.vue';
 ---
 
 <Layout
-    title="Enrico Morano — Sviluppatore Full Stack"
-    description="Portfolio di Enrico Morano, sviluppatore full stack specializzato in e-commerce PrestaShop, Vue.js, Astro e infrastrutture VPS."
+    title="Enrico Morano — Elimino l'attrito tecnologico per PMI italiane"
+    description="Portfolio di Enrico Morano: e-commerce PrestaShop, sviluppo web full stack, automazione processi, SEO tecnica. Consulenza strategica per PMI italiane."
 >
-    <main class="flex flex-col items-center justify-center min-h-[80vh] px-4 text-center">
-        <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
-            Ciao, sono <span class="text-accent" transition:name="hero-name">Enrico</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-secondary max-w-2xl leading-relaxed">
-            Sviluppatore web appassionato di design e innovazione. 
-            Benvenuti nel mio spazio digitale dove condivido i miei progetti e il mio percorso.
-        </p>
-        <div class="mt-10 flex gap-4">
-            <a href="/projects" class="px-8 py-3 bg-primary hover:bg-primary/80 text-light rounded-full transition-all font-semibold">
-                Guarda i Progetti
-            </a>
-            <a href="/about-me" class="px-8 py-3 border border-secondary text-secondary hover:bg-secondary/10 rounded-full transition-all font-semibold">
-                Scopri chi sono
-            </a>
-        </div>
+    <main>
+        <Hero />
+        <SkillsHighlight client:load />
     </main>
 </Layout>

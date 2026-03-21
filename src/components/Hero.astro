@@ -1,0 +1,101 @@
+---
+import { skillsForHero } from '../data/skills';
+
+// Map icone a Tailwind icons (usiamo emoji per semplicità)
+const iconMap: Record<string, string> = {
+    ShoppingCart: '🛒',
+    Code: '💻',
+    Zap: '⚡',
+    TrendingUp: '📈',
+    Shield: '🛡️',
+    Compass: '🧭',
+    BookOpen: '📖',
+};
+
+const colorMap: Record<string, string> = {
+    cyan: 'bg-cyan-100 text-cyan-900',
+    blue: 'bg-blue-100 text-blue-900',
+    amber: 'bg-amber-100 text-amber-900',
+    pink: 'bg-pink-100 text-pink-900',
+    green: 'bg-green-100 text-green-900',
+    purple: 'bg-purple-100 text-purple-900',
+    indigo: 'bg-indigo-100 text-indigo-900',
+};
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <!-- Noise background -->
+    <div class="absolute inset-0 opacity-5">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <filter id="noise">
+                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" />
+                <feColorMatrix type="saturate" values="0" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noise)" />
+        </svg>
+    </div>
+
+    <!-- Logo watermark (opacità bassissima) -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
+        <img src="/images/logo-morry98.jpg" alt="logo" class="w-96 h-96" />
+    </div>
+
+    <!-- Contenuto Hero -->
+    <div class="relative z-10 max-w-2xl mx-auto px-6 text-center">
+        <!-- Foto profilo con animazione -->
+        <div class="mb-8 flex justify-center">
+            <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shadow-2xl ring-2 ring-slate-700 hover:ring-slate-500 transition-all duration-300">
+                <img
+                    src="/images/foto-profilo.jpg"
+                    alt="Enrico Morano"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+
+        <!-- Nome e Headline -->
+        <div class="mb-12">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight tracking-tight">
+                Enrico Morano
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-light">
+                Elimino l'attrito tecnologico per PMI italiane
+            </p>
+        </div>
+
+        <!-- Chip competenze (responsive grid) -->
+        <div class="flex flex-wrap gap-3 justify-center mb-12">
+            {skillsForHero.map((skill) => (
+                <div
+                    class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer ${colorMap[skill.color]}`}
+                >
+                    <span class="mr-2">{iconMap[skill.icon]}</span>
+                    {skill.labelShort}
+                </div>
+            ))}
+        </div>
+
+        <!-- CTA Primaria -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+                href="#competenze"
+                class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg"
+            >
+                Scopri come posso aiutare
+            </a>
+            <a
+                href="#contatti"
+                class="px-8 py-3 border-2 border-slate-500 hover:border-slate-300 text-slate-300 hover:text-white font-semibold rounded-lg transition-all duration-200"
+            >
+                Contattami
+            </a>
+        </div>
+    </div>
+
+    <!-- Scroll indicator (opzionale) -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>
