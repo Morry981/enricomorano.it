@@ -1,101 +1,307 @@
 ---
-import { skillsForHero } from '../data/skills';
+interface Label {
+    text: string;
+    bg: string;
+    deg: number;
+    delay: number;
+    href: string;
+}
 
-// Map icone a Tailwind icons (usiamo emoji per semplicità)
-const iconMap: Record<string, string> = {
-    ShoppingCart: '🛒',
-    Code: '💻',
-    Zap: '⚡',
-    TrendingUp: '📈',
-    Shield: '🛡️',
-    Compass: '🧭',
-    BookOpen: '📖',
-};
+const labelsEnrico: Label[] = [
+    { text: 'e-commerce',  bg: '#a8e6cf', deg: -4, delay: 0,   href: '/skills#e-commerce'  },
+    { text: 'SEO tecnica', bg: '#b8d4f8', deg:  4, delay: 180, href: '/skills#seo'          },
+    { text: 'consulenza',  bg: '#ffcba4', deg: -6, delay: 330, href: '/skills#consulenza'   },
+    { text: 'Vue.js',      bg: '#c3e8c3', deg:  3, delay: 490, href: '/skills#vuejs'        },
+    { text: 'performance', bg: '#fde68a', deg: -3, delay: 640, href: '/skills#performance'  },
+];
 
-const colorMap: Record<string, string> = {
-    cyan: 'bg-cyan-100 text-cyan-900',
-    blue: 'bg-blue-100 text-blue-900',
-    amber: 'bg-amber-100 text-amber-900',
-    pink: 'bg-pink-100 text-pink-900',
-    green: 'bg-green-100 text-green-900',
-    purple: 'bg-purple-100 text-purple-900',
-    indigo: 'bg-indigo-100 text-indigo-900',
-};
+const labelsMorano: Label[] = [
+    { text: 'automazione',        bg: '#c9c5e0', deg:  3, delay: 110, href: '/skills#automazione'        },
+    { text: 'PrestaShop',         bg: '#ffd4a8', deg: -4, delay: 260, href: '/skills#prestashop'         },
+    { text: 'strategia digitale', bg: '#f4b8c1', deg:  5, delay: 400, href: '/skills#strategia-digitale' },
+    { text: 'problem solver',     bg: '#b8e8d4', deg:  7, delay: 540, href: '/skills#problem-solver'     },
+    { text: 'infrastrutture',     bg: '#e8d4b8', deg: -3, delay: 680, href: '/skills#infrastrutture'     },
+    { text: 'formazione',         bg: '#dbd8f0', deg: -5, delay: 800, href: '/skills#formazione'         },
+];
+
+function ls(l: Label): string {
+    return `--deg: ${l.deg}deg; --delay: ${l.delay}ms; --label-bg: ${l.bg}; --label-fg: var(--bg);`;
+}
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-    <!-- Noise background -->
-    <div class="absolute inset-0 opacity-5">
-        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <filter id="noise">
-                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" />
-                <feColorMatrix type="saturate" values="0" />
-            </filter>
-            <rect width="100%" height="100%" filter="url(#noise)" />
-        </svg>
-    </div>
+<section
+    id="hero"
+    class="relative h-[100svh] min-h-[560px] flex flex-col items-center justify-center overflow-hidden"
+>
+    <!-- Logo watermark: appena accennato, basso a destra -->
+    <img
+        src="/images/logo-morry98.png"
+        alt=""
+        aria-hidden="true"
+        class="fixed bottom-[-15%] right-[-4%] h-[60vh] w-auto opacity-[0.02] pointer-events-none select-none object-contain"
+    />
 
-    <!-- Logo watermark (opacità bassissima) -->
-    <div class="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
-        <img src="/images/logo-morry98.jpg" alt="logo" class="w-96 h-96" />
-    </div>
-
-    <!-- Contenuto Hero -->
-    <div class="relative z-10 max-w-2xl mx-auto px-6 text-center">
-        <!-- Foto profilo con animazione -->
-        <div class="mb-8 flex justify-center">
-            <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shadow-2xl ring-2 ring-slate-700 hover:ring-slate-500 transition-all duration-300">
-                <img
-                    src="/images/foto-profilo.jpg"
-                    alt="Enrico Morano"
-                    class="w-full h-full object-cover"
-                />
-            </div>
-        </div>
-
-        <!-- Nome e Headline -->
-        <div class="mb-12">
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight tracking-tight">
-                Enrico Morano
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-300 font-light">
-                Elimino l'attrito tecnologico per PMI italiane
-            </p>
-        </div>
-
-        <!-- Chip competenze (responsive grid) -->
-        <div class="flex flex-wrap gap-3 justify-center mb-12">
-            {skillsForHero.map((skill) => (
-                <div
-                    class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer ${colorMap[skill.color]}`}
+    <h1
+        class="hero-row flex flex-row items-stretch justify-center gap-4 w-full m-0 z-[1]"
+        aria-label="Enrico Morano"
+    >
+        <!-- ENRICO + chip -->
+        <div
+            id="wrap-enrico"
+            class="flex-1 relative flex items-center justify-end overflow-visible min-w-0"
+        >
+            <span class="hero-word font-black text-light uppercase whitespace-nowrap select-none pointer-events-none block">
+                ENRICO
+            </span>
+            {labelsEnrico.map((l, i) => (
+                <a
+                    href={l.href}
+                    class="hero-label absolute text-[13px] sm:text-sm lg:text-base font-medium whitespace-nowrap z-30 px-[14px] sm:px-4 sm:py-[6px] lg:px-5 lg:py-2 rounded-full corner-squircle"
+                    data-pos={i}
+                    style={ls(l)}
                 >
-                    <span class="mr-2">{iconMap[skill.icon]}</span>
-                    {skill.labelShort}
-                </div>
+                    {l.text}
+                </a>
             ))}
         </div>
 
-        <!-- CTA Primaria -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-                href="#competenze"
-                class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg"
-            >
-                Scopri come posso aiutare
-            </a>
-            <a
-                href="#contatti"
-                class="px-8 py-3 border-2 border-slate-500 hover:border-slate-300 text-slate-300 hover:text-white font-semibold rounded-lg transition-all duration-200"
-            >
-                Contattami
-            </a>
+        <!-- Foto -->
+        <div class="photo-frame shrink-0 self-center overflow-hidden border-[5px] border-accent shadow-[0_20px_56px_rgba(0,0,0,0.35)] rounded-2xl corner-squircle">
+            <img
+                src="/images/foto-profilo.jpg"
+                alt="Foto di Enrico Morano"
+                class="block w-full h-full object-cover object-top"
+                width="220"
+                height="293"
+                loading="eager"
+            />
         </div>
-    </div>
 
-    <!-- Scroll indicator (opzionale) -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        <!-- MORANO + chip -->
+        <div
+            id="wrap-morano"
+            class="flex-1 relative flex items-center justify-start overflow-visible min-w-0"
+        >
+            <span class="hero-word font-black text-light uppercase whitespace-nowrap select-none pointer-events-none block">
+                MORANO
+            </span>
+            {labelsMorano.map((l, i) => (
+                <a
+                    href={l.href}
+                    class="hero-label absolute text-[13px] sm:text-sm lg:text-base font-medium whitespace-nowrap z-30 px-[14px] sm:px-4 sm:py-[6px] lg:px-5 lg:py-2 rounded-full corner-squircle"
+                    data-pos={i}
+                    style={ls(l)}
+                >
+                    {l.text}
+                </a>
+            ))}
+        </div>
+    </h1>
+
+    <!-- Tagline -->
+    <p class="hero-tagline absolute bottom-[9%] left-1/2 -translate-x-1/2 w-[88%] max-w-[520px] text-center text-secondary leading-[1.55] z-30">
+        Elimino l'attrito tecnologico tra la tua azienda e i suoi risultati.
+    </p>
+
+    <!-- Scroll hint -->
+    <a href="#competenze" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 text-secondary z-30" aria-label="Vai a Come posso aiutare">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
-    </div>
+    </a>
 </section>
+
+<style>
+    /* reset h1 — font: inherit non ha equivalente Tailwind */
+    .hero-row { font: inherit; }
+
+    /* ── Parola — stili base comuni ── */
+    .hero-word {
+        font-family: fantasy;
+        line-height: 1;
+    }
+
+    /* ── Foto — dimensioni responsive ── */
+    .photo-frame {
+        width:  clamp(160px, 26vh, 310px);
+        height: clamp(213px, 35vh, 413px);
+    }
+
+    /* ── Chip — animazione + transform individuali ── */
+    .hero-label {
+        background-color: var(--label-bg);
+        color:            var(--label-fg);
+        opacity: 0;
+        rotate:    var(--deg);
+        translate: 0 10px;
+        scale: 1;
+        text-decoration: none;
+        animation: labelIn 0.45s ease forwards var(--delay);
+        transition: scale 0.25s ease, translate 0.25s ease, rotate 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        @keyframes labelIn {
+            to { opacity: 1; translate: 0 0; }
+        }
+    }
+
+    /* Fallback: mostra subito senza animazione se reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+        .hero-label {
+            opacity: 1;
+            translate: 0 0;
+            animation: none;
+        }
+        .scroll-hint {
+            animation: none;
+        }
+    }
+
+    .hero-label:hover,
+    .hero-label:focus-visible {
+        scale:     1.1;
+        translate: 0 -4px;
+        rotate:    0deg;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+        z-index: 40;
+        outline: 2px solid var(--label-bg);
+        outline-offset: 2px;
+    }
+
+    /* ── Tagline — font-size con clamp ── */
+    .hero-tagline {
+        font-size: clamp(14px, 1.6vw, 18px);
+    }
+
+    /* ── Scroll hint — animazione bounce ── */
+    @media (prefers-reduced-motion: no-preference) {
+        .scroll-hint {
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0);   }
+            50%       { transform: translateX(-50%) translateY(6px); }
+        }
+    }
+
+    /* ══════════════════════════════════════════════
+       DESKTOP (≥ 1024px) — scaleY: lettere alte e schiacciate
+    ══════════════════════════════════════════════ */
+
+    @media (min-width: 1024px) {
+        .hero-word {
+            /*
+             * Clamp calcolato su MORANO (parola più larga con M e A):
+             *   wrap = (100vw - foto_26vh - gap_2rem) / 2
+             *   char_ratio fantasy uppercase ≈ 0.85 × 6 chars = 5.1
+             *   font_size = wrap / 5.1  →  divisore totale = 9.8 (+~4%)
+             */
+            font-size: clamp(44px, calc((100vw - 26vh - 2rem) / 9.8), 240px);
+            transform: scaleY(3);
+            transform-origin: center center;
+        }
+
+        /* Compensazione advance width per i due nomi */
+        #wrap-enrico .hero-word { letter-spacing: 0.15em; }
+        #wrap-morano .hero-word { letter-spacing: 0.06em; }
+
+        /* Chip ENRICO: sul nome, left 5%→85%, top varia nell'altezza del blocco testo */
+        #wrap-enrico .hero-label[data-pos="0"] { top:  5%;  left:  5%; }
+        #wrap-enrico .hero-label[data-pos="1"] { top: 40%;  left: 26%; }
+        #wrap-enrico .hero-label[data-pos="2"] { top: 70%;  left: 50%; }
+        #wrap-enrico .hero-label[data-pos="3"] { top: 20%;  left: 68%; }
+        #wrap-enrico .hero-label[data-pos="4"] { top: 82%;  left: 84%; }
+
+        /* Chip MORANO: sul nome, right 5%→85%, top varia nell'altezza del blocco testo */
+        #wrap-morano .hero-label[data-pos="0"] { top:  5%;  right:  5%; }
+        #wrap-morano .hero-label[data-pos="1"] { top: 45%;  right: 22%; }
+        #wrap-morano .hero-label[data-pos="2"] { top: 22%;  right: 42%; }
+        #wrap-morano .hero-label[data-pos="3"] { top: 68%;  right: 60%; }
+        #wrap-morano .hero-label[data-pos="4"] { top: 38%;  right: 76%; }
+        #wrap-morano .hero-label[data-pos="5"] { top: 80%;  right: 86%; }
+    }
+
+    /* ══════════════════════════════════════════════
+       TABLET (640 – 1023px) — lettere verticali impilate
+    ══════════════════════════════════════════════ */
+
+    @media (min-width: 640px) and (max-width: 1023px) {
+        .hero-word {
+            writing-mode: vertical-lr;
+            text-orientation: upright;
+            font-size: clamp(42px, 7vh, 92px);
+            letter-spacing: 0.04em;
+        }
+
+        /* wrap più larghi → più spazio per i chip */
+        #wrap-enrico,
+        #wrap-morano {
+            min-width: 200px;
+        }
+
+        .photo-frame {
+            width:  clamp(130px, 22vh, 240px);
+            height: clamp(173px, 29vh, 320px);
+        }
+
+        /* Chip ENRICO tablet: sul nome, left 5%→82% */
+        #wrap-enrico .hero-label[data-pos="0"] { top:  5%;  left:  5%; }
+        #wrap-enrico .hero-label[data-pos="1"] { top: 42%;  left: 24%; }
+        #wrap-enrico .hero-label[data-pos="2"] { top: 68%;  left: 46%; }
+        #wrap-enrico .hero-label[data-pos="3"] { top: 22%;  left: 64%; }
+        #wrap-enrico .hero-label[data-pos="4"] { top: 82%;  left: 80%; }
+
+        /* Chip MORANO tablet: sul nome, right 5%→82% */
+        #wrap-morano .hero-label[data-pos="0"] { top:  5%;  right:  5%; }
+        #wrap-morano .hero-label[data-pos="1"] { top: 48%;  right: 20%; }
+        #wrap-morano .hero-label[data-pos="2"] { top: 22%;  right: 38%; }
+        #wrap-morano .hero-label[data-pos="3"] { top: 70%;  right: 56%; }
+        #wrap-morano .hero-label[data-pos="4"] { top: 38%;  right: 72%; }
+        #wrap-morano .hero-label[data-pos="5"] { top: 82%;  right: 82%; }
+    }
+
+    /* ══════════════════════════════════════════════
+       MOBILE (< 640px) — flex colonna: ENRICO / foto / MORANO
+    ══════════════════════════════════════════════ */
+
+    @media (max-width: 639px) {
+        .hero-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        #wrap-enrico,
+        #wrap-morano {
+            width: 100%;
+            min-height: 80px;
+            justify-content: center;
+        }
+
+        .hero-word {
+            font-size: 20vw;
+            line-height: 0.9;
+            text-align: center;
+        }
+
+        .photo-frame {
+            width: 140px;
+            height: 187px;
+        }
+
+        #wrap-enrico .hero-label[data-pos="0"] { top: 8px;    left: 0.75rem;  }
+        #wrap-enrico .hero-label[data-pos="1"] { bottom: 8px; right: 0.75rem; }
+        #wrap-enrico .hero-label[data-pos="2"] { display: none; }
+        #wrap-enrico .hero-label[data-pos="3"] { display: none; }
+        #wrap-enrico .hero-label[data-pos="4"] { display: none; }
+
+        #wrap-morano .hero-label[data-pos="0"] { top: 8px;    right: 0.75rem; }
+        #wrap-morano .hero-label[data-pos="1"] { bottom: 8px; left: 0.75rem;  }
+        #wrap-morano .hero-label[data-pos="2"] { display: none; }
+        #wrap-morano .hero-label[data-pos="3"] { display: none; }
+        #wrap-morano .hero-label[data-pos="4"] { display: none; }
+        #wrap-morano .hero-label[data-pos="5"] { display: none; }
+    }
+</style>

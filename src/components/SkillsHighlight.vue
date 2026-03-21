@@ -20,8 +20,7 @@
                 <div
                     v-for="skill in displayedSkills"
                     :key="skill.id"
-                    class="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 cursor-pointer hover:-translate-y-1 border border-slate-200 hover:border-slate-300"
-                    @click="handleCardClick(skill.id)"
+                    class="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 hover:-translate-y-1 border border-slate-200 hover:border-slate-300"
                 >
                     <!-- Icona + colore -->
                     <div
@@ -32,7 +31,7 @@
 
                     <!-- Titolo -->
                     <h3
-                        class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors"
+                        class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors whitespace-pre-line"
                     >
                         {{ skill.labelLong }}
                     </h3>
@@ -47,12 +46,13 @@
                         :href="`/skills/${skill.id}`"
                         class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                     >
-                        Approfondisci
+                        Approfondisci <span class="sr-only">{{ skill.labelShort }}</span>
                         <svg
                             class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
+                            aria-hidden="true"
                         >
                             <path
                                 stroke-linecap="round"
@@ -77,6 +77,7 @@
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                     >
                         <path
                             stroke-linecap="round"

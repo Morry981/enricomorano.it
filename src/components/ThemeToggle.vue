@@ -37,6 +37,6 @@ const toggle = () => {
         :aria-pressed="!isDark"
         class="p-2 rounded-lg hover:bg-[var(--surface)] transition-colors text-lg leading-none"
     >
-        {{ isDark ? '☀️' : '🌙' }}
+        <span aria-hidden="true">{{ isDark ? '☀️' : '🌙' }}</span>
     </button>
 </template>

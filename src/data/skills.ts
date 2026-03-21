@@ -19,7 +19,7 @@ export const skills: Skill[] = [
     },
     {
         id: 'webdev',
-        labelLong: 'Sviluppo Web Full Stack',
+        labelLong: 'Sviluppo Web\nFull Stack',
         labelShort: 'Web Dev',
         description:
             'Backend con PHP/Laravel, frontend con TypeScript, Vue 3, Alpine.js. Vite, build chain moderno, SSR con Astro.',
@@ -28,7 +28,7 @@ export const skills: Skill[] = [
     },
     {
         id: 'automation',
-        labelLong: 'Automazione Processi',
+        labelLong: 'Automazione\nProcessi',
         labelShort: 'Automation',
         description:
             "Integrazioni custom, estensioni browser, script di import/export. Riduco l'attrito manuale nei flussi aziendali.",

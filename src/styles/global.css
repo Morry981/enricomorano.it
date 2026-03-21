@@ -74,10 +74,26 @@
         background-image: url("/noise.svg");
     }
 
+    @media (prefers-reduced-motion: no-preference) {
+        html { scroll-behavior: smooth; }
+    }
+
     ::view-transition-old(*),
     ::view-transition-new(*) {
         animation-duration: 0.8s !important;
     }
+}
+
+/* Chip hero: in light mode i pastelli sono troppo chiari — saturazione + scurimento */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .hero-label {
+        filter: saturate(1.8) brightness(0.68);
+        color: #293241;
+    }
+}
+:root[data-theme="light"] .hero-label {
+    filter: saturate(1.8) brightness(0.68);
+    color: #293241;
 }
 
 @layer components {

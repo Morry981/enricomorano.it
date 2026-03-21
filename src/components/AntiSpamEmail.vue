@@ -1,5 +1,5 @@
 <template>
-    <a :href="mailtoLink" class="spam-filter" @mouseover="revealEmail" @focus="revealEmail"></a>
+    <a :href="mailtoLink" :aria-label="`Scrivi una email a ${USER}@${DOMAIN}`" class="spam-filter" @mouseover="revealEmail" @focus="revealEmail"></a>
 </template>
 
 <script setup lang="ts">
