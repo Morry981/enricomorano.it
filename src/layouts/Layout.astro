@@ -20,7 +20,12 @@ const {
 <html lang="it">
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="Enrico Morano" />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content={Astro.generator} />
         <meta name="theme-color" content="#293241" />
@@ -29,7 +34,7 @@ const {
         <script defer data-domain="enricomorano.it" src="https://plausible.io/js/script.js"></script>
     </head>
     <body class="flex flex-col min-h-screen antialiased select-none">
-        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-accent focus:text-dark focus:rounded-lg focus:font-semibold">
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-3 focus:py-1 focus:text-sm focus:text-accent focus:border focus:border-accent focus:rounded-md focus:bg-dark/80 focus:backdrop-blur-sm">
             Vai al contenuto principale
         </a>
         <Cursor client:only="vue" />
