@@ -30,8 +30,9 @@ const {
         <meta name="apple-mobile-web-app-title" content="Enrico Morano" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content={Astro.generator} />
-        <meta name="theme-color" content="#293241" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<meta name="theme-color" content="#293241" />
         <SEO title={title} description={description} />
         <ViewTransitions prefetch="viewport" />
         <script defer data-domain="enricomorano.it" src="https://plausible.io/js/script.js"></script>
@@ -42,7 +43,7 @@ const {
         </a>
         <Cursor client:only="vue" />
         <Nav />
-        <main id="main-content" class={`flex-grow${fullscreen ? '' : ' pt-12 md:pt-14'}`}>
+        <main id="main-content" class={`flex-grow pb-20 md:pb-0${fullscreen ? '' : ' pt-12 md:pt-14'}`}>
             <slot />
         </main>
         <Footer client:load />

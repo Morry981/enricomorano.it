@@ -8,20 +8,20 @@ interface Label {
 }
 
 const labelsEnrico: Label[] = [
-    { text: 'e-commerce',  bg: '#a8e6cf', deg: -4, delay: 0,   href: '/skills#e-commerce'  },
-    { text: 'SEO tecnica', bg: '#b8d4f8', deg:  4, delay: 180, href: '/skills#seo'          },
-    { text: 'consulenza',  bg: '#ffcba4', deg: -6, delay: 330, href: '/skills#consulenza'   },
-    { text: 'Vue.js',      bg: '#c3e8c3', deg:  3, delay: 490, href: '/skills#vuejs'        },
-    { text: 'performance', bg: '#fde68a', deg: -3, delay: 640, href: '/skills#performance'  },
+    { text: 'e-commerce',  bg: '#a8e6cf', deg: -4, delay: 0,   href: '/skills#ecommerce'  },
+    { text: 'SEO tecnica', bg: '#b8d4f8', deg:  4, delay: 180, href: '/skills#seo'         },
+    { text: 'consulenza',  bg: '#ffcba4', deg: -6, delay: 330, href: '/skills#strategy'    },
+    { text: 'Vue.js',      bg: '#c3e8c3', deg:  3, delay: 490, href: '/skills#webdev'      },
+    { text: 'performance', bg: '#fde68a', deg: -3, delay: 640, href: '/skills#seo'         },
 ];
 
 const labelsMorano: Label[] = [
-    { text: 'automazione',        bg: '#c9c5e0', deg:  3, delay: 110, href: '/skills#automazione'        },
-    { text: 'PrestaShop',         bg: '#ffd4a8', deg: -4, delay: 260, href: '/skills#prestashop'         },
-    { text: 'strategia digitale', bg: '#f4b8c1', deg:  5, delay: 400, href: '/skills#strategia-digitale' },
-    { text: 'problem solver',     bg: '#b8e8d4', deg:  7, delay: 540, href: '/skills#problem-solver'     },
-    { text: 'infrastrutture',     bg: '#e8d4b8', deg: -3, delay: 680, href: '/skills#infrastrutture'     },
-    { text: 'formazione',         bg: '#dbd8f0', deg: -5, delay: 800, href: '/skills#formazione'         },
+    { text: 'automazione',        bg: '#c9c5e0', deg:  3, delay: 110, href: '/skills#automation' },
+    { text: 'PrestaShop',         bg: '#ffd4a8', deg: -4, delay: 260, href: '/skills#ecommerce'  },
+    { text: 'strategia digitale', bg: '#f4b8c1', deg:  5, delay: 400, href: '/skills#strategy'   },
+    { text: 'problem solver',     bg: '#b8e8d4', deg:  7, delay: 540, href: '/skills#proactive'  },
+    { text: 'infrastrutture',     bg: '#e8d4b8', deg: -3, delay: 680, href: '/skills#webdev'     },
+    { text: 'formazione',         bg: '#dbd8f0', deg: -5, delay: 800, href: '/skills#training'   },
 ];
 
 function ls(l: Label): string {
@@ -117,7 +117,7 @@ function ls(l: Label): string {
 
     /* ── Parola — stili base comuni ── */
     .hero-word {
-        font-family: fantasy;
+        font-family: var(--font-retro);
         line-height: 1;
     }
 
@@ -204,8 +204,8 @@ function ls(l: Label): string {
         }
 
         /* Compensazione advance width per i due nomi */
-        #wrap-enrico .hero-word { letter-spacing: 0.15em; }
-        #wrap-morano .hero-word { letter-spacing: 0.06em; }
+        #wrap-enrico .hero-word { letter-spacing: 0.12em; }
+        #wrap-morano .hero-word { letter-spacing: 0.04em; }
 
         /* Chip ENRICO: sul nome, left 5%→85%, top varia nell'altezza del blocco testo */
         #wrap-enrico .hero-label[data-pos="0"] { top:  5%;  left:  5%; }

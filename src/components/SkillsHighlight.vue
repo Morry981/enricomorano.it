@@ -43,7 +43,7 @@
 
                     <!-- Link approfondisci -->
                     <a
-                        :href="`/skills/${skill.id}`"
+                        :href="`/skills#${skill.id}`"
                         class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                     >
                         Approfondisci <span class="sr-only">{{ skill.labelShort }}</span>

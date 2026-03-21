@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 @import "tailwindcss";
 @plugin "@toolwind/corner-shape";
 
@@ -7,6 +8,7 @@
     --color-accent: #EE6C4D;
 
     --font-sans: "Inter", "system-ui", sans-serif;
+    --font-retro: "Black Ops One", sans-serif;
 }
 
 /* Token semantici: puntano alle CSS var dinamiche del tema */
