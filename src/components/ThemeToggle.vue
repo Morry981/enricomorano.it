@@ -10,7 +10,7 @@ onMounted(() => {
     if (saved) {
         isDark.value = saved === 'dark';
     } else {
-        isDark.value = !window.matchMedia('(prefers-color-scheme: light)').matches;
+        isDark.value = true;
     }
     applyTheme(isDark.value);
 });

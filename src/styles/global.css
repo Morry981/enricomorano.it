@@ -29,20 +29,7 @@
     --gradient-b: rgba(238, 108, 77, 0.10);
 }
 
-/* Light mode: sistema o toggle manuale */
-@media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-        --bg: #F0F4F8;
-        --fg: #293241;
-        --fg-secondary: #3D5A80;
-        --surface: rgba(0,0,0,0.04);
-        --border: rgba(0,0,0,0.10);
-        --gradient-a: rgba(61, 90, 128, 0.08);
-        --gradient-b: rgba(238, 108, 77, 0.06);
-    }
-}
-
-/* Toggle manuale: data-theme="light" forza il tema chiaro */
+/* Light mode: solo se attivato esplicitamente con il toggle */
 :root[data-theme="light"] {
     --bg: #F0F4F8;
     --fg: #293241;
@@ -87,15 +74,12 @@
 }
 
 /* Chip hero: in light mode i pastelli sono troppo chiari — saturazione + scurimento */
-@media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) .hero-label {
-        filter: saturate(1.8) brightness(0.68);
-        color: #293241;
-    }
-}
 :root[data-theme="light"] .hero-label {
     filter: saturate(1.8) brightness(0.68);
     color: #293241;
+}
+:root[data-theme="light"] .hero-word {
+    text-shadow: 0 0 0px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 0.6);
 }
 
 @layer components {
