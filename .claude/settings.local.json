@@ -1,22 +1,16 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(ls:*)",
-      "Bash(pnpm test:*)",
-      "Bash(npm run:*)",
-      "Bash(cmd /c \"pnpm test 2>&1\")",
-      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\enric\\\\Documents\\\\Enrico\\\\enricomorano.it && pnpm test\" 2>&1)",
-      "Bash(find /c/Users/enric/Documents/Enrico/enricomorano.it/tests /c/Users/enric/Documents/Enrico/enricomorano.it/src -name *.test.* -o -name *.spec.*)",
-      "Bash(xargs grep:*)",
-      "Bash(pnpm build:*)",
-      "Bash(npx astro:*)",
-      "Bash(curl -s http://localhost:4322/pagina-che-non-esiste)",
-      "Bash(pkill -f \"astro dev\")",
-      "Bash(npx skills:*)",
-      "Bash(git checkout:*)",
-      "WebFetch(domain:en.wikipedia.org)",
-      "Bash(curl -s -L -H \"User-Agent: Mozilla/5.0\" \"https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&action=raw\")",
-      "Bash(chown:*)"
-    ]
-  }
+    "permissions": {
+        "allow": [
+            "Bash(ls:*)",
+            "Bash(pnpm test:*)",
+            "Bash(npm run:*)",
+            "Bash(cmd /c \"pnpm test 2>&1\")",
+            "Bash(pnpm build:*)",
+            "Bash(npx astro:*)",
+            "Bash(pkill -f \"astro dev\")",
+            "Bash(npx skills:*)",
+            "Bash(git checkout:*)",
+            "Bash(chown:*)"
+        ]
+    }
 }

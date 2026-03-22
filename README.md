@@ -51,7 +51,7 @@ La parola a chi ha lavorato con me. Credo che la collaborazione e la comunicazio
 
 Sei interessato a una collaborazione, hai una domanda o vuoi semplicemente fare due chiacchiere?
 
-- **Email:** [enrico.morano@outlook.com](mailto:enrico.morano@outlook.com 'Mail di Enrico')
+- **Email:** [web@enricomorano.it](mailto:web@enricomorano.it)
 - **LinkedIn:** [https://it.linkedin.com/in/enrico-morano](https://it.linkedin.com/in/enrico-morano 'Linkedin di Enrico')
 
 Grazie per aver visitato il mio sito!

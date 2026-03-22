@@ -9,7 +9,7 @@ import vue from '@astrojs/vue';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://enricomorano.it',
+    site: 'https://www.enricomorano.it',
     output: 'server',
 
     adapter: node({

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import SkillsHighlight from '../components/SkillsHighlight.vue';
+import AntiSpamEmail from '../components/AntiSpamEmail.vue';
 ---
 
 <Layout
@@ -13,5 +14,111 @@ import SkillsHighlight from '../components/SkillsHighlight.vue';
     <main>
         <Hero />
         <SkillsHighlight client:load />
+
+        <!-- Chi sono -->
+        <section class="py-16 md:py-24 bg-dark">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-light mb-6">
+                    Sviluppatore full stack per PMI italiane
+                </h2>
+                <div class="text-light/70 text-lg space-y-4">
+                    <p class="text-balance">
+                        Sono Enrico Morano. Ho iniziato con uno stage in agenzia molti anni fa, ci sono rimasto parecchi anni e sono cresciuto in competenze specifiche.
+                        Ho poi ricostruito da zero un e-commerce complesso, gestendolo in ogni aspetto:
+                        catalogo, marketplace, customer care, Ads, contabilità.
+                    </p>
+                    <p class="text-balance">
+                        Oggi lavoro come freelancer. Porto quello che ho imparato sul campo a PMI
+                        che hanno bisogno di qualcuno che capisca di codice ma specialmente di business.
+                    </p>
+                </div>
+                <a href="/about-me" class="inline-block mt-6 text-accent font-semibold hover:underline">
+                    Più su di me
+                </a>
+            </div>
+        </section>
+
+        <!-- Servizi -->
+        <section class="py-16 md:py-24 bg-slate-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                    Cosa faccio, in concreto
+                </h2>
+                <p class="text-slate-600 text-lg mb-12 max-w-2xl text-balance">
+                    Non vendo pacchetti preconfezionati. Ogni progetto parte da quello che serve davvero.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-3">E-commerce su PrestaShop</h3>
+                        <p class="text-slate-600 text-sm text-balance">
+                            Sviluppo moduli custom, ottimizzazione del catalogo prodotti, integrazioni marketplace
+                            e automazione dei flussi ordine. Ho gestito un e-commerce con migliaia di referenze
+                            per oltre tre anni, dal caricamento prodotti al post-vendita.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-3">Automazione processi</h3>
+                        <p class="text-slate-600 text-sm text-balance">
+                            Script, estensioni browser, integrazioni tra sistemi.
+                            In agenzia ho automatizzato inventario, rinomina file massiva e import/export dati.
+                            Se un'operazione si ripete, scrivo codice perché non si proceda più a mano.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-3">SEO tecnica e tracking</h3>
+                        <p class="text-slate-600 text-sm text-balance">
+                            Audit tecnici, structured data, Core Web Vitals, GTM e GA4.
+                            Mi occupo della parte che sta sotto al cofano: crawl budget, indicizzazione,
+                            schema markup, velocità. Niente trucchi, numeri misurabili curati dalla privacy.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-3">Consulenza e formazione</h3>
+                        <p class="text-slate-600 text-sm text-balance">
+                            Aiuto le PMI a scegliere le tecnologie giuste e a usarle.
+                            Ho formato tirocinanti e personale aziendale, gestito riunioni con clienti e fornitori per conto dell'azienda.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <a href="/skills" class="inline-block text-blue-600 font-semibold hover:underline">
+                        Tutte le competenze
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Come lavoro -->
+        <section class="py-16 md:py-24 bg-dark">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-light mb-6">
+                    Come lavoro
+                </h2>
+                <div class="text-light/70 text-lg space-y-4">
+                    <p class="text-balance">
+                        Parto sempre dal problema, non dallo strumento.
+                        Prima capisco cosa serve al business, poi scelgo la tecnologia.
+                        PrestaShop, Vue.js, un nuovo VPS Apache ottimizzato o un semplice script da 40 righe: dipende da cosa risolve il problema nel modo più pulito e rapido.
+                    </p>
+                    <p class="text-balance">
+                        Lavoro da remoto su tutta Italia. Per i clienti che lo preferiscono,
+                        sono disponibile anche in presenza nella zona di Cuneo e provincia.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-16 md:py-20 bg-slate-50">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                    Hai un progetto in testa?
+                </h2>
+                <p class="text-slate-600 text-lg mb-8 text-balance">
+                    Scrivimi e raccontami cosa ti serve. Nessun impegno, nessun preventivo a scatola chiusa.
+                </p>
+                <AntiSpamEmail client:load variant="cta" />
+            </div>
+        </section>
     </main>
 </Layout>
