@@ -10,4 +10,5 @@ export interface Project {
     featured?: boolean;
     date?: string;
     role?: string;
+    note?: { text: string; url?: string };
 }

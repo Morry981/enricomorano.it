@@ -9,6 +9,7 @@ import {
     Palette,
     Bot,
     GraduationCap,
+    Info,
 } from 'lucide-vue-next';
 import type { Project } from '../types';
 
@@ -60,13 +61,17 @@ const formattedDate = computed(() => {
         :class="{ 'border-spin': active && !prefersReducedMotion }"
     >
         <div class="aspect-video rounded-lg overflow-hidden mb-4 bg-primary/10 flex items-center justify-center">
-            <img
-                v-if="project.image"
-                :src="project.image"
-                :alt="project.title"
-                class="w-full h-full object-cover"
-                loading="lazy"
-            />
+            <picture v-if="project.image">
+                <source :srcset="project.image.replace(/-opt\.(png|jpe?g)$/, '.webp')" type="image/webp" />
+                <img
+                    :src="project.image"
+                    :alt="project.title"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    width="800"
+                    height="450"
+                />
+            </picture>
             <component
                 v-else
                 :is="icon"
@@ -100,6 +105,23 @@ const formattedDate = computed(() => {
 
         <p class="text-light/60 mb-4 text-balance">
             {{ project.description }}
+        </p>
+
+        <p v-if="project.note" class="flex items-start gap-1.5 text-xs text-secondary/50 mb-4">
+            <a
+                v-if="project.note.url"
+                :href="project.note.url"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                class="inline-flex items-start gap-1.5 hover:text-accent transition-colors"
+            >
+                <Info class="w-3.5 h-3.5 shrink-0 mt-px" aria-hidden="true" />
+                <span>{{ project.note.text }}</span>
+            </a>
+            <template v-else>
+                <Info class="w-3.5 h-3.5 shrink-0 mt-px" aria-hidden="true" />
+                <span>{{ project.note.text }}</span>
+            </template>
         </p>
 
         <div class="flex flex-wrap gap-2 mb-4">
