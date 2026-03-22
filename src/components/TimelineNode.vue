@@ -7,6 +7,8 @@ import {
     Server,
     Smartphone,
     Palette,
+    Bot,
+    GraduationCap,
 } from 'lucide-vue-next';
 import type { Project } from '../types';
 
@@ -14,9 +16,10 @@ interface Props {
     project: Project;
     index: number;
     side: 'left' | 'right';
+    active?: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), { active: false });
 
 const categoryIcons: Record<string, any> = {
     'E-commerce': ShoppingCart,
@@ -25,11 +28,14 @@ const categoryIcons: Record<string, any> = {
     'Mobile': Smartphone,
     'DevOps': Server,
     'Marketing Tecnico': Search,
+    'Automazione': Bot,
+    'Formazione': GraduationCap,
 };
 
 const icon = computed(() => categoryIcons[props.project.category] ?? Code2);
 
 const prefersReducedMotion = ref(false);
+
 onMounted(() => {
     prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 });
@@ -50,7 +56,8 @@ const formattedDate = computed(() => {
         v-motion
         :initial="prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }"
         :visibleOnce="{ opacity: 1, y: 0, transition: { delay: 100, duration: prefersReducedMotion ? 0 : 500 } }"
-        class="bento-card timeline-card w-full"
+        class="timeline-card w-full"
+        :class="{ 'border-spin': active && !prefersReducedMotion }"
     >
         <div class="aspect-video rounded-lg overflow-hidden mb-4 bg-primary/10 flex items-center justify-center">
             <img
@@ -133,11 +140,73 @@ const formattedDate = computed(() => {
     </article>
 </template>
 
+<style>
+@property --border-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+</style>
+
 <style scoped>
+.timeline-card {
+    --border-angle: 0deg;
+    position: relative;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+    border-radius: 1rem;
+    transition: all 0.5s;
+}
+
+.timeline-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(
+        from var(--border-angle),
+        transparent 0deg,
+        var(--color-accent) 60deg,
+        transparent 120deg,
+        transparent 240deg,
+        var(--color-accent) 300deg,
+        transparent 360deg
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+}
+
+.timeline-card.border-spin::before {
+    opacity: 1;
+    animation: spin-border 3s linear infinite;
+}
+
+.timeline-card:hover {
+    border-color: rgba(238, 108, 77, 0.3);
+    background-color: color-mix(in srgb, var(--surface) 200%, transparent);
+}
+
+@keyframes spin-border {
+    to { --border-angle: 360deg; }
+}
+
 @media (max-width: 767px) {
     .timeline-card {
         background-color: var(--bg, #0d1117);
         backdrop-filter: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-card::before {
+        animation: none;
+        opacity: 0;
     }
 }
 </style>

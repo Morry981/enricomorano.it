@@ -193,6 +193,7 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
                         :project="project"
                         :index="i"
                         :side="i % 2 === 0 ? 'left' : 'right'"
+                        :active="i === 0 ? firstDotActive : connectorProgress[i] >= DONE"
                     />
                 </div>
 

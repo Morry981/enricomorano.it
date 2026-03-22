@@ -8,7 +8,7 @@ export const projects: Project[] = [
             'Questo sito. Astro v5, Vue 3, Tailwind CSS v4, TypeScript strict. SSR, View Transitions, design system custom e JSON-LD.',
         category: 'Frontend',
         tags: ['Astro', 'Vue.js', 'Tailwind CSS', 'TypeScript'],
-        repo: 'https://github.com/Morry981',
+        repo: 'https://github.com/Morry981/enricomorano.it',
         featured: true,
         date: '2026-01',
         role: 'Full Stack Developer',
