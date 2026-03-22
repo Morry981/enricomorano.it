@@ -9,7 +9,7 @@
                 <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                     Come posso aiutare
                 </h2>
-                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto text-balance">
                     Affronto problemi complessi con soluzioni pragmatiche. Dai
                     processi fino al codice, copro lo stack completo.
                 </p>
@@ -37,7 +37,7 @@
                     </h3>
 
                     <!-- Descrizione breve -->
-                    <p class="text-sm text-slate-600 mb-4 line-clamp-3">
+                    <p class="text-sm text-slate-600 mb-4 line-clamp-3 text-balance">
                         {{ skill.description }}
                     </p>
 
