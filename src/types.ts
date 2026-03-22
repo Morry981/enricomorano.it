@@ -8,4 +8,6 @@ export interface Project {
     repo?: string;
     image?: string;
     featured?: boolean;
+    date?: string;
+    role?: string;
 }

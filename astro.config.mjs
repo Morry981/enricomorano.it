@@ -22,6 +22,7 @@ export default defineConfig({
 
     integrations: [
         vue({
+            appEntrypoint: '/src/plugins/vue',
             vueCompilerOptions: {
                 isCustomElement: (tag) => ['ClientRouter', 'ViewTransitions'].includes(tag),
             },
