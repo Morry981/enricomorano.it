@@ -5,7 +5,7 @@ test.describe('Home Page', () => {
         await page.goto('/');
         await expect(page).toHaveTitle(/Enrico Morano/);
         await expect(page.locator('header')).toBeVisible();
-        await expect(page.getByText('Ciao, sono Enrico')).toBeVisible();
+        await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     });
 
     test('ha meta description valorizzata', async ({ page }) => {

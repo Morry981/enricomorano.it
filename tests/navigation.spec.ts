@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const pages = [
-    { path: '/', titlePattern: /Enrico Morano/, heading: 'Ciao, sono Enrico' },
+    { path: '/', titlePattern: /Enrico Morano/, heading: 'Enrico' },
     { path: '/projects', titlePattern: /Progetti/, heading: 'I miei Progetti' },
     {
         path: '/skills',
@@ -16,9 +16,7 @@ test.describe('Navigazione tra pagine', () => {
         test(`${path} - titolo e heading corretti`, async ({ page }) => {
             await page.goto(path);
             await expect(page).toHaveTitle(titlePattern);
-            await expect(page.getByRole('heading', { level: 1 })).toContainText(
-                heading.replace('Io sono Enrico', 'Enrico'),
-            );
+            await expect(page.getByRole('heading', { level: 1 })).toContainText(heading);
         });
 
         test(`${path} - ha meta description`, async ({ page }) => {

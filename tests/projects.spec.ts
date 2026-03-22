@@ -12,7 +12,7 @@ test.describe('Pagina Progetti', () => {
     test('le card mostrano titolo, descrizione e tag', async ({ page }) => {
         await page.goto('/projects');
         const firstCard = page.locator('article').first();
-        await expect(firstCard.locator('h2')).toBeVisible();
+        await expect(firstCard.locator('h3')).toBeVisible();
         await expect(firstCard.locator('p')).toBeVisible();
         await expect(firstCard.locator('span').first()).toBeVisible();
     });
@@ -23,7 +23,7 @@ test.describe('Pagina Progetti', () => {
         const count = await externalLinks.count();
         for (let i = 0; i < count; i++) {
             const rel = await externalLinks.nth(i).getAttribute('rel');
-            expect(rel).toBe('noopener noreferrer');
+            expect(rel).toBe('noopener noreferrer nofollow');
         }
     });
 });
