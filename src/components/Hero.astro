@@ -26,16 +26,20 @@ const labelsMorano: Label[] = [
 function ls(l: Label): string {
     return `--deg: ${l.deg}deg; --delay: ${l.delay}ms; --label-bg: ${l.bg}; --label-fg: var(--bg);`;
 }
+import { Image } from 'astro:assets';
+import fotoProfilo from '../assets/images/foto-profilo.jpg';
+import logoMorry from '../assets/images/logo-morry98.png';
 ---
 
 <section
     id="hero"
     class="relative h-[100svh] min-h-[560px] flex flex-col items-center justify-center overflow-hidden"
 >
-    <img
-        src="/images/logo-morry98.png"
+    <Image
+        src={logoMorry}
         alt=""
         aria-hidden="true"
+        widths={[200, 400]}
         class="fixed bottom-[-15%] right-[-4%] h-[60vh] w-auto opacity-[0.02] pointer-events-none select-none object-contain"
     />
 
@@ -63,12 +67,13 @@ function ls(l: Label): string {
         </div>
 
         <div class="photo-frame shrink-0 self-center overflow-hidden border-[5px] border-accent shadow-[0_20px_56px_rgba(0,0,0,0.35)] rounded-2xl corner-squircle">
-            <img
-                src="/images/foto-profilo.jpg"
+            <Image
+                src={fotoProfilo}
                 alt="Foto di Enrico Morano"
+                width={440}
+                height={587}
+                quality={80}
                 class="block w-full h-full object-cover object-top"
-                width="220"
-                height="293"
                 loading="eager"
             />
         </div>

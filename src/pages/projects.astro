@@ -5,11 +5,12 @@ import ProjectTimeline from '../components/ProjectTimeline.vue';
 import CtaContact from '../components/CtaContact.astro';
 import FaqSection from '../components/FaqSection.astro';
 import type { FaqItem } from '../components/FaqSection.astro';
+import { projectListSchema } from '../data/schemas';
 
 const faqs: FaqItem[] = [
     {
         question: 'Che tipo di progetti realizzi?',
-        answer: 'E-commerce su PrestaShop, applicazioni web e mobile, gestionali interni, automazione processi e infrastrutture server. Ogni progetto nasce da un problema reale da risolvere.',
+        answer: 'E-commerce su PrestaShop, applicazioni web e mobile, gestionali interni, automazione processi e infrastrutture server. In agenzia ho seguito la creazione di moltissimi e-commerce dal lato tecnico, supportato da un team competente di grafici e account.',
     },
     {
         question: 'Posso vedere esempi del tuo lavoro?',
@@ -17,7 +18,7 @@ const faqs: FaqItem[] = [
     },
     {
         question: 'Sviluppi moduli custom per PrestaShop?',
-        answer: 'Sì, ho sviluppato moduli custom per gestire catalogo, ordini, integrazioni marketplace e automazione dei flussi di lavoro su PrestaShop 8+.',
+        answer: 'Sì, ho sviluppato moduli custom per gestire catalogo, ordini, integrazioni marketplace e automazione dei flussi di lavoro su PrestaShop 8+. Tra agenzia e azienda ho lavorato su decine di shop con esigenze diverse.',
     },
     {
         question: 'Quanto dura lo sviluppo di un progetto?',
@@ -32,6 +33,9 @@ const faqs: FaqItem[] = [
 const timelineProjects = [...projects]
     .filter((p) => p.date)
     .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));
+
+const siteUrl = (Astro.site ?? 'https://www.enricomorano.it').toString().replace(/\/$/, '');
+const projectsSchema = projectListSchema(siteUrl, projects);
 ---
 
 <Layout
@@ -122,4 +126,6 @@ const timelineProjects = [...projects]
             <CtaContact />
         </div>
     </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(projectsSchema)} />
 </Layout>

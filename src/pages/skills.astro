@@ -12,7 +12,7 @@ const faqs: FaqItem[] = [
     },
     {
         question: 'Sei specializzato in e-commerce?',
-        answer: 'Sì, ho gestito per anni un e-commerce su PrestaShop occupandomi di tutto: catalogo, marketplace, ordini, customer care, Ads e SEO tecnica.',
+        answer: 'Sì. In agenzia grafico pubblicitaria ho creato e seguito decine di e-commerce PrestaShop, lavorando a fianco di grafici e account. Poi ho gestito in autonomia un e-commerce con migliaia di referenze: catalogo, marketplace, ordini, customer care, Ads e SEO tecnica.',
     },
     {
         question: 'Ti occupi anche di SEO tecnica?',
@@ -20,7 +20,7 @@ const faqs: FaqItem[] = [
     },
     {
         question: 'Fai formazione per il personale aziendale?',
-        answer: 'Sì, ho formato tirocinanti e nuovo personale sia in agenzia che in azienda. Creo guide operative e affianco le persone nella pratica quotidiana.',
+        answer: 'Sì, ho formato tirocinanti e nuovo personale in un\'agenzia grafico pubblicitaria e poi in azienda. Creo guide operative e affianco le persone nella pratica quotidiana, dal caricamento prodotti alla gestione ordini.',
     },
     {
         question: 'Come scegli le tecnologie per un progetto?',
@@ -52,4 +52,30 @@ const faqs: FaqItem[] = [
 
         <FaqSection faqs={faqs} />
     </div>
+
+    <script>
+        function scrollToHash() {
+            const hash = window.location.hash;
+            if (!hash) return;
+
+            const tryScroll = () => {
+                const el = document.querySelector(hash);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return true;
+                }
+                return false;
+            };
+
+            if (!tryScroll()) {
+                const observer = new MutationObserver(() => {
+                    if (tryScroll()) observer.disconnect();
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
+                setTimeout(() => observer.disconnect(), 5000);
+            }
+        }
+
+        document.addEventListener('astro:page-load', scrollToHash);
+    </script>
 </Layout>

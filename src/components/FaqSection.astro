@@ -25,16 +25,26 @@ const faqSchema = {
 };
 ---
 
-<section class="max-w-4xl mx-auto px-8 py-16">
-    <h2 class="text-3xl font-bold mb-8">{title}</h2>
-    <dl class="space-y-6">
+<section class="max-w-4xl mx-auto px-8 pt-12 pb-4">
+    <h2 class="text-2xl font-bold mb-4 text-secondary">{title}</h2>
+    <div class="space-y-2">
         {faqs.map((faq) => (
-            <div class="bento-card">
-                <dt class="text-lg font-semibold text-accent mb-2">{faq.question}</dt>
-                <dd class="text-light/70 text-balance">{faq.answer}</dd>
-            </div>
+            <details class="group border border-[var(--border)] rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 px-5 py-3 cursor-pointer text-light font-medium hover:bg-[var(--surface)] transition-colors select-none">
+                    <span class="text-sm">{faq.question}</span>
+                    <svg
+                        class="w-4 h-4 shrink-0 text-accent transition-transform duration-300 group-open:rotate-180"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </summary>
+                <div class="px-5 pt-4 pb-4 text-sm text-light/60 text-balance">
+                    {faq.answer}
+                </div>
+            </details>
         ))}
-    </dl>
+    </div>
 </section>
 
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

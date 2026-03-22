@@ -9,7 +9,7 @@ import type { FaqItem } from '../components/FaqSection.astro';
 const faqs: FaqItem[] = [
     {
         question: 'Che servizi offri come sviluppatore freelance?',
-        answer: 'Sviluppo e-commerce su PrestaShop, applicazioni web con Vue.js e Astro, automazione processi, SEO tecnica, configurazione server VPS e consulenza digitale per PMI.',
+        answer: 'Sviluppo e-commerce su PrestaShop, applicazioni web con Vue.js e Astro, automazione processi, SEO tecnica, configurazione server VPS e consulenza digitale per PMI. In agenzia grafico pubblicitaria ho creato e gestito decine di e-commerce supportato da un team di grafici, copywriter e account.',
     },
     {
         question: 'Con quali tecnologie lavori?',
@@ -132,6 +132,8 @@ const faqs: FaqItem[] = [
 
         <FaqSection faqs={faqs} />
 
-        <CtaContact />
+        <div class="px-6 pb-16">
+            <CtaContact />
+        </div>
     </div>
 </Layout>
