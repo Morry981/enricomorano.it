@@ -68,6 +68,7 @@ const formattedDate = computed(() => {
                     :alt="project.title"
                     class="w-full h-full object-cover"
                     loading="lazy"
+                    decoding="async"
                     width="800"
                     height="450"
                 />

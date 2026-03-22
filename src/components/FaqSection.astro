@@ -30,7 +30,7 @@ const faqSchema = {
     <div class="space-y-2">
         {faqs.map((faq) => (
             <details class="group border border-[var(--border)] rounded-xl overflow-hidden">
-                <summary class="flex items-center justify-between gap-4 px-5 py-3 cursor-pointer text-light font-medium hover:bg-[var(--surface)] transition-colors select-none">
+                <summary class="flex items-center justify-between gap-4 px-5 py-3 cursor-pointer text-light font-medium hover:bg-[var(--surface)] transition-colors select-none focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-[-2px] rounded-xl">
                     <span class="text-sm">{faq.question}</span>
                     <svg
                         class="w-4 h-4 shrink-0 text-accent transition-transform duration-300 group-open:rotate-180"

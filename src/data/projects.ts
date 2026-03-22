@@ -8,12 +8,14 @@ export const projects: Project[] = [
             'Questo sito. Astro v5, Vue 3, Tailwind CSS v4, TypeScript strict. SSR, View Transitions, design system custom e JSON-LD.',
         category: 'Frontend',
         tags: ['Astro', 'Vue.js', 'Tailwind CSS', 'TypeScript'],
-        repo: 'https://github.com/Morry981/enricomorano.it',
         image: '/images/projects/portfolio-personale-enrico-morano-opt.jpg',
         featured: true,
         date: '2026-01',
         role: 'Full Stack Developer',
-        note: { text: 'Codice open source. Performance e accessibilita al primo posto, zero dipendenze superflue.' },
+        note: {
+            text: 'Codice open source. Performance e accessibilita al primo posto, zero dipendenze superflue.',
+            url: 'https://github.com/Morry981/enricomorano.it',
+        },
     },
     {
         slug: 'lab-nuove-tecnologie',
