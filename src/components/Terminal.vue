@@ -48,7 +48,7 @@
         >
             <span class="text-[#e74c3c] shrink-0"
                 >guest<span class="text-[#8892b0]">@</span
-                ><span class="text-[#98C1D9]">enricomorano.it</span
+                ><span class="text-[#98C1D9]"><span class="hidden md:inline">enricomorano.it</span><span class="md:hidden">enrmor.it</span></span
                 ><span class="text-[#8892b0]">:~$</span></span
             >
             <input
@@ -58,13 +58,24 @@
                 autocomplete="off"
                 autocapitalize="off"
                 spellcheck="false"
+                enterkeyhint="send"
                 :placeholder="hasExecuted ? 'exit' : 'help'"
-                class="flex-1 bg-transparent text-[#98C1D9] outline-none caret-[#98C1D9] min-w-0 placeholder:text-[#98C1D9]/30"
+                class="flex-1 bg-transparent text-[#98C1D9] outline-none caret-[#98C1D9] min-w-0 placeholder:text-[#98C1D9]/30 text-base"
                 @keydown.up.prevent="historyUp"
                 @keydown.down.prevent="historyDown"
                 @keydown="handleTab"
             />
+            <button
+                type="submit"
+                class="shrink-0 w-8 h-8 flex items-center justify-center text-[#8892b0] hover:text-[#98C1D9] active:text-[#e74c3c] transition-colors md:hidden"
+                aria-label="Esegui comando"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true">
+                    <polyline points="9 10 4 15 9 20" /><path d="M20 4v7a4 4 0 0 1-4 4H4" />
+                </svg>
+            </button>
         </form>
+
     </section>
 </template>
 
@@ -89,6 +100,8 @@ const c = (color: string, text: string) =>
     `<span style="color:${color}">${text}</span>`;
 const link = (command: string, label?: string, color = '#98C1D9') =>
     `<span data-cmd="${command}" style="color:${color};text-decoration:underline;cursor:pointer">${label ?? command}</span>`;
+const extLink = (url: string, label: string, color = '#25D366') =>
+    `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow" style="color:${color};text-decoration:underline">${label}</a>`;
 
 const pages: Record<string, string> = {
     'home.html': '/',
@@ -111,6 +124,8 @@ const BOOT = [
         `  Digita ${link('help', 'help', '#f39c12')} per i comandi disponibili.`,
     ),
     '',
+    `  ${extLink('https://wa.me/393520220025?text=Sono%20interessato%20ad%20essere%20contattato', '💬 Chatta su WhatsApp')}`,
+    '',
 ];
 
 const HELP = [
@@ -125,6 +140,7 @@ const HELP = [
     `  ${link('neofetch')}        Info di sistema`,
     `  ${link('date')}            Data e ora`,
     `  ${link('history')}         Cronologia comandi`,
+    `  ${link('whatsapp')}        Chatta su WhatsApp`,
     `  ${link('clear')}           Pulisci il terminale`,
     `  ${link('exit')}            Torna alla home`,
     '',
@@ -211,6 +227,10 @@ const commands: Record<string, (args: string) => string[]> = {
             '',
         ];
     },
+    whatsapp: () => {
+        window.open('https://wa.me/393520220025?text=Sono%20interessato%20ad%20essere%20contattato', '_blank', 'noopener,noreferrer');
+        return [c('#25D366', '  Apertura chat WhatsApp...')];
+    },
     clear: () => {
         lines.value = [...BOOT];
         return [];
@@ -219,7 +239,13 @@ const commands: Record<string, (args: string) => string[]> = {
         setTimeout(() => (window.location.href = '/'), 1200);
         return [c('#2ecc71', '  Arrivederci!')];
     },
-    sudo: () => [c('#e74c3c', '  Permesso negato. Non sei root qui.')],
+    sudo: () => [
+        c('#e74c3c', '  Permesso negato. Non sei root qui.'),
+        '',
+        `<img src="/images/eeh-volevih.gif" alt="Eeh volevi!" style="max-width:min(320px,80vw);border-radius:8px;margin-left:16px" />`,
+        '',
+        c('#8892b0', '  "Con grandi poteri derivano grandi responsabilità."'),
+    ],
 };
 
 const cmdNames = Object.keys(commands);
@@ -354,3 +380,4 @@ onMounted(() => {
     scrollDown();
 });
 </script>
+
