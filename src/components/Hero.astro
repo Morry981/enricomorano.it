@@ -111,10 +111,10 @@ function ls(l: Label): string {
 </section>
 
 <style>
-    /* reset h1 — font: inherit non ha equivalente Tailwind */
+    /* reset h1 - font: inherit non ha equivalente Tailwind */
     .hero-row { font: inherit; }
 
-    /* ── Parola — stili base comuni ── */
+    /* ── Parola - stili base comuni ── */
     .hero-word {
         font-family: var(--font-retro);
         line-height: 1;
@@ -122,13 +122,13 @@ function ls(l: Label): string {
         transform-origin: center center;
     }
 
-    /* ── Foto — dimensioni responsive ── */
+    /* ── Foto - dimensioni responsive ── */
     .photo-frame {
         width:  clamp(160px, 26vh, 310px);
         height: clamp(213px, 35vh, 413px);
     }
 
-    /* ── Chip — animazione + transform individuali ── */
+    /* ── Chip - animazione + transform individuali ── */
     .hero-label {
         background-color: var(--label-bg);
         color:            var(--label-fg);
@@ -170,12 +170,12 @@ function ls(l: Label): string {
         outline-offset: 2px;
     }
 
-    /* ── Tagline — font-size con clamp ── */
+    /* ── Tagline - font-size con clamp ── */
     .hero-tagline {
         font-size: clamp(14px, 1.6vw, 18px);
     }
 
-    /* ── Scroll hint — animazione bounce ── */
+    /* ── Scroll hint - animazione bounce ── */
     @media (prefers-reduced-motion: no-preference) {
         .scroll-hint {
             animation: scrollBounce 2s ease-in-out infinite;
@@ -188,7 +188,7 @@ function ls(l: Label): string {
     }
 
     /* ══════════════════════════════════════════════
-       DESKTOP (≥ 1024px) — scaleY: lettere alte e schiacciate
+       DESKTOP (≥ 1024px) - scaleY: lettere alte e schiacciate
     ══════════════════════════════════════════════ */
 
     @media (min-width: 1024px) {
@@ -224,7 +224,7 @@ function ls(l: Label): string {
     }
 
     /* ══════════════════════════════════════════════
-       TABLET (640 – 1023px) — lettere verticali impilate
+       TABLET (640 – 1023px) - lettere verticali impilate
     ══════════════════════════════════════════════ */
 
     @media (min-width: 640px) and (max-width: 1023px) {
@@ -263,7 +263,7 @@ function ls(l: Label): string {
     }
 
     /* ══════════════════════════════════════════════
-       MOBILE (< 640px) — flex colonna: ENRICO / foto / MORANO
+       MOBILE (< 640px) - flex colonna: ENRICO / foto / MORANO
     ══════════════════════════════════════════════ */
 
     @media (max-width: 639px) {

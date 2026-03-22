@@ -4,21 +4,53 @@
         @click="focusInput"
     >
         <!-- Barra titolo -->
-        <div class="flex items-center gap-2 px-4 py-2 bg-[#16213e] border-b border-[#0f3460] shrink-0">
-            <button @click.stop="goBack" class="w-4 h-4 rounded-full bg-[#e74c3c] hover:brightness-125 transition-all cursor-pointer flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]" aria-label="Torna indietro">&times;</button>
-            <span class="w-4 h-4 rounded-full bg-[#f39c12] flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]">&minus;</span>
-            <span class="w-4 h-4 rounded-full bg-[#2ecc71] flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]">+</span>
-            <span class="ml-3 text-[#8892b0] text-xs">guest@enricomorano.it — 404</span>
+        <div
+            class="flex items-center gap-2 px-4 py-2 bg-[#16213e] border-b border-[#0f3460] shrink-0"
+        >
+            <button
+                @click.stop="goBack"
+                class="w-4 h-4 rounded-full bg-[#e74c3c] hover:brightness-125 transition-all cursor-pointer flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]"
+                aria-label="Torna indietro"
+            >
+                &times;
+            </button>
+            <span
+                class="w-4 h-4 rounded-full bg-[#f39c12] flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]"
+                >&minus;</span
+            >
+            <span
+                class="w-4 h-4 rounded-full bg-[#2ecc71] flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]"
+                >+</span
+            >
+            <span class="ml-3 text-[#8892b0] text-xs"
+                >guest@enricomorano.it - 404</span
+            >
         </div>
 
         <!-- Output -->
-        <div ref="outputEl" class="flex-1 overflow-y-auto px-4 py-3 space-y-1" @click.stop="handleOutputClick">
-            <div v-for="(line, i) in lines" :key="i" v-html="line" class="whitespace-pre-wrap break-words"></div>
+        <div
+            ref="outputEl"
+            class="flex-1 overflow-y-auto px-4 py-3 space-y-1"
+            @click.stop="handleOutputClick"
+        >
+            <div
+                v-for="(line, i) in lines"
+                :key="i"
+                v-html="line"
+                class="whitespace-pre-wrap break-words"
+            ></div>
         </div>
 
         <!-- Input -->
-        <form @submit.prevent="exec" class="flex items-center px-4 py-3 border-t border-[#0f3460] shrink-0 gap-2">
-            <span class="text-[#e74c3c] shrink-0">guest<span class="text-[#8892b0]">@</span><span class="text-[#98C1D9]">enricomorano.it</span><span class="text-[#8892b0]">:~$</span></span>
+        <form
+            @submit.prevent="exec"
+            class="flex items-center px-4 py-3 border-t border-[#0f3460] shrink-0 gap-2"
+        >
+            <span class="text-[#e74c3c] shrink-0"
+                >guest<span class="text-[#8892b0]">@</span
+                ><span class="text-[#98C1D9]">enricomorano.it</span
+                ><span class="text-[#8892b0]">:~$</span></span
+            >
             <input
                 ref="inputEl"
                 v-model="cmd"
@@ -53,7 +85,8 @@ const inputEl = ref<HTMLInputElement | null>(null);
 let lastTabTime = 0;
 const hasExecuted = ref(false);
 
-const c = (color: string, text: string) => `<span style="color:${color}">${text}</span>`;
+const c = (color: string, text: string) =>
+    `<span style="color:${color}">${text}</span>`;
 const link = (command: string, label?: string, color = '#98C1D9') =>
     `<span data-cmd="${command}" style="color:${color};text-decoration:underline;cursor:pointer">${label ?? command}</span>`;
 
@@ -73,7 +106,10 @@ const BOOT = [
     c('#e74c3c', '       ╚═╝ ╚═════╝      ╚═╝'),
     '',
     c('#8892b0', `  Pagina ${c('#e74c3c', props.pathname)} non trovata.`),
-    c('#8892b0', `  Digita ${link('help', 'help', '#f39c12')} per i comandi disponibili.`),
+    c(
+        '#8892b0',
+        `  Digita ${link('help', 'help', '#f39c12')} per i comandi disponibili.`,
+    ),
     '',
 ];
 
@@ -96,17 +132,33 @@ const HELP = [
 
 const commands: Record<string, (args: string) => string[]> = {
     help: () => HELP,
-    ls: () => ['', ...Object.keys(pages).map(f => `  ${c('#5dade2', f)}`), ''],
+    ls: () => [
+        '',
+        ...Object.keys(pages).map((f) => `  ${c('#5dade2', f)}`),
+        '',
+    ],
     cd: (args) => {
         const file = args.trim();
         if (!file) return [c('#e74c3c', '  Uso: cd <pagina>')];
         const target = pages[file];
-        if (!target) return [c('#e74c3c', `  Pagina "${file}" non trovata. Digita ${c('#f39c12', 'ls')} per la lista.`)];
-        setTimeout(() => window.location.href = target, 1500);
+        if (!target)
+            return [
+                c(
+                    '#e74c3c',
+                    `  Pagina "${file}" non trovata. Digita ${c('#f39c12', 'ls')} per la lista.`,
+                ),
+            ];
+        setTimeout(() => (window.location.href = target), 1500);
         return [c('#2ecc71', `  Navigazione verso ${file}...`)];
     },
     cat: (args) => {
-        if (args.trim() !== '404.log') return [c('#e74c3c', `  cat: ${args.trim() || '???'}: file non trovato`)];
+        if (args.trim() !== '404.log')
+            return [
+                c(
+                    '#e74c3c',
+                    `  cat: ${args.trim() || '???'}: file non trovato`,
+                ),
+            ];
         return [
             '',
             c('#8892b0', '  [LOG] La pagina richiesta è scappata.'),
@@ -116,11 +168,16 @@ const commands: Record<string, (args: string) => string[]> = {
             '',
         ];
     },
-    whoami: () => [c('#f39c12', '  Visitatore smarrito. Ultima posizione nota: ' + props.pathname)],
+    whoami: () => [
+        c(
+            '#f39c12',
+            '  Visitatore smarrito. Ultima posizione nota: ' + props.pathname,
+        ),
+    ],
     pwd: () => [c('#8892b0', '  /lost+found')],
     ping: () => [
         '',
-        c('#2ecc71', '  PING enricomorano.it — 64 bytes'),
+        c('#2ecc71', '  PING enricomorano.it - 64 bytes'),
         c('#2ecc71', '  Risposta: il sito è vivo. Sei tu che ti sei perso.'),
         '',
     ],
@@ -133,14 +190,33 @@ const commands: Record<string, (args: string) => string[]> = {
         `  ${c('#e74c3c', 'Dev')}      Enrico Morano`,
         '',
     ],
-    date: () => [c('#8892b0', '  ' + new Date().toLocaleString('it-IT', { dateStyle: 'full', timeStyle: 'medium' }))],
+    date: () => [
+        c(
+            '#8892b0',
+            '  ' +
+                new Date().toLocaleString('it-IT', {
+                    dateStyle: 'full',
+                    timeStyle: 'medium',
+                }),
+        ),
+    ],
     history: () => {
-        if (!history.value.length) return [c('#8892b0', '  Nessun comando nella cronologia.')];
-        return ['', ...history.value.map((h, i) => `  ${c('#8892b0', String(i + 1).padStart(3))}  ${h}`), ''];
+        if (!history.value.length)
+            return [c('#8892b0', '  Nessun comando nella cronologia.')];
+        return [
+            '',
+            ...history.value.map(
+                (h, i) => `  ${c('#8892b0', String(i + 1).padStart(3))}  ${h}`,
+            ),
+            '',
+        ];
     },
-    clear: () => { lines.value = [...BOOT]; return []; },
+    clear: () => {
+        lines.value = [...BOOT];
+        return [];
+    },
     exit: () => {
-        setTimeout(() => window.location.href = '/', 1200);
+        setTimeout(() => (window.location.href = '/'), 1200);
         return [c('#2ecc71', '  Arrivederci!')];
     },
     sudo: () => [c('#e74c3c', '  Permesso negato. Non sei root qui.')],
@@ -194,10 +270,12 @@ const handleTab = (e: KeyboardEvent) => {
     const raw = cmd.value;
     const parts = raw.split(' ');
     const isFirstWord = parts.length <= 1;
-    const partial = (isFirstWord ? parts[0] : parts.slice(1).join(' ')).toLowerCase();
+    const partial = (
+        isFirstWord ? parts[0] : parts.slice(1).join(' ')
+    ).toLowerCase();
     const cmdName = parts[0].toLowerCase();
     const pool = isFirstWord ? cmdNames : (argPool[cmdName] ?? catFiles);
-    const matches = pool.filter(x => x.toLowerCase().startsWith(partial));
+    const matches = pool.filter((x) => x.toLowerCase().startsWith(partial));
 
     if (matches.length === 0) return;
 
@@ -209,7 +287,9 @@ const handleTab = (e: KeyboardEvent) => {
         }
     } else if (isDouble) {
         lines.value.push(prompt(raw));
-        lines.value.push('  ' + matches.map(m => c('#5dade2', m)).join('    '));
+        lines.value.push(
+            '  ' + matches.map((m) => c('#5dade2', m)).join('    '),
+        );
         scrollDown();
     } else {
         // Completa il prefisso comune
@@ -231,14 +311,24 @@ const handleTab = (e: KeyboardEvent) => {
 
 const exec = () => {
     const raw = cmd.value.trim() || (hasExecuted.value ? '' : 'help');
-    if (!raw) { cmd.value = ''; return; }
+    if (!raw) {
+        cmd.value = '';
+        return;
+    }
     lines.value.push(prompt(raw));
 
     hasExecuted.value = true;
     history.value.push(raw);
     const [name, ...rest] = raw.split(' ');
     const handler = commands[name.toLowerCase()];
-    const output = handler ? handler(rest.join(' ')) : [c('#e74c3c', `  Comando "${name}" non trovato. Digita ${c('#f39c12', 'help')}.`)];
+    const output = handler
+        ? handler(rest.join(' '))
+        : [
+              c(
+                  '#e74c3c',
+                  `  Comando "${name}" non trovato. Digita ${c('#f39c12', 'help')}.`,
+              ),
+          ];
     lines.value.push(...output);
 
     cmd.value = '';

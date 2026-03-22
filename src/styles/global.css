@@ -18,7 +18,7 @@
     --color-secondary: var(--fg-secondary);
 }
 
-/* Variabili semantiche di tema — dark di default */
+/* Variabili semantiche di tema - dark di default */
 :root {
     --bg: #293241;
     --fg: #E0FBFC;
@@ -73,7 +73,7 @@
     }
 }
 
-/* Chip hero: in light mode i pastelli sono troppo chiari — saturazione + scurimento */
+/* Chip hero: in light mode i pastelli sono troppo chiari - saturazione + scurimento */
 :root[data-theme="light"] .hero-label {
     filter: saturate(1.8) brightness(0.68);
     color: #293241;

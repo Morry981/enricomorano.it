@@ -1,4 +1,4 @@
-# Portfolio enricomorano.it — TODO
+# Portfolio enricomorano.it - TODO
 
 Stack: Astro 5 SSR | Vue 3 | Tailwind CSS v4 | TypeScript strict | pnpm
 
@@ -17,13 +17,13 @@ Stack: Astro 5 SSR | Vue 3 | Tailwind CSS v4 | TypeScript strict | pnpm
 
 ## 1. Home
 
-### 1a sezione — Hero
+### 1a sezione - Hero
 
 - [ ] Layout hero con immagine (asset in arrivo)
 - [ ] Headline + sottotitolo posizionamento
 - [ ] CTA primaria (contatti / scopri di più)
 
-### 2a sezione — Competenze in evidenza
+### 2a sezione - Competenze in evidenza
 
 - [ ] Ricerca e definizione voci competenze (vedi sezione Skills sotto)
 - [ ] Cards o blocchi sintetici con icona + titolo + 1 riga descrizione
@@ -35,13 +35,13 @@ Stack: Astro 5 SSR | Vue 3 | Tailwind CSS v4 | TypeScript strict | pnpm
 
 Ogni competenza: titolo, descrizione breve (2-3 righe max), esempi concreti dove possibile.
 
-- [ ] E-commerce & PrestaShop — progettazione, flusso lavoro, manutenzione, marketplace
-- [ ] Sviluppo Web Full Stack — PHP/Laravel, TypeScript, Vue, Alpine.js, Vite
-- [ ] Automazione Processi — integrazioni, tool custom, estensioni browser, import/export
-- [ ] SEO Tecnica & Performance — ottimizzazione, Core Web Vitals, privacy
-- [ ] Gestione Proattiva — monitoraggio, continuità operativa, aggiornamenti
-- [ ] Consulenza Strategica — analisi ROI canali digitali, scelte tech per PMI
-- [ ] Formazione — onboarding personale, guide, supporto operativo
+- [ ] E-commerce & PrestaShop - progettazione, flusso lavoro, manutenzione, marketplace
+- [ ] Sviluppo Web Full Stack - PHP/Laravel, TypeScript, Vue, Alpine.js, Vite
+- [ ] Automazione Processi - integrazioni, tool custom, estensioni browser, import/export
+- [ ] SEO Tecnica & Performance - ottimizzazione, Core Web Vitals, privacy
+- [ ] Gestione Proattiva - monitoraggio, continuità operativa, aggiornamenti
+- [ ] Consulenza Strategica - analisi ROI canali digitali, scelte tech per PMI
+- [ ] Formazione - onboarding personale, guide, supporto operativo
 
 ---
 
@@ -56,10 +56,10 @@ Ogni competenza: titolo, descrizione breve (2-3 righe max), esempi concreti dove
 
 ### Contenuti (da CV + futuri)
 
-- [ ] levanteshop.it — gestione completa e-commerce, AI automation, customer care
-- [ ] casaabc.it — sito/landing azienda principale
-- [ ] Dinamitek / in-mente.it — e-commerce, strumenti digitali, template fuori standard
-- [ ] Gestionale magazzino Angioj Energy — software custom, automazione ordini
+- [ ] levanteshop.it - gestione completa e-commerce, AI automation, customer care
+- [ ] casaabc.it - sito/landing azienda principale
+- [ ] Dinamitek / in-mente.it - e-commerce, strumenti digitali, template fuori standard
+- [ ] Gestionale magazzino Angioj Energy - software custom, automazione ordini
 - [ ] (altri progetti da aggiungere man mano)
 
 Per ogni progetto: titolo, cliente, problema, soluzione, risultato. Screenshot/materiale in 2a battuta.
