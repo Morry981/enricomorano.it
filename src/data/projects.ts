@@ -28,7 +28,9 @@ export const projects: Project[] = [
         featured: true,
         date: '2025-09',
         role: 'R&D / Continuous Learner',
-        note: { text: 'Non propongo mai una tecnologia che non ho testato in prima persona.' },
+        note: {
+            text: 'Non propongo mai una tecnologia che non ho testato in prima persona.',
+        },
     },
     {
         slug: 'ads-optimization',
@@ -41,7 +43,9 @@ export const projects: Project[] = [
         featured: true,
         date: '2025-04',
         role: 'Digital Ads Specialist',
-        note: { text: 'Il budget Ads senza dati puliti e tracking affidabile e\' budget sprecato. Prima i fondamentali, poi le campagne.' },
+        note: {
+            text: "Il budget Ads senza dati puliti e tracking affidabile e' budget sprecato. Prima i fondamentali, poi le campagne.",
+        },
     },
     {
         slug: 'ecommerce-ricostruzione',
@@ -54,7 +58,9 @@ export const projects: Project[] = [
         featured: true,
         date: '2025-02',
         role: 'E-commerce Developer',
-        note: { text: 'Ripartire da zero ha permesso di eliminare anni di debito tecnico e costruire su basi solide con PrestaShop 8.' },
+        note: {
+            text: 'Ripartire da zero ha permesso di eliminare anni di debito tecnico e costruire su basi solide con PrestaShop 8.',
+        },
     },
     {
         slug: 'automazioni-ai',
@@ -67,7 +73,9 @@ export const projects: Project[] = [
         featured: true,
         date: '2025-07',
         role: 'Automation Developer',
-        note: { text: 'L\'AI funziona solo se integrata nei flussi reali. Automatizzare senza capire il processo e\' controproducente.' },
+        note: {
+            text: "L'AI funziona solo se integrata nei flussi reali. Automatizzare senza capire il processo e' controproducente.",
+        },
     },
     {
         slug: 'recensioni-customer-care',
@@ -80,7 +88,7 @@ export const projects: Project[] = [
         date: '2024-02',
         role: 'Customer Care Manager',
         note: {
-            text: 'Le criticita principali riguardavano i corrieri (danni e ritardi), su cui non si aveva pieno controllo. L\'azienda si e\' sempre adoperata per risolvere ogni situazione.',
+            text: 'Le uniche criticita emerse riguardavano corrieri e spedizioni, fattori esterni non sempre controllabili, ma ugualmente risolti.',
         },
     },
     {
@@ -108,7 +116,9 @@ export const projects: Project[] = [
         image: '/images/projects/valentino-mea-formazione-google-analytics-opt.jpg',
         date: '2022-01',
         role: 'Tracking & Privacy Specialist',
-        note: { text: 'Configurazione errata del consent mode = dati inutilizzabili. La privacy non e\' un ostacolo, e\' un vincolo da progettare.' },
+        note: {
+            text: "Configurazione errata del consent mode = dati inutilizzabili. La privacy non e' un ostacolo, e' un vincolo da progettare.",
+        },
     },
     {
         slug: 'analytics-seo-tecnica',
@@ -120,19 +130,23 @@ export const projects: Project[] = [
         image: '/images/projects/analisi-miglioramenti-seo-tecnica-opt.jpg',
         date: '2020-12',
         role: 'SEO & Analytics Specialist',
-        note: { text: 'Senza dati non si decide, si indovina. Analytics e SEO tecnica sono la base di qualsiasi strategia digitale.' },
+        note: {
+            text: 'Senza dati non si decide, si indovina. Analytics e SEO tecnica sono la base di qualsiasi strategia digitale.',
+        },
     },
     {
         slug: 'laravel-full-cycle',
         title: 'Progetto Laravel Full Cycle',
         description:
-            'Applicazione web completa in Laravel: sviluppo, testing, deploy e ottimizzazione prestazioni. Progetto gestito dall\'inizio alla messa in produzione. Laravel e la sua filosofia hanno segnato una svolta nel mio modo di sviluppare.',
+            "Applicazione web completa in Laravel: sviluppo, testing, deploy e ottimizzazione prestazioni. Progetto gestito dall'inizio alla messa in produzione. Laravel e la sua filosofia hanno segnato una svolta nel mio modo di sviluppare.",
         category: 'Web App',
         tags: ['Laravel', 'PHP', 'MySQL', 'Testing'],
         image: '/images/projects/laracon-laravel-best-full-cycle-tool-opt.jpg',
         date: '2020-03',
         role: 'Full Stack Developer',
-        note: { text: 'Laravel ha cambiato tutto: struttura, testing, convention over configuration. Da qui in poi un altro modo di scrivere codice.' },
+        note: {
+            text: 'Laravel ha cambiato tutto: struttura, testing, convention over configuration. Da qui in poi un altro modo di scrivere codice.',
+        },
     },
     {
         slug: 'formazione-backend',
@@ -144,7 +158,9 @@ export const projects: Project[] = [
         image: '/images/projects/studio-esperimenti-automazioni-backend-opt.jpg',
         date: '2019-01',
         role: 'Junior Developer',
-        note: { text: 'Il periodo piu formativo: configurare tutto a mano insegna a capire cosa succede davvero sotto il cofano.' },
+        note: {
+            text: 'Il periodo piu formativo: configurare tutto a mano insegna a capire cosa succede davvero sotto il cofano.',
+        },
     },
     {
         slug: 'siti-web-completi',
@@ -156,7 +172,9 @@ export const projects: Project[] = [
         image: '/images/projects/50-siti-vetrina-e-commerce-opt.jpg',
         date: '2018-01',
         role: 'Web Developer',
-        note: { text: 'Reinventare la ruota e\' inefficiente, ma insegna come funziona. Nessun framework sostituisce le basi.' },
+        note: {
+            text: "Reinventare la ruota e' inefficiente, ma insegna come funziona. Nessun framework sostituisce le basi.",
+        },
     },
     {
         slug: 'inizio-agenzia',
@@ -168,6 +186,8 @@ export const projects: Project[] = [
         image: '/images/projects/lavoro-agenzia-grafico-pubblicitaria-opt.jpg',
         date: '2017-08',
         role: 'Junior Web Developer',
-        note: { text: 'Lavorare in team con grafici, copywriter e account insegna a comunicare prima ancora che a programmare.' },
+        note: {
+            text: 'Lavorare in team con grafici, copywriter e account insegna a comunicare prima ancora che a programmare.',
+        },
     },
 ];

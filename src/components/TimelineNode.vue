@@ -81,13 +81,18 @@ const formattedDate = computed(() => {
             />
         </div>
 
-        <time
-            v-if="formattedDate"
-            :datetime="project.date"
-            class="text-xs font-bold uppercase tracking-widest text-accent"
-        >
-            {{ formattedDate }}
-        </time>
+        <div class="flex items-center gap-2 mt-1">
+            <time
+                v-if="formattedDate"
+                :datetime="project.date"
+                class="text-xs font-bold uppercase tracking-widest text-accent"
+            >
+                {{ formattedDate }}
+            </time>
+            <span class="text-xs font-bold uppercase tracking-widest text-secondary">
+                {{ project.category }}
+            </span>
+        </div>
 
         <div class="flex items-center gap-2 mt-1 mb-1">
             <component
