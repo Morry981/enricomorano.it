@@ -1,6 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CtaContact from '../components/CtaContact.astro';
+import FaqSection from '../components/FaqSection.astro';
+import type { FaqItem } from '../components/FaqSection.astro';
+
+const faqs: FaqItem[] = [
+    {
+        question: 'Chi è Enrico Morano?',
+        answer: 'Sviluppatore full stack freelance con quasi dieci anni di esperienza tra agenzia, azienda e progetti propri. Specializzato in e-commerce PrestaShop, Vue.js, Astro e infrastrutture server.',
+    },
+    {
+        question: 'Da quanto tempo lavori come sviluppatore?',
+        answer: 'Ho iniziato con uno stage in agenzia e da allora ho accumulato quasi dieci anni di esperienza pratica, passando dalla gestione prodotti allo sviluppo full stack.',
+    },
+    {
+        question: 'Qual è la tua esperienza con gli e-commerce?',
+        answer: 'Ho ricostruito e gestito da zero un e-commerce con migliaia di referenze su PrestaShop: catalogo, marketplace, customer care, automazione, Ads e contabilità.',
+    },
+    {
+        question: 'Lavori da remoto o in presenza?',
+        answer: 'Principalmente da remoto su tutta Italia. Per clienti nella zona di Cuneo e provincia sono disponibile anche per incontri di persona.',
+    },
+    {
+        question: 'Come posso contattarti?',
+        answer: 'Puoi scrivermi via email o su WhatsApp. Trovi i contatti in fondo a ogni pagina del sito. Rispondo di solito entro 24 ore.',
+    },
+];
 ---
 
 <Layout
@@ -8,7 +33,7 @@ import CtaContact from '../components/CtaContact.astro';
     description="Chi è Enrico Morano. Sviluppatore full stack con esperienza in e-commerce PrestaShop, app mobile, DevOps e frontend Vue.js."
     breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Chi Sono', url: '/about-me' }]}
 >
-    <main class="max-w-4xl mx-auto px-8 py-20">
+    <div class="max-w-4xl mx-auto px-8 py-20">
         <h1 class="text-5xl font-bold mb-8">Io sono <span class="text-accent" transition:name="hero-name">Enrico</span></h1>
 
         <div class="prose prose-invert prose-lg text-light/90 space-y-6">
@@ -16,7 +41,7 @@ import CtaContact from '../components/CtaContact.astro';
                 Ho iniziato con uno stage in agenzia, ci sono rimasto anni e ho finito per gestire e-commerce, clienti e tirocinanti. Poi ho ricostruito da zero un e-commerce complesso. Oggi sono freelancer per portare le mie conoscenze a chi ne ha bisogno (oltre a farlo per passione) continuando a supportare chi ho già seguito.
             </p>
             <p class="text-balance">
-                In quasi dieci anni ho toccato tutto: dal caricamento prodotti del primo stage alla gestione completa di un e-commerce con customer care, automazione AI, marketplace, contabilità e formazione del personale.<br>
+                In quasi dieci anni ho toccato tutto: dal caricamento prodotti del primo stage alla gestione di un e-commerce con customer care, automazione AI, marketplace, contabilità e formazione del personale.<br>
                 I problemi fuori standard sono quelli che mi riescono meglio.
             </p>
         </div>
@@ -24,7 +49,7 @@ import CtaContact from '../components/CtaContact.astro';
         <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bento-card">
                 <h2 class="text-xl font-bold mb-3 text-accent">Sviluppo & E-commerce</h2>
-                <p class="text-secondary/80 text-sm text-balance">PrestaShop 8+, PHP 8+, MySQL. Ho gestito un e-commerce complesso end-to-end, dal catalogo al post-vendita.</p>
+                <p class="text-secondary/80 text-sm text-balance">PrestaShop 8+, PHP 8+, MySQL. Ho gestito un e-commerce dal catalogo al post-vendita, passando per marketplace e customer care.</p>
             </div>
             <div class="bento-card">
                 <h2 class="text-xl font-bold mb-3 text-accent">Infrastructure & DevOps</h2>
@@ -62,7 +87,6 @@ import CtaContact from '../components/CtaContact.astro';
             </blockquote>
         </div>
 
-        <!-- Fuori dal lavoro -->
         <div class="mt-16 space-y-6">
             <h2 class="text-3xl font-bold">Fuori dal codice</h2>
             <div class="text-light/70 text-lg space-y-4">
@@ -78,6 +102,8 @@ import CtaContact from '../components/CtaContact.astro';
             </div>
         </div>
 
+        <FaqSection faqs={faqs} />
+
         <CtaContact />
-    </main>
+    </div>
 </Layout>

@@ -1,0 +1,40 @@
+---
+export interface FaqItem {
+    question: string;
+    answer: string;
+}
+
+interface Props {
+    faqs: FaqItem[];
+    title?: string;
+}
+
+const { faqs, title = 'Domande frequenti' } = Astro.props;
+
+const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+        },
+    })),
+};
+---
+
+<section class="max-w-4xl mx-auto px-8 py-16">
+    <h2 class="text-3xl font-bold mb-8">{title}</h2>
+    <dl class="space-y-6">
+        {faqs.map((faq) => (
+            <div class="bento-card">
+                <dt class="text-lg font-semibold text-accent mb-2">{faq.question}</dt>
+                <dd class="text-light/70 text-balance">{faq.answer}</dd>
+            </div>
+        ))}
+    </dl>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

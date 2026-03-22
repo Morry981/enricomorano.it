@@ -2,6 +2,31 @@
 import Layout from '../layouts/Layout.astro';
 import SkillsBento from '../components/SkillsBento.vue';
 import CtaContact from '../components/CtaContact.astro';
+import FaqSection from '../components/FaqSection.astro';
+import type { FaqItem } from '../components/FaqSection.astro';
+
+const faqs: FaqItem[] = [
+    {
+        question: 'Quali linguaggi di programmazione conosci?',
+        answer: 'PHP, TypeScript, JavaScript, SQL, Bash. Sul frontend uso Vue.js, Astro e Tailwind CSS. Sul backend PHP con PrestaShop e Node.js.',
+    },
+    {
+        question: 'Sei specializzato in e-commerce?',
+        answer: 'Sì, ho gestito per anni un e-commerce su PrestaShop occupandomi di tutto: catalogo, marketplace, ordini, customer care, Ads e SEO tecnica.',
+    },
+    {
+        question: 'Ti occupi anche di SEO tecnica?',
+        answer: 'Sì, faccio audit tecnici, ottimizzazione Core Web Vitals, structured data con Schema.org, configurazione GA4 e GTM con attenzione alla privacy.',
+    },
+    {
+        question: 'Fai formazione per il personale aziendale?',
+        answer: 'Sì, ho formato tirocinanti e nuovo personale sia in agenzia che in azienda. Creo guide operative e affianco le persone nella pratica quotidiana.',
+    },
+    {
+        question: 'Come scegli le tecnologie per un progetto?',
+        answer: 'Parto dal problema da risolvere, non dallo strumento. Valuto complessità, budget e obiettivi del cliente, poi scelgo la soluzione più adatta.',
+    },
+];
 ---
 
 <Layout
@@ -9,7 +34,7 @@ import CtaContact from '../components/CtaContact.astro';
     description="Competenze di Enrico Morano. Vue.js, Astro, TypeScript, PHP, PrestaShop, Node.js, SEO tecnica e gestione server VPS."
     breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Competenze', url: '/skills' }]}
 >
-    <main class="max-w-6xl mx-auto px-8 py-20">
+    <div class="max-w-6xl mx-auto px-8 py-20">
         <header class="mb-16">
             <h1 class="text-5xl md:text-6xl font-bold mb-4">
                 Le mie <span class="text-accent">Competenze</span>
@@ -24,5 +49,7 @@ import CtaContact from '../components/CtaContact.astro';
         <CtaContact />
 
         <SkillsBento client:only="vue" only="learning" />
-    </main>
+
+        <FaqSection faqs={faqs} />
+    </div>
 </Layout>

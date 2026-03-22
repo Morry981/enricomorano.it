@@ -3,6 +3,31 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import SkillsHighlight from '../components/SkillsHighlight.vue';
 import CtaContact from '../components/CtaContact.astro';
+import FaqSection from '../components/FaqSection.astro';
+import type { FaqItem } from '../components/FaqSection.astro';
+
+const faqs: FaqItem[] = [
+    {
+        question: 'Che servizi offri come sviluppatore freelance?',
+        answer: 'Sviluppo e-commerce su PrestaShop, applicazioni web con Vue.js e Astro, automazione processi, SEO tecnica, configurazione server VPS e consulenza digitale per PMI.',
+    },
+    {
+        question: 'Con quali tecnologie lavori?',
+        answer: 'PHP, TypeScript, Vue.js, Astro, Tailwind CSS, PrestaShop, Node.js, MySQL, Apache. Scelgo lo strumento in base al problema, non il contrario.',
+    },
+    {
+        question: 'Lavori solo nella zona di Cuneo?',
+        answer: 'Lavoro da remoto su tutta Italia. Per chi preferisce il contatto diretto, sono disponibile in presenza nella zona di Cuneo e provincia.',
+    },
+    {
+        question: 'Come funziona una collaborazione con te?',
+        answer: 'Si parte da una call conoscitiva per capire cosa serve. Definisco un piano, condivido tempi e costi, e si lavora a step con aggiornamenti continui.',
+    },
+    {
+        question: 'Ti occupi anche di manutenzione dopo il lancio?',
+        answer: 'Sì, offro supporto continuativo: aggiornamenti, monitoraggio, correzione bug e ottimizzazione. Non sparisco dopo la consegna.',
+    },
+];
 ---
 
 <Layout
@@ -11,11 +36,10 @@ import CtaContact from '../components/CtaContact.astro';
     fullscreen
     breadcrumbs={[{ name: 'Home', url: '/' }]}
 >
-    <main>
+    <div>
         <Hero />
         <SkillsHighlight client:visible />
 
-        <!-- Chi sono -->
         <section class="py-16 md:py-24 bg-dark">
             <div class="max-w-4xl mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-light mb-6">
@@ -38,7 +62,6 @@ import CtaContact from '../components/CtaContact.astro';
             </div>
         </section>
 
-        <!-- Servizi -->
         <section class="py-16 md:py-24 bg-slate-50">
             <div class="max-w-6xl mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -88,7 +111,6 @@ import CtaContact from '../components/CtaContact.astro';
             </div>
         </section>
 
-        <!-- Come lavoro -->
         <section class="py-16 md:py-24 bg-dark">
             <div class="max-w-4xl mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-light mb-6">
@@ -108,6 +130,8 @@ import CtaContact from '../components/CtaContact.astro';
             </div>
         </section>
 
+        <FaqSection faqs={faqs} />
+
         <CtaContact />
-    </main>
+    </div>
 </Layout>
