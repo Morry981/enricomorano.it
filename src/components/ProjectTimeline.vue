@@ -69,9 +69,11 @@ const tick = () => {
 
     let settled = true;
 
+    const t = reducedMotion.value ? 1 : LERP;
+
     for (let i = 0; i < props.projects.length; i++) {
-        cardProgress[i] = lerp(cardProgress[i], targetCard[i], LERP);
-        connectorProgress[i] = lerp(connectorProgress[i], targetConn[i], LERP);
+        cardProgress[i] = lerp(cardProgress[i], targetCard[i], t);
+        connectorProgress[i] = lerp(connectorProgress[i], targetConn[i], t);
         dotActive[i] = cardProgress[i] >= DONE;
 
         if (Math.abs(cardProgress[i] - targetCard[i]) > 0.001) settled = false;
@@ -80,7 +82,7 @@ const tick = () => {
 
     firstDotActive.value = cardProgress[0] > 0.05;
 
-    mobileLineProgress.value = lerp(mobileLineProgress.value, targetMobileLine, LERP);
+    mobileLineProgress.value = lerp(mobileLineProgress.value, targetMobileLine, t);
     if (Math.abs(mobileLineProgress.value - targetMobileLine) > 0.001) settled = false;
 
     if (!settled) {
@@ -99,7 +101,11 @@ const startLoop = () => {
 
 const onScroll = () => { startLoop(); };
 
+const reducedMotion = ref(false);
+
 onMounted(() => {
+    reducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     nextTick(() => {
         computeTargets();
         for (let i = 0; i < props.projects.length; i++) {
@@ -125,9 +131,7 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
 </script>
 
 <template>
-    <div ref="wrapEl" class="tl-wrap w-full">
-
-        <!-- Mobile: linea verticale continua DIETRO tutto -->
+    <div ref="wrapEl" class="tl-wrap w-full" role="list" aria-label="Timeline dei progetti">
         <div class="tl-mobile-line">
             <div class="tl-mobile-line-bg" />
             <div
@@ -137,8 +141,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
         </div>
 
         <template v-for="(project, i) in projects" :key="project.slug">
-
-            <!-- Desktop: connettore diagonale -->
             <div
                 v-if="i > 0"
                 :ref="(el) => setConnectorRef(el, i)"
@@ -148,6 +150,7 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
                     class="tl-connector-svg"
                     preserveAspectRatio="none"
                     viewBox="0 0 100 100"
+                    aria-hidden="true"
                 >
                     <line
                         :x1="dotX(i - 1)" y1="0"
@@ -165,20 +168,18 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
                 </svg>
             </div>
 
-            <!-- Sezione card -->
             <div
                 :ref="(el) => setCardRef(el, i)"
                 class="tl-section"
+                role="listitem"
                 :class="i % 2 === 0 ? 'tl-left' : 'tl-right'"
             >
-                <!-- Pallino top -->
                 <div class="tl-dot tl-dot-top" :class="i === 0 ? 'tl-dot-first' : 'tl-dot-desktop'">
                     <div class="dot-ring" :class="{ spinning: i === 0 ? firstDotActive : connectorProgress[i] >= DONE }">
                         <div class="dot-core" />
                     </div>
                 </div>
 
-                <!-- Desktop: linea verticale -->
                 <div class="tl-vline tl-desktop-only">
                     <div class="tl-vline-bg" />
                     <div
@@ -187,7 +188,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
                     />
                 </div>
 
-                <!-- Card -->
                 <div class="tl-card-wrap">
                     <TimelineNode
                         :project="project"
@@ -196,7 +196,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
                     />
                 </div>
 
-                <!-- Pallino bottom: sempre visibile (su mobile = separatore tra card) -->
                 <div class="tl-dot tl-dot-bottom">
                     <div class="dot-ring" :class="{ spinning: dotActive[i] }">
                         <div class="dot-core" />
@@ -213,8 +212,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
     width: 100%;
     overflow-x: hidden;
 }
-
-/* ═══ Mobile: linea continua ═══ */
 
 .tl-mobile-line {
     position: absolute;
@@ -247,8 +244,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
         display: none;
     }
 }
-
-/* ═══ Sezione card ═══ */
 
 .tl-section {
     position: relative;
@@ -285,8 +280,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
     width: 100%;
 }
 
-/* ═══ Pallini ═══ */
-
 .tl-dot {
     position: relative;
     z-index: 5;
@@ -296,6 +289,12 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
 
 .tl-dot-top {
     margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+    .tl-dot-top {
+        margin-top: -2px;
+    }
 }
 
 .tl-dot-bottom {
@@ -310,12 +309,10 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
     }
 }
 
-/* Primo pallino: visibile su desktop E mobile */
 .tl-dot-first {
     display: flex;
 }
 
-/* Pallini top delle card successive: solo desktop */
 .tl-dot-desktop {
     display: flex;
 }
@@ -333,8 +330,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
         display: none;
     }
 }
-
-/* ═══ Pallino (shared) ═══ */
 
 .dot-ring {
     width: 28px;
@@ -378,8 +373,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
     }
 }
 
-/* ═══ Desktop: linea verticale ═══ */
-
 .tl-vline {
     position: absolute;
     top: 0;
@@ -405,8 +398,6 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
     background: var(--color-accent);
     border-radius: 1px;
 }
-
-/* ═══ Desktop: connettore diagonale ═══ */
 
 .tl-connector {
     position: relative;

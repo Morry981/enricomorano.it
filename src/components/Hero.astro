@@ -32,7 +32,6 @@ function ls(l: Label): string {
     id="hero"
     class="relative h-[100svh] min-h-[560px] flex flex-col items-center justify-center overflow-hidden"
 >
-    <!-- Logo watermark: appena accennato, basso a destra -->
     <img
         src="/images/logo-morry98.png"
         alt=""
@@ -44,7 +43,6 @@ function ls(l: Label): string {
         class="hero-row flex flex-row items-stretch justify-center gap-4 w-full m-0 z-[1]"
         aria-label="Enrico Morano"
     >
-        <!-- ENRICO + chip -->
         <div
             id="wrap-enrico"
             class="flex-1 relative flex items-center justify-end overflow-visible min-w-0"
@@ -64,7 +62,6 @@ function ls(l: Label): string {
             ))}
         </div>
 
-        <!-- Foto -->
         <div class="photo-frame shrink-0 self-center overflow-hidden border-[5px] border-accent shadow-[0_20px_56px_rgba(0,0,0,0.35)] rounded-2xl corner-squircle">
             <img
                 src="/images/foto-profilo.jpg"
@@ -76,7 +73,6 @@ function ls(l: Label): string {
             />
         </div>
 
-        <!-- MORANO + chip -->
         <div
             id="wrap-morano"
             class="flex-1 relative flex items-center justify-start overflow-visible min-w-0"
@@ -97,12 +93,10 @@ function ls(l: Label): string {
         </div>
     </h1>
 
-    <!-- Tagline -->
     <p class="hero-tagline absolute bottom-[9%] left-1/2 -translate-x-1/2 w-[88%] max-w-[520px] text-center text-secondary leading-[1.55] z-30 text-balance">
         Elimino l'attrito tecnologico tra la tua azienda e i tuoi risultati.
     </p>
 
-    <!-- Scroll hint -->
     <a href="#competenze" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 text-secondary z-30" aria-label="Vai a Come posso aiutare">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="6 9 12 15 18 9"></polyline>
@@ -111,10 +105,8 @@ function ls(l: Label): string {
 </section>
 
 <style>
-    /* reset h1 - font: inherit non ha equivalente Tailwind */
     .hero-row { font: inherit; }
 
-    /* ── Parola - stili base comuni ── */
     .hero-word {
         font-family: var(--font-retro);
         line-height: 1;
@@ -122,13 +114,11 @@ function ls(l: Label): string {
         transform-origin: center center;
     }
 
-    /* ── Foto - dimensioni responsive ── */
     .photo-frame {
         width:  clamp(160px, 26vh, 310px);
         height: clamp(213px, 35vh, 413px);
     }
 
-    /* ── Chip - animazione + transform individuali ── */
     .hero-label {
         background-color: var(--label-bg);
         color:            var(--label-fg);
@@ -147,7 +137,6 @@ function ls(l: Label): string {
         }
     }
 
-    /* Fallback: mostra subito senza animazione se reduced-motion */
     @media (prefers-reduced-motion: reduce) {
         .hero-label {
             opacity: 1;
@@ -170,12 +159,10 @@ function ls(l: Label): string {
         outline-offset: 2px;
     }
 
-    /* ── Tagline - font-size con clamp ── */
     .hero-tagline {
         font-size: clamp(14px, 1.6vw, 18px);
     }
 
-    /* ── Scroll hint - animazione bounce ── */
     @media (prefers-reduced-motion: no-preference) {
         .scroll-hint {
             animation: scrollBounce 2s ease-in-out infinite;
@@ -186,10 +173,6 @@ function ls(l: Label): string {
             50%       { transform: translateX(-50%) translateY(6px); }
         }
     }
-
-    /* ══════════════════════════════════════════════
-       DESKTOP (≥ 1024px) - scaleY: lettere alte e schiacciate
-    ══════════════════════════════════════════════ */
 
     @media (min-width: 1024px) {
         .hero-word {
@@ -204,28 +187,21 @@ function ls(l: Label): string {
             transform-origin: center center;
         }
 
-        /* Compensazione advance width per i due nomi */
         #wrap-enrico .hero-word { letter-spacing: 0.12em; }
         #wrap-morano .hero-word { letter-spacing: 0.04em; }
 
-        /* Chip ENRICO: sul nome, left 5%→85%, top varia nell'altezza del blocco testo */
         #wrap-enrico .hero-label[data-pos="0"] { top:  5%;  left:  5%; }
         #wrap-enrico .hero-label[data-pos="1"] { top: 40%;  left: 26%; }
         #wrap-enrico .hero-label[data-pos="2"] { top: 70%;  left: 50%; }
         #wrap-enrico .hero-label[data-pos="3"] { top: 20%;  left: 68%; }
         #wrap-enrico .hero-label[data-pos="4"] { top: 82%;  left: 84%; }
 
-        /* Chip MORANO: sul nome, right 5%→85%, top varia nell'altezza del blocco testo */
         #wrap-morano .hero-label[data-pos="0"] { top:  5%;  right:  5%; }
         #wrap-morano .hero-label[data-pos="1"] { top: 45%;  right: 22%; }
         #wrap-morano .hero-label[data-pos="2"] { top: 22%;  right: 42%; }
         #wrap-morano .hero-label[data-pos="3"] { top: 68%;  right: 60%; }
         #wrap-morano .hero-label[data-pos="4"] { top: 38%;  right: 76%; }
     }
-
-    /* ══════════════════════════════════════════════
-       TABLET (640 – 1023px) - lettere verticali impilate
-    ══════════════════════════════════════════════ */
 
     @media (min-width: 640px) and (max-width: 1023px) {
         .hero-word {
@@ -236,7 +212,6 @@ function ls(l: Label): string {
             transform: none;
         }
 
-        /* wrap più larghi → più spazio per i chip */
         #wrap-enrico,
         #wrap-morano {
             min-width: 200px;
@@ -247,24 +222,18 @@ function ls(l: Label): string {
             height: clamp(173px, 29vh, 320px);
         }
 
-        /* Chip ENRICO tablet: sul nome, left 5%→82% */
         #wrap-enrico .hero-label[data-pos="0"] { top:  5%;  left:  5%; }
         #wrap-enrico .hero-label[data-pos="1"] { top: 42%;  left: 24%; }
         #wrap-enrico .hero-label[data-pos="2"] { top: 68%;  left: 46%; }
         #wrap-enrico .hero-label[data-pos="3"] { top: 22%;  left: 64%; }
         #wrap-enrico .hero-label[data-pos="4"] { top: 82%;  left: 80%; }
 
-        /* Chip MORANO tablet: sul nome, right 5%→82% */
         #wrap-morano .hero-label[data-pos="0"] { top:  5%;  right:  5%; }
         #wrap-morano .hero-label[data-pos="1"] { top: 48%;  right: 20%; }
         #wrap-morano .hero-label[data-pos="2"] { top: 22%;  right: 38%; }
         #wrap-morano .hero-label[data-pos="3"] { top: 70%;  right: 56%; }
         #wrap-morano .hero-label[data-pos="4"] { top: 38%;  right: 72%; }
     }
-
-    /* ══════════════════════════════════════════════
-       MOBILE (< 640px) - flex colonna: ENRICO / foto / MORANO
-    ══════════════════════════════════════════════ */
 
     @media (max-width: 639px) {
         .hero-row {

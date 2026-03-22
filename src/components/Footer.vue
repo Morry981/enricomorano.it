@@ -37,13 +37,16 @@
             </div>
         </div>
 
-        <!-- Popup -->
         <Teleport to="body">
             <Transition name="popup">
                 <div
                     v-if="showPopup"
                     class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Popup"
                     @click.self="showPopup = false"
+                    @keydown.escape="showPopup = false"
                 >
                     <div class="relative rounded-xl overflow-hidden shadow-2xl mx-4">
                         <button

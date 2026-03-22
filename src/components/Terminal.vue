@@ -2,8 +2,8 @@
     <section
         class="fixed inset-x-0 bottom-0 top-20 md:top-24 flex flex-col bg-[#1a1a2e] text-[#98C1D9] font-mono text-sm sm:text-base overflow-hidden"
         @click="focusInput"
+        aria-label="Terminale 404"
     >
-        <!-- Barra titolo -->
         <div
             class="flex items-center gap-2 px-4 py-2 bg-[#16213e] border-b border-[#0f3460] shrink-0"
         >
@@ -27,10 +27,11 @@
             >
         </div>
 
-        <!-- Output -->
         <div
             ref="outputEl"
             class="flex-1 overflow-y-auto px-4 py-3 space-y-1"
+            role="log"
+            aria-live="polite"
             @click.stop="handleOutputClick"
         >
             <div
@@ -41,7 +42,6 @@
             ></div>
         </div>
 
-        <!-- Input -->
         <form
             @submit.prevent="exec"
             class="flex items-center px-4 py-3 border-t border-[#0f3460] shrink-0 gap-2"
@@ -60,6 +60,7 @@
                 spellcheck="false"
                 enterkeyhint="send"
                 :placeholder="hasExecuted ? 'exit' : 'help'"
+                aria-label="Comando terminale"
                 class="flex-1 bg-transparent text-[#98C1D9] outline-none caret-[#98C1D9] min-w-0 placeholder:text-[#98C1D9]/30 text-base"
                 @keydown.up.prevent="historyUp"
                 @keydown.down.prevent="historyDown"
@@ -318,7 +319,6 @@ const handleTab = (e: KeyboardEvent) => {
         );
         scrollDown();
     } else {
-        // Completa il prefisso comune
         let common = matches[0];
         for (const m of matches) {
             while (!m.toLowerCase().startsWith(common.toLowerCase())) {

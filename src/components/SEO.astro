@@ -79,14 +79,12 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 } : null;
 ---
 
-<!-- SEO primario -->
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Enrico Morano" />
 
-<!-- Open Graph -->
 <meta property="og:type" content={type} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
@@ -95,13 +93,11 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 <meta property="og:locale" content="it_IT" />
 <meta property="og:site_name" content="Enrico Morano" />
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageURL} />
 
-<!-- JSON-LD Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 {breadcrumbSchema && (

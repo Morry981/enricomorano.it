@@ -13,7 +13,7 @@ export const skills: Skill[] = [
         labelLong: 'E-commerce & PrestaShop',
         labelShort: 'E-commerce',
         description:
-            'Gestione completa di e-commerce PrestaShop, dal catalogo al post-vendita. Marketplace, flussi ordini, caricamento prodotti automatizzato.',
+            'E-commerce PrestaShop dal catalogo al post-vendita. Marketplace, flussi ordini e caricamento prodotti automatizzato.',
         icon: 'ShoppingCart',
         color: 'cyan',
     },
@@ -40,7 +40,7 @@ export const skills: Skill[] = [
         labelLong: 'SEO Tecnica & Performance',
         labelShort: 'SEO & Perf',
         description:
-            'Ottimizzazione Core Web Vitals, schema markup, privacy by design. Audit tecnici e implementazione best practice.',
+            'Ottimizzazione Core Web Vitals, schema markup, privacy by design. Audit tecnici e applicazione delle best practice.',
         icon: 'TrendingUp',
         color: 'pink',
     },
@@ -73,4 +73,4 @@ export const skills: Skill[] = [
     },
 ];
 
-export const skillsForHero = skills.slice(0, 4); // Top 4 competenze per sezione Hero
+export const skillsForHero = skills.slice(0, 4);

@@ -19,7 +19,6 @@
 }
 @plugin "@toolwind/corner-shape";
 
-/* Token statici: uguali in entrambi i temi */
 @theme {
     --color-primary: #3D5A80;
     --color-accent: #EE6C4D;
@@ -28,14 +27,12 @@
     --font-retro: "Black Ops One", sans-serif;
 }
 
-/* Token semantici: puntano alle CSS var dinamiche del tema */
 @theme inline {
     --color-dark: var(--bg);
     --color-light: var(--fg);
     --color-secondary: var(--fg-secondary);
 }
 
-/* Variabili semantiche di tema - dark di default */
 :root {
     --bg: #293241;
     --fg: #E0FBFC;
@@ -46,7 +43,6 @@
     --gradient-b: rgba(238, 108, 77, 0.10);
 }
 
-/* Light mode: solo se attivato esplicitamente con il toggle */
 :root[data-theme="light"] {
     --bg: #F0F4F8;
     --fg: #293241;
@@ -65,10 +61,9 @@
         background-image:
             radial-gradient(at 0% 0%, var(--gradient-a) 0px, transparent 50%),
             radial-gradient(at 100% 100%, var(--gradient-b) 0px, transparent 50%);
-        transition: background-color 0.3s, color 0.3s;
+        transition: none;
     }
 
-    /* Effetto Grain/Noise */
     body::before {
         content: "";
         position: fixed;
@@ -82,21 +77,29 @@
 
     @media (prefers-reduced-motion: no-preference) {
         html { scroll-behavior: smooth; }
-    }
 
-    ::view-transition-old(*),
-    ::view-transition-new(*) {
-        animation-duration: 0.8s !important;
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+            animation-duration: 0.8s !important;
+        }
     }
 }
 
-/* Chip hero: in light mode i pastelli sono troppo chiari - saturazione + scurimento */
 :root[data-theme="light"] .hero-label {
     filter: saturate(1.8) brightness(0.68);
     color: #293241;
 }
 :root[data-theme="light"] .hero-word {
     text-shadow: 0 0 0px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 0.6);
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 @layer components {

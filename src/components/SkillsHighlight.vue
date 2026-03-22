@@ -4,7 +4,6 @@
         class="py-16 md:py-24 bg-slate-50"
     >
         <div class="max-w-6xl mx-auto px-6">
-            <!-- Heading -->
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                     Come posso aiutare
@@ -17,35 +16,30 @@
                 </p>
             </div>
 
-            <!-- Grid Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div
                     v-for="skill in displayedSkills"
                     :key="skill.id"
                     class="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 hover:-translate-y-1 border border-slate-200 hover:border-slate-300"
                 >
-                    <!-- Icona + colore -->
                     <div
                         :class="`inline-block p-3 rounded-lg mb-4 ${colorClasses[skill.color]}`"
                     >
                         <span class="text-2xl">{{ iconMap[skill.icon] }}</span>
                     </div>
 
-                    <!-- Titolo -->
                     <h3
                         class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors whitespace-pre-line"
                     >
                         {{ skill.labelLong }}
                     </h3>
 
-                    <!-- Descrizione breve -->
                     <p
                         class="text-sm text-slate-600 mb-4 line-clamp-3 text-balance"
                     >
                         {{ skill.description }}
                     </p>
 
-                    <!-- Link approfondisci -->
                     <a
                         :href="`/skills#${skill.id}`"
                         class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
@@ -70,7 +64,6 @@
                 </div>
             </div>
 
-            <!-- CTA per tutte le competenze -->
             <div class="text-center mt-12">
                 <a
                     href="/skills"

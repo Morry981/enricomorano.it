@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import {
     ShoppingCart,
     Code2,
@@ -29,6 +29,11 @@ const categoryIcons: Record<string, any> = {
 
 const icon = computed(() => categoryIcons[props.project.category] ?? Code2);
 
+const prefersReducedMotion = ref(false);
+onMounted(() => {
+    prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+});
+
 const formattedDate = computed(() => {
     if (!props.project.date) return '';
     const [year, month] = props.project.date.split('-');
@@ -43,8 +48,8 @@ const formattedDate = computed(() => {
 <template>
     <article
         v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :visibleOnce="{ opacity: 1, y: 0, transition: { delay: 100, duration: 500 } }"
+        :initial="prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }"
+        :visibleOnce="{ opacity: 1, y: 0, transition: { delay: 100, duration: prefersReducedMotion ? 0 : 500 } }"
         class="bento-card timeline-card w-full"
     >
         <div class="aspect-video rounded-lg overflow-hidden mb-4 bg-primary/10 flex items-center justify-center">
@@ -65,12 +70,12 @@ const formattedDate = computed(() => {
 
         <time
             v-if="formattedDate"
+            :datetime="project.date"
             class="text-xs font-bold uppercase tracking-widest text-accent"
         >
             {{ formattedDate }}
         </time>
 
-        <!-- Titolo con icona a sinistra -->
         <div class="flex items-center gap-2 mt-1 mb-1">
             <component
                 :is="icon"

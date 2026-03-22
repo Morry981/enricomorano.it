@@ -17,7 +17,7 @@ export const projects: Project[] = [
         slug: 'ecommerce-prestashop',
         title: 'E-commerce Completo',
         description:
-            'E-commerce complesso gestito end-to-end: caricamento prodotti automatizzato, marketplace, customer care + automatizzazioni AI, Ads, mail marketing e SEO tecnica.',
+            'E-commerce gestito da zero: catalogo, marketplace, customer care, automatizzazioni AI, Ads, mail marketing e SEO tecnica.',
         category: 'E-commerce',
         tags: ['PrestaShop', 'PHP', 'MySQL', 'SEO'],
         featured: true,
@@ -28,7 +28,7 @@ export const projects: Project[] = [
         slug: 'gestionale-ordini',
         title: 'Gestionale Ordini',
         description:
-            'Applicazione web per la gestione interna degli ordini, con dashboard in tempo reale e reportistica avanzata.',
+            'App web per gestire gli ordini internamente, con dashboard in tempo reale e report personalizzati.',
         category: 'Web App',
         tags: ['Vue.js', 'Node.js', 'TypeScript'],
         featured: true,
@@ -59,7 +59,7 @@ export const projects: Project[] = [
         slug: 'ottimizzazione-vps',
         title: 'Infrastruttura VPS Apache',
         description:
-            'Configurazione, hardening e tuning di server VPS con Apache per garantire uptime elevato e performance ottimali.',
+            'Setup, hardening e tuning di VPS con Apache. Uptime alto e tempi di risposta bassi.',
         category: 'DevOps',
         tags: ['VPS', 'Apache', 'Linux', 'DevOps'],
         date: '2018-09',
