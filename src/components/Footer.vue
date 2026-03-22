@@ -15,6 +15,7 @@
                     rel="noopener noreferrer nofollow"
                     aria-label="Profilo GitHub di Enrico Morano"
                     class="hover:text-light transition-colors"
+                    @click="trackSocial('GitHub')"
                 >
                     GitHub
                 </a>
@@ -24,6 +25,7 @@
                     rel="noopener noreferrer nofollow"
                     aria-label="Profilo LinkedIn di Enrico Morano"
                     class="hover:text-light transition-colors"
+                    @click="trackSocial('LinkedIn')"
                 >
                     LinkedIn
                 </a>
@@ -65,6 +67,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import AntiSpamEmail from './AntiSpamEmail.vue';
+import { trackSocial } from '../lib/analytics';
 
 const isVisible = ref(false);
 const isScrolledDown = ref(false);

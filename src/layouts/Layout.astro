@@ -38,7 +38,18 @@ const {
 <meta name="theme-color" content="#293241" />
         <SEO title={title} description={description} breadcrumbs={breadcrumbs} />
         <ViewTransitions prefetch="viewport" />
-        <script defer data-domain="enricomorano.it" src="https://plausible.io/js/script.js"></script>
+        <script>
+            import { initAnalytics, setupPageTracking } from '../lib/analytics';
+
+            initAnalytics();
+
+            let cleanup: (() => void) | undefined;
+
+            document.addEventListener('astro:page-load', () => {
+                cleanup?.();
+                cleanup = setupPageTracking();
+            });
+        </script>
     </head>
     <body class="flex flex-col min-h-screen antialiased select-none">
         <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-3 focus:py-1 focus:text-sm focus:text-accent focus:border focus:border-accent focus:rounded-md focus:bg-dark/80 focus:backdrop-blur-sm">
@@ -52,6 +63,17 @@ const {
         {!noFooter && <Footer client:idle />}
         <WhatsAppButton />
 
+        <script>
+            import { trackWhatsApp } from '../lib/analytics';
+
+            function initTracking() {
+                document.querySelectorAll('[data-track="whatsapp"]').forEach((el) => {
+                    el.addEventListener('click', () => trackWhatsApp());
+                });
+            }
+
+            document.addEventListener('astro:page-load', initTracking);
+        </script>
         <script is:inline>
             document.body.addEventListener("dragstart", (e) => {
                 e.preventDefault();

@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { trackEmail } from '../lib/analytics';
 
 const props = withDefaults(defineProps<{
     variant?: 'default' | 'cta';
@@ -35,6 +36,7 @@ onMounted(() => {
 });
 
 const handleClick = () => {
+    trackEmail();
     const addr = parts.join('');
     window.open(`mailto:${addr}`, '_blank', 'noopener,noreferrer');
 };

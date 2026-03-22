@@ -82,6 +82,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue';
+import { trackWhatsApp } from '../lib/analytics';
 
 interface Props {
     pathname?: string;
@@ -229,6 +230,7 @@ const commands: Record<string, (args: string) => string[]> = {
         ];
     },
     whatsapp: () => {
+        trackWhatsApp();
         window.open('https://wa.me/393520220025?text=Sono%20interessato%20ad%20essere%20contattato', '_blank', 'noopener,noreferrer');
         return [c('#25D366', '  Apertura chat WhatsApp...')];
     },
