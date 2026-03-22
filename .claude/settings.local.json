@@ -7,7 +7,11 @@
       "Bash(cmd /c \"pnpm test 2>&1\")",
       "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\enric\\\\Documents\\\\Enrico\\\\enricomorano.it && pnpm test\" 2>&1)",
       "Bash(find /c/Users/enric/Documents/Enrico/enricomorano.it/tests /c/Users/enric/Documents/Enrico/enricomorano.it/src -name *.test.* -o -name *.spec.*)",
-      "Bash(xargs grep:*)"
+      "Bash(xargs grep:*)",
+      "Bash(pnpm build:*)",
+      "Bash(npx astro:*)",
+      "Bash(curl -s http://localhost:4322/pagina-che-non-esiste)",
+      "Bash(pkill -f \"astro dev\")"
     ]
   }
 }

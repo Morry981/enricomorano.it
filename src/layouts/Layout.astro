@@ -11,12 +11,14 @@ interface Props {
     title?: string;
     description?: string;
     fullscreen?: boolean;
+    noFooter?: boolean;
 }
 
 const {
     title = 'Enrico Morano',
     description = 'Portfolio di Enrico Morano — sviluppatore full stack specializzato in e-commerce, Vue.js, Astro e infrastrutture VPS.',
     fullscreen = false,
+    noFooter = false,
 } = Astro.props;
 ---
 
@@ -43,10 +45,10 @@ const {
         </a>
         <Cursor client:only="vue" />
         <Nav />
-        <main id="main-content" class={`flex-grow pb-20 md:pb-0${fullscreen ? '' : ' pt-12 md:pt-14'}`}>
+        <main id="main-content" class={`flex-grow${noFooter ? '' : ' pb-20 md:pb-0'}${fullscreen ? '' : ' pt-12 md:pt-14'}`}>
             <slot />
         </main>
-        <Footer client:load />
+        {!noFooter && <Footer client:load />}
         <WhatsAppButton />
 
         <script is:inline>
