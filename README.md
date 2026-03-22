@@ -5,31 +5,45 @@ Sono Enrico Morano e questo è il repository del mio portfolio personale. Ho cre
 
 Questo non è solo un elenco di lavori, ma una narrazione del mio percorso come sviluppatore e creativo.
 
+**[enricomorano.it](https://www.enricomorano.it)**
+
+---
+
+## 🛠️ Stack Tecnico
+
+Il sito è costruito con:
+
+- **Astro v5** (SSR con `@astrojs/node`) + **Vue 3** per i componenti interattivi
+- **Tailwind CSS v4** + design system custom
+- **TypeScript strict**
+- **Mixpanel** per analytics
+- **Vitest** (unit test) + **Playwright** (E2E)
+
 ---
 
 ## 🚀 Progetti
 
-Troverai una selezione dei progetti che mi rappresentano di più.
+Troverai una selezione dei progetti che mi rappresentano di più, organizzati in una timeline animata.
 Ogni progetto è una storia a sé, fatta di sfide, soluzioni creative e tecnologie innovative.
 
-_Verrà aggiornata man mano che nuovi progetti prendono vita!_
+_Viene aggiornata man mano che nuovi progetti prendono vita!_
 
 ---
 
-## 🛠️ Competenze & Strumenti
+## 🧩 Competenze & Strumenti
 
-Il mio valore distintivo risiede nella capacità di affrontare e risolvere problematiche "fuori standard". Laddove le soluzioni convenzionali si fermano, applico un approccio analitico e creativo per superare i limiti tecnici, un’attitudine che mi è stata costantemente riconosciuta dai partner e dai team con cui ho collaborato.
+Il mio valore distintivo risiede nella capacità di affrontare e risolvere problematiche "fuori standard". Laddove le soluzioni convenzionali si fermano, applico un approccio analitico e creativo per superare i limiti tecnici, un'attitudine che mi è stata costantemente riconosciuta dai partner e dai team con cui ho collaborato.
 
 Credo fermamente nell'evoluzione continua: ogni giorno dedico tempo all'aggiornamento tecnico e strategico per acquisire nuove prospettive sui progetti digitali. Non lascio mai che la conoscenza rimanga teorica; la consolido mettendola in pratica immediatamente, sia nell'architettura di nuovi progetti che nell'ottimizzazione e nel refactoring di sistemi esistenti. Il mio obiettivo è trasformare la complessità tecnica in un vantaggio competitivo per il business.
 
 **Competenze Tecniche & Operative**
 
-- **Sviluppo Full Stack & E-commerce:** Specialista in **PrestaShop 8.2+** e **PHP 8+** Sviluppo di software personalizzato, applicazioni web complesse e gestione avanzata di database MySQL.
+- **Sviluppo Full Stack & E-commerce:** Specialista in **PrestaShop 8.2+** e **PHP 8+**. Sviluppo di software personalizzato, applicazioni web complesse e gestione avanzata di database MySQL.
 - **Infrastructure & DevOps:** Configurazione, manutenzione e tuning di server **VPS (Apache)**. Ottimizzazione delle performance lato server per garantire scalabilità e uptime.
-- **Mobile Development:** Progettazione e sviluppo di applicazioni native e cross-platform per **iOS e Android**.
-- **Frontend & Design:** Creazione di interfacce moderne e reattive (Vite, Alpine.js, Vue, Vanilla JS, JQuery) con un forte focus sul **Web Design** e sull'esperienza utente.
-- **Marketing Tecnico & SEO:** Configurazione di **SEO tecnica**, sistemi di tracking avanzato per social e digital marketing, e gestione di flussi e-mail marketing.
-- **Project Management & Consulting:** Guida di team tecnici, consulenza informatica strategica e gestione completa del ciclo di vita del progetto, con un occhio attento al ROI e ai tempi di produzione.
+- **Frontend & Design:** Interfacce moderne e reattive con **Vue.js, Astro, Tailwind CSS** e un forte focus su Web Design e UX.
+- **Marketing Tecnico & SEO:** SEO tecnica, structured data (JSON-LD), tracking avanzato con **GA4, GTM, Mixpanel** e gestione flussi e-mail marketing.
+- **Automazione & AI:** Integrazione di strumenti AI nei flussi di lavoro e-commerce, automazione processi e prototipazione rapida.
+- **Project Management & Consulting:** Guida di team tecnici, consulenza informatica strategica e gestione completa del ciclo di vita del progetto.
 
 ---
 
@@ -52,6 +66,7 @@ La parola a chi ha lavorato con me. Credo che la collaborazione e la comunicazio
 Sei interessato a una collaborazione, hai una domanda o vuoi semplicemente fare due chiacchiere?
 
 - **Email:** [web@enricomorano.it](mailto:web@enricomorano.it)
-- **LinkedIn:** [https://it.linkedin.com/in/enrico-morano](https://it.linkedin.com/in/enrico-morano 'Linkedin di Enrico')
+- **LinkedIn:** [linkedin.com/in/enrico-morano](https://www.linkedin.com/in/enrico-morano/)
+- **GitHub:** [github.com/Morry981](https://github.com/Morry981)
 
 Grazie per aver visitato il mio sito!

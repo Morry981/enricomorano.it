@@ -25,6 +25,15 @@ pnpm-debug.log*
 .idea/
 .vscode/
 
+# AI tools
+.claude/
+.cursor/
+.copilot/
+.aider*
+.cline/
+.windsurf/
+CLAUDE.md
+
 # test artifacts
 playwright-report/
 test-results/
