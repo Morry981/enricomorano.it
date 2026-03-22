@@ -1,5 +1,5 @@
 export const personSchema = (siteUrl: string) => ({
-    '@context': 'https://schema.org',
+    '@context': 'https://schema.org/',
     '@type': 'Person',
     name: 'Enrico Morano',
     url: siteUrl,

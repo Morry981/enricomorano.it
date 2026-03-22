@@ -1,5 +1,5 @@
 export const websiteSchema = (siteUrl: string) => ({
-    '@context': 'https://schema.org',
+    '@context': 'https://schema.org/',
     '@type': 'WebSite',
     name: 'Enrico Morano',
     url: siteUrl,

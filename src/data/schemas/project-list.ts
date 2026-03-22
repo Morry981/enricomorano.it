@@ -1,7 +1,7 @@
 import type { Project } from '../../types';
 
 export const projectListSchema = (siteUrl: string, projects: Project[]) => ({
-    '@context': 'https://schema.org',
+    '@context': 'https://schema.org/',
     '@type': 'ItemList',
     name: 'Progetti di Enrico Morano',
     numberOfItems: projects.length,

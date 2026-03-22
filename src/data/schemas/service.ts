@@ -1,5 +1,5 @@
 export const serviceSchema = (siteUrl: string) => ({
-    '@context': 'https://schema.org',
+    '@context': 'https://schema.org/',
     '@type': 'ProfessionalService',
     name: 'Enrico Morano - Sviluppatore Full Stack',
     url: siteUrl,
