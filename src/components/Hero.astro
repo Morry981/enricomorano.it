@@ -119,6 +119,8 @@ function ls(l: Label): string {
     .hero-word {
         font-family: var(--font-retro);
         line-height: 1;
+        transform: scaleY(2.5);
+        transform-origin: center center;
     }
 
     /* ── Foto — dimensioni responsive ── */
@@ -233,6 +235,7 @@ function ls(l: Label): string {
             text-orientation: upright;
             font-size: clamp(42px, 7vh, 92px);
             letter-spacing: 0.04em;
+            transform: none;
         }
 
         /* wrap più larghi → più spazio per i chip */
@@ -287,8 +290,8 @@ function ls(l: Label): string {
         }
 
         .photo-frame {
-            width: 140px;
-            height: 187px;
+            width:  clamp(140px, 22vh, 220px);
+            height: clamp(187px, 30vh, 293px);
         }
 
         #wrap-enrico .hero-label[data-pos="0"] { top: 8px;    left: 0.75rem;  }

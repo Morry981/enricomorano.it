@@ -45,13 +45,13 @@
                     class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
                     @click.self="showPopup = false"
                 >
-                    <div class="relative rounded-xl overflow-hidden shadow-2xl max-w-sm mx-4">
+                    <div class="relative rounded-xl overflow-hidden shadow-2xl mx-4">
                         <button
                             @click="showPopup = false"
                             class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors text-xl leading-none cursor-pointer"
                             aria-label="Chiudi"
                         >&times;</button>
-                        <img src="/images/eeh-volevih.gif" alt="Eeh volevi!" class="block w-full" />
+                        <img src="/images/eeh-volevih.gif" alt="Eeh volevi!" width="480" height="360" class="block w-[480px] max-w-[90vw] h-auto" />
                     </div>
                 </div>
             </Transition>
