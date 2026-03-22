@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { projects } from '../data/projects';
+import CtaContact from '../components/CtaContact.astro';
 ---
 
 <Layout
@@ -43,7 +44,7 @@ import { projects } from '../data/projects';
                                 <a
                                     href={project.url}
                                     target="_blank"
-                                    rel="noopener noreferrer"
+                                    rel="noopener noreferrer nofollow"
                                     class="flex items-center text-accent font-semibold group-hover:translate-x-1 transition-transform"
                                     aria-label={`Visita il progetto ${project.title}`}
                                 >
@@ -57,7 +58,7 @@ import { projects } from '../data/projects';
                                 <a
                                     href={project.repo}
                                     target="_blank"
-                                    rel="noopener noreferrer"
+                                    rel="noopener noreferrer nofollow"
                                     class="flex items-center text-secondary/70 hover:text-light font-semibold transition-colors"
                                     aria-label={`Repository GitHub di ${project.title}`}
                                 >
@@ -75,5 +76,7 @@ import { projects } from '../data/projects';
                 Il resto è sotto NDA, o non abbastanza fotogenico.
             </p>
         </footer>
+
+        <CtaContact />
     </main>
 </Layout>

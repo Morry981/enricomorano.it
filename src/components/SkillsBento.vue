@@ -48,6 +48,7 @@ import {
     Sparkles,
     Webhook,
 } from 'lucide-vue-next';
+import { computed } from 'vue';
 
 interface SkillCategory {
     id: string;
@@ -62,7 +63,13 @@ interface SkillCategory {
     }[];
 }
 
-const categories: SkillCategory[] = [
+const props = withDefaults(defineProps<{
+    only?: 'main' | 'learning';
+}>(), {
+    only: undefined,
+});
+
+const allCategories: SkillCategory[] = [
     {
         id: 'ecommerce',
         title: 'E-commerce',
@@ -494,6 +501,12 @@ const categories: SkillCategory[] = [
         ],
     },
 ];
+
+const categories = computed(() => {
+    if (props.only === 'main') return allCategories.filter(c => !c.learning);
+    if (props.only === 'learning') return allCategories.filter(c => c.learning);
+    return allCategories;
+});
 </script>
 
 <template>

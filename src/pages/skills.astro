@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SkillsBento from '../components/SkillsBento.vue';
+import CtaContact from '../components/CtaContact.astro';
 ---
 
 <Layout
@@ -18,6 +19,10 @@ import SkillsBento from '../components/SkillsBento.vue';
             </p>
         </header>
 
-        <SkillsBento client:only="vue" />
+        <SkillsBento client:only="vue" only="main" />
+
+        <CtaContact />
+
+        <SkillsBento client:only="vue" only="learning" />
     </main>
 </Layout>

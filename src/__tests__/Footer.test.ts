@@ -26,7 +26,7 @@ describe('Footer.vue', () => {
         const github = wrapper.find('a[href="https://github.com/Morry981"]');
         expect(github.exists()).toBe(true);
         expect(github.attributes('aria-label')).toBeTruthy();
-        expect(github.attributes('rel')).toBe('noopener noreferrer');
+        expect(github.attributes('rel')).toBe('noopener noreferrer nofollow');
     });
 
     it('contiene il link LinkedIn corretto', async () => {
@@ -35,7 +35,7 @@ describe('Footer.vue', () => {
         const linkedin = wrapper.find('a[href="https://www.linkedin.com/in/enrico-morano/"]');
         expect(linkedin.exists()).toBe(true);
         expect(linkedin.attributes('aria-label')).toBeTruthy();
-        expect(linkedin.attributes('rel')).toBe('noopener noreferrer');
+        expect(linkedin.attributes('rel')).toBe('noopener noreferrer nofollow');
     });
 
     it('è visibile quando la pagina non ha scrollbar', async () => {

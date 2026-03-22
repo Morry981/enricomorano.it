@@ -310,11 +310,7 @@ const handleTab = (e: KeyboardEvent) => {
 };
 
 const exec = () => {
-    const raw = cmd.value.trim() || (hasExecuted.value ? '' : 'help');
-    if (!raw) {
-        cmd.value = '';
-        return;
-    }
+    const raw = cmd.value.trim() || (hasExecuted.value ? 'exit' : 'help');
     lines.value.push(prompt(raw));
 
     hasExecuted.value = true;

@@ -12,7 +12,7 @@
                 <a
                     href="https://github.com/Morry981"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer nofollow"
                     aria-label="Profilo GitHub di Enrico Morano"
                     class="hover:text-light transition-colors"
                 >
@@ -21,7 +21,7 @@
                 <a
                     href="https://www.linkedin.com/in/enrico-morano/"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer nofollow"
                     aria-label="Profilo LinkedIn di Enrico Morano"
                     class="hover:text-light transition-colors"
                 >

@@ -6,7 +6,7 @@
         rel="noopener noreferrer"
         aria-label="Invia una email"
         :class="props.variant === 'cta'
-            ? 'inline-flex items-center px-8 py-4 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors text-lg no-underline'
+            ? 'inline-flex items-center px-8 py-4 bg-accent text-dark font-semibold rounded-lg hover:bg-accent/85 transition-colors text-lg no-underline'
             : 'hover:text-light transition-colors'"
         @click.prevent="handleClick"
     >
