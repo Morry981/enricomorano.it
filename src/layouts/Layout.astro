@@ -34,8 +34,7 @@ const {
         <meta name="apple-mobile-web-app-title" content="Enrico Morano" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        {fullscreen && <link rel="preload" href="/fonts/black-ops-one-latin.woff2" as="font" type="font/woff2" crossorigin />}
 <meta name="theme-color" content="#293241" />
         <SEO title={title} description={description} breadcrumbs={breadcrumbs} />
         <ViewTransitions prefetch="viewport" />
@@ -45,12 +44,12 @@ const {
         <a href="#competenze" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-3 focus:py-1 focus:text-sm focus:text-accent focus:border focus:border-accent focus:rounded-md focus:bg-dark/80 focus:backdrop-blur-sm">
             Vai al contenuto principale
         </a>
-        <Cursor client:only="vue" />
+        <Cursor client:idle />
         <Nav />
         <main id="main-content" class={`flex-grow${noFooter ? '' : ' pb-20 md:pb-0'}${fullscreen ? '' : ' pt-12 md:pt-14'}`}>
             <slot />
         </main>
-        {!noFooter && <Footer client:load />}
+        {!noFooter && <Footer client:idle />}
         <WhatsAppButton />
 
         <script is:inline>
