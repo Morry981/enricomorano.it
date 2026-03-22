@@ -14,13 +14,15 @@ import {
 } from 'lucide-vue-next';
 
 interface SkillCategory {
+    id: string;
     title: string;
     learning?: boolean;
-    skills: { name: string; icon: any; size: 'large' | 'medium' | 'small'; desc: string }[];
+    skills: { name: string; icon: any; size: 'large' | 'medium' | 'small'; desc: string; id?: string }[];
 }
 
 const categories: SkillCategory[] = [
     {
+        id: 'ecommerce',
         title: 'E-commerce',
         skills: [
             { name: 'PrestaShop', icon: ShoppingCart, size: 'large', desc: 'Sviluppo moduli, temi custom, ottimizzazione flussi ordini e catalogo su PrestaShop 8+' },
@@ -32,6 +34,7 @@ const categories: SkillCategory[] = [
         ],
     },
     {
+        id: 'webdev',
         title: 'Sviluppo Web',
         skills: [
             { name: 'Laravel', icon: Code2, size: 'large', desc: 'MVC, Eloquent ORM, middleware, API backend strutturate, queue, eventi' },
@@ -51,6 +54,7 @@ const categories: SkillCategory[] = [
         ],
     },
     {
+        id: 'seo',
         title: 'SEO & Performance',
         skills: [
             { name: 'SEO Tecnica', icon: Search, size: 'large', desc: 'Audit tecnici, ottimizzazione crawl budget, indicizzazione, link interni, sitemap dinamiche' },
@@ -66,6 +70,7 @@ const categories: SkillCategory[] = [
         ],
     },
     {
+        id: 'infra',
         title: 'Infrastruttura & DevOps',
         skills: [
             { name: 'VPS & Apache', icon: Server, size: 'medium', desc: 'Configurazione server, virtual host, SSL, tuning performance' },
@@ -81,12 +86,13 @@ const categories: SkillCategory[] = [
         ],
     },
     {
+        id: 'mobile',
         title: 'Mobile & Altro',
         skills: [
             { name: 'iOS & Android', icon: Smartphone, size: 'medium', desc: 'Sviluppo app native e cross-platform' },
-            { name: 'Automazione', icon: BrainCircuit, size: 'large', desc: 'Script, estensioni browser, import/export, riduzione attrito manuale nei flussi aziendali' },
-            { name: 'Problem Solving', icon: Wrench, size: 'small', desc: 'Debug produzione, hotfix, analisi root cause' },
-            { name: 'Consulenza', icon: Compass, size: 'small', desc: 'Roadmap tecnologica, scelte architetturali, ROI digitale' },
+            { name: 'Automazione', icon: BrainCircuit, size: 'large', desc: 'Script, estensioni browser, import/export, riduzione attrito manuale nei flussi aziendali', id: 'automation' },
+            { name: 'Problem Solving', icon: Wrench, size: 'small', desc: 'Debug produzione, hotfix, analisi root cause', id: 'proactive' },
+            { name: 'Consulenza', icon: Compass, size: 'small', desc: 'Roadmap tecnologica, scelte architetturali, ROI digitale', id: 'strategy' },
             { name: 'PWA', icon: Wifi, size: 'small', desc: 'Progressive Web App, offline-first, service worker' },
             { name: 'Sicurezza Web', icon: ShieldCheck, size: 'medium', desc: 'OWASP, XSS, SQL injection, HTTPS, CSP, hardening' },
             { name: 'Testing', icon: SquareTerminal, size: 'small', desc: 'Vitest, Playwright, TDD, test unitari e E2E' },
@@ -99,6 +105,7 @@ const categories: SkillCategory[] = [
         ],
     },
     {
+        id: 'learning',
         title: 'In corso di apprendimento',
         learning: true,
         skills: [
@@ -121,7 +128,7 @@ const categories: SkillCategory[] = [
 
 <template>
     <div class="space-y-16">
-        <section v-for="(cat, catIdx) in categories" :key="cat.title">
+        <section v-for="(cat, catIdx) in categories" :key="cat.title" :id="cat.id">
             <h2
                 v-motion
                 :initial="{ opacity: 0, x: -30 }"
@@ -135,6 +142,7 @@ const categories: SkillCategory[] = [
                 <article
                     v-for="(skill, index) in cat.skills"
                     :key="skill.name"
+                    :id="skill.id"
                     v-motion
                     :initial="{ opacity: 0, y: 50 }"
                     :enter="{ opacity: 1, y: 0, transition: { delay: catIdx * 80 + index * 100 } }"

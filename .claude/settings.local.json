@@ -12,7 +12,11 @@
       "Bash(npx astro:*)",
       "Bash(curl -s http://localhost:4322/pagina-che-non-esiste)",
       "Bash(pkill -f \"astro dev\")",
-      "Bash(npx skills:*)"
+      "Bash(npx skills:*)",
+      "Bash(git checkout:*)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "Bash(curl -s -L -H \"User-Agent: Mozilla/5.0\" \"https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&action=raw\")",
+      "Bash(chown:*)"
     ]
   }
 }

@@ -9,9 +9,11 @@
                 <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                     Come posso aiutare
                 </h2>
-                <p class="text-lg text-slate-600 max-w-2xl mx-auto text-balance">
-                    Affronto problemi complessi con soluzioni pragmatiche. Dai
-                    processi fino al codice, copro lo stack completo.
+                <p
+                    class="text-lg text-slate-600 max-w-2xl mx-auto text-balance"
+                >
+                    Quasi dieci anni tra sviluppo e consulenza.<br />
+                    Dai processi aziendali al codice, copro tutto lo stack.
                 </p>
             </div>
 
@@ -37,7 +39,9 @@
                     </h3>
 
                     <!-- Descrizione breve -->
-                    <p class="text-sm text-slate-600 mb-4 line-clamp-3 text-balance">
+                    <p
+                        class="text-sm text-slate-600 mb-4 line-clamp-3 text-balance"
+                    >
                         {{ skill.description }}
                     </p>
 
@@ -46,7 +50,8 @@
                         :href="`/skills#${skill.id}`"
                         class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                     >
-                        Approfondisci <span class="sr-only">{{ skill.labelShort }}</span>
+                        Approfondisci
+                        <span class="sr-only">{{ skill.labelShort }}</span>
                         <svg
                             class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
                             fill="none"

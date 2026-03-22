@@ -13,7 +13,7 @@ export const skills: Skill[] = [
         labelLong: 'E-commerce & PrestaShop',
         labelShort: 'E-commerce',
         description:
-            'Progettazione, gestione e manutenzione di piattaforme e-commerce. Esperienza PrestaShop, integrazioni marketplace, ottimizzazione flussi ordini.',
+            'Gestione completa di e-commerce PrestaShop, dal catalogo al post-vendita. Marketplace, flussi ordini, caricamento prodotti automatizzato.',
         icon: 'ShoppingCart',
         color: 'cyan',
     },
@@ -31,7 +31,7 @@ export const skills: Skill[] = [
         labelLong: 'Automazione\nProcessi',
         labelShort: 'Automation',
         description:
-            "Integrazioni custom, estensioni browser, script di import/export. Riduco l'attrito manuale nei flussi aziendali.",
+            "Integrazioni custom, estensioni browser, script di import/export. Ho automatizzato inventario, rinomina file e lettura dati in agenzia.",
         icon: 'Zap',
         color: 'amber',
     },
@@ -58,7 +58,7 @@ export const skills: Skill[] = [
         labelLong: 'Consulenza Strategica',
         labelShort: 'Strategy',
         description:
-            'Analisi ROI canali digitali, scelte architetturali per PMI, roadmap tecnologico, alignment business-tech.',
+            'Analisi ROI canali digitali, scelte architetturali per PMI. Ho gestito riunioni clienti e roadmap tecnologiche in agenzia e in azienda.',
         icon: 'Compass',
         color: 'purple',
     },
@@ -67,7 +67,7 @@ export const skills: Skill[] = [
         labelLong: 'Formazione',
         labelShort: 'Training',
         description:
-            'Onboarding team interni, sessioni di aggiornamento, guide documentate, supporto operativo hands-on.',
+            'Ho formato tirocinanti e nuovo personale in agenzia e in azienda. Onboarding, guide operative e supporto diretto.',
         icon: 'BookOpen',
         color: 'indigo',
     },
