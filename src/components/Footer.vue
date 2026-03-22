@@ -27,8 +27,35 @@
                 >
                     LinkedIn
                 </a>
+                <button
+                    @click="showPopup = true"
+                    class="text-secondary/40 hover:text-secondary/70 transition-colors text-xl leading-none cursor-pointer"
+                    aria-label="18+"
+                >
+                    🔞
+                </button>
             </div>
         </div>
+
+        <!-- Popup -->
+        <Teleport to="body">
+            <Transition name="popup">
+                <div
+                    v-if="showPopup"
+                    class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+                    @click.self="showPopup = false"
+                >
+                    <div class="relative rounded-xl overflow-hidden shadow-2xl max-w-sm mx-4">
+                        <button
+                            @click="showPopup = false"
+                            class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors text-xl leading-none cursor-pointer"
+                            aria-label="Chiudi"
+                        >&times;</button>
+                        <img src="/images/eeh-volevih.gif" alt="Eeh volevi!" class="block w-full" />
+                    </div>
+                </div>
+            </Transition>
+        </Teleport>
     </footer>
 </template>
 
@@ -36,8 +63,9 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import AntiSpamEmail from './AntiSpamEmail.vue';
 
-const isVisible = ref(false); // Controls if the footer is in the DOM at all
-const isScrolledDown = ref(false); // Controls the slide-in/out animation
+const isVisible = ref(false);
+const isScrolledDown = ref(false);
+const showPopup = ref(false);
 const currentYear = new Date().getFullYear();
 
 const handleScroll = () => {
@@ -69,3 +97,24 @@ onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll);
 });
 </script>
+
+<style scoped>
+.popup-enter-active,
+.popup-leave-active {
+    transition: opacity 0.35s ease;
+}
+.popup-enter-active > div,
+.popup-leave-active > div {
+    transition: transform 0.35s ease;
+}
+.popup-enter-from,
+.popup-leave-to {
+    opacity: 0;
+}
+.popup-enter-from > div {
+    transform: scale(0.9);
+}
+.popup-leave-to > div {
+    transform: scale(0.9);
+}
+</style>
