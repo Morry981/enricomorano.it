@@ -12,6 +12,7 @@ interface Props {
     description?: string;
     fullscreen?: boolean;
     noFooter?: boolean;
+    breadcrumbs?: { name: string; url: string }[];
 }
 
 const {
@@ -19,6 +20,7 @@ const {
     description = 'Portfolio di Enrico Morano — sviluppatore full stack specializzato in e-commerce, Vue.js, Astro e infrastrutture VPS.',
     fullscreen = false,
     noFooter = false,
+    breadcrumbs,
 } = Astro.props;
 ---
 
@@ -35,7 +37,7 @@ const {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <meta name="theme-color" content="#293241" />
-        <SEO title={title} description={description} />
+        <SEO title={title} description={description} breadcrumbs={breadcrumbs} />
         <ViewTransitions prefetch="viewport" />
         <script defer data-domain="enricomorano.it" src="https://plausible.io/js/script.js"></script>
     </head>

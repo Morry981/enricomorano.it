@@ -4,6 +4,7 @@ interface Props {
     description: string;
     image?: string;
     type?: 'website' | 'article';
+    breadcrumbs?: { name: string; url: string }[];
 }
 
 const {
@@ -11,10 +12,71 @@ const {
     description,
     image = '/og-image.png',
     type = 'website',
+    breadcrumbs,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://enricomorano.it');
+const siteUrl = (Astro.site ?? 'https://enricomorano.it').toString().replace(/\/$/, '');
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 const fullTitle = title.includes('Enrico Morano') ? title : `${title} | Enrico Morano`;
+const ogImageURL = new URL(image, siteUrl).toString();
+
+const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Enrico Morano',
+    url: siteUrl,
+    image: `${siteUrl}/images/foto-profilo.jpg`,
+    jobTitle: 'Full Stack Developer',
+    description: 'Sviluppatore full stack specializzato in e-commerce PrestaShop, Vue.js, Astro e infrastrutture VPS.',
+    knowsAbout: [
+        'PrestaShop', 'PHP', 'Vue.js', 'Astro', 'TypeScript',
+        'Node.js', 'Tailwind CSS', 'SEO Tecnica', 'DevOps', 'Apache',
+    ],
+    sameAs: [
+        'https://github.com/Morry981',
+    ],
+    aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        bestRating: '5',
+        ratingCount: '2',
+    },
+    review: [
+        {
+            '@type': 'Review',
+            author: { '@type': 'Organization', name: 'Abc Arredamenti' },
+            reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+            reviewBody: 'Enrico non è solo un ottimo sviluppatore, ma anche un partner strategico. La sua capacità di tradurre le esigenze di business in soluzioni tecniche è stata fondamentale per il successo del nostro progetto.',
+        },
+        {
+            '@type': 'Review',
+            author: { '@type': 'Organization', name: 'Dinamitek' },
+            reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+            reviewBody: 'Ho apprezzato la proattività e la curiosità di Enrico. È sempre pronto a esplorare nuove tecnologie per trovare la soluzione migliore, senza mai perdere di vista gli obiettivi.',
+        },
+    ],
+};
+
+const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Enrico Morano',
+    url: siteUrl,
+    description: 'Portfolio di Enrico Morano — sviluppatore full stack specializzato in e-commerce, Vue.js, Astro e infrastrutture VPS.',
+    inLanguage: 'it',
+    author: { '@type': 'Person', name: 'Enrico Morano' },
+};
+
+const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: item.name,
+        item: item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}`,
+    })),
+} : null;
 ---
 
 <!-- SEO primario -->
@@ -29,7 +91,7 @@ const fullTitle = title.includes('Enrico Morano') ? title : `${title} | Enrico M
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalURL} />
-<meta property="og:image" content={image} />
+<meta property="og:image" content={ogImageURL} />
 <meta property="og:locale" content="it_IT" />
 <meta property="og:site_name" content="Enrico Morano" />
 
@@ -37,4 +99,11 @@ const fullTitle = title.includes('Enrico Morano') ? title : `${title} | Enrico M
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={image} />
+<meta name="twitter:image" content={ogImageURL} />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+{breadcrumbSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+)}

@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout
     title="Chi Sono"
     description="Scopri chi è Enrico Morano: sviluppatore full stack con esperienza in e-commerce, mobile, DevOps e frontend moderno."
+    breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Chi Sono', url: '/about-me' }]}
 >
     <main class="max-w-4xl mx-auto px-8 py-20">
         <h1 class="text-5xl font-bold mb-8">Io sono <span class="text-accent" transition:name="hero-name">Enrico</span></h1>
