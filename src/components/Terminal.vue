@@ -38,7 +38,7 @@
                 v-for="(line, i) in lines"
                 :key="i"
                 v-html="line"
-                class="whitespace-pre-wrap break-words"
+                class="whitespace-pre-wrap wrap-break-word"
             ></div>
         </div>
 
@@ -98,7 +98,7 @@ const inputEl = ref<HTMLInputElement | null>(null);
 let lastTabTime = 0;
 const hasExecuted = ref(false);
 
-const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '';
+const waNumber = (import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '').replace('+', '');
 const waUrl = `https://wa.me/${waNumber}?text=Sono%20interessato%20ad%20essere%20contattato`;
 
 const c = (color: string, text: string) =>

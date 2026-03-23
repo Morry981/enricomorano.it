@@ -24,6 +24,14 @@ export const professionalServiceSchema = (siteUrl: string) => ({
     url: siteUrl,
     image: `${siteUrl}/images/foto-profilo.jpg`,
     description: 'Sviluppo e-commerce, automazione processi e consulenza digitale per PMI italiane.',
+    telephone: import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '',
+    priceRange: '150-10000 EUR',
+    address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Cuneo',
+        addressRegion: 'Piemonte',
+        addressCountry: 'IT',
+    },
     founder: {
         '@type': 'Person',
         name: 'Enrico Morano',

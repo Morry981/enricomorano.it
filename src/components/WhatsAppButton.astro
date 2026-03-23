@@ -1,5 +1,5 @@
 ---
-const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
+const waNumber = (import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '').replace('+', '');
 const waUrl = `https://wa.me/${waNumber}?text=Sono%20interessato%20ad%20essere%20contattato`;
 ---
 

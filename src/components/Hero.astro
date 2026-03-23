@@ -33,7 +33,7 @@ import logoMorry from '../assets/images/logo-morry98.png';
 
 <section
     id="hero"
-    class="relative h-[100svh] min-h-[560px] flex flex-col items-center justify-center overflow-hidden"
+    class="relative h-svh min-h-140 flex flex-col items-center justify-center overflow-hidden"
 >
     <Image
         src={logoMorry}
@@ -49,7 +49,7 @@ import logoMorry from '../assets/images/logo-morry98.png';
 
     <h1 class="sr-only">E-commerce e automazione per PMI - meno attrito, più risultati</h1>
     <div
-        class="hero-row flex flex-row items-stretch justify-center gap-4 w-full m-0 z-[1]"
+        class="hero-row flex flex-row items-stretch justify-center gap-4 w-full m-0 z-1"
         aria-label="Enrico Morano"
         role="img"
     >
@@ -63,7 +63,7 @@ import logoMorry from '../assets/images/logo-morry98.png';
             {labelsEnrico.map((l, i) => (
                 <a
                     href={l.href}
-                    class="hero-label absolute text-[13px] sm:text-sm lg:text-base font-medium whitespace-nowrap z-30 px-[14px] sm:px-4 sm:py-[6px] lg:px-5 lg:py-2 rounded-full corner-squircle"
+                    class="hero-label absolute text-[13px] sm:text-sm lg:text-base font-medium whitespace-nowrap z-30 px-3.5 sm:px-4 sm:py-1.5 lg:px-5 lg:py-2 rounded-full corner-squircle"
                     data-pos={i}
                     style={ls(l)}
                 >
@@ -97,7 +97,7 @@ import logoMorry from '../assets/images/logo-morry98.png';
             {labelsMorano.map((l, i) => (
                 <a
                     href={l.href}
-                    class="hero-label absolute text-[13px] sm:text-sm lg:text-base font-medium whitespace-nowrap z-30 px-[14px] sm:px-4 sm:py-[6px] lg:px-5 lg:py-2 rounded-full corner-squircle"
+                    class="hero-label absolute text-[13px] sm:text-sm lg:text-base font-medium whitespace-nowrap z-30 px-3.5 sm:px-4 sm:py-1.5 lg:px-5 lg:py-2 rounded-full corner-squircle"
                     data-pos={i}
                     style={ls(l)}
                 >
@@ -107,7 +107,7 @@ import logoMorry from '../assets/images/logo-morry98.png';
         </div>
     </div>
 
-    <h2 class="hero-tagline absolute bottom-[9%] left-1/2 -translate-x-1/2 w-[88%] max-w-[520px] text-center text-secondary leading-[1.55] z-30 text-balance">
+    <h2 class="hero-tagline absolute bottom-[9%] left-1/2 -translate-x-1/2 w-[88%] max-w-130 text-center text-secondary leading-[1.55] z-30 text-balance">
         Elimino l'attrito tecnologico tra la tua azienda e i tuoi/suoi risultati.
     </h2>
 

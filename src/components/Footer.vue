@@ -43,7 +43,7 @@
             <Transition name="popup">
                 <div
                     v-if="showPopup"
-                    class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+                    class="fixed inset-0 z-9999 flex items-center justify-center bg-black/40"
                     role="dialog"
                     aria-modal="true"
                     aria-label="Popup"
