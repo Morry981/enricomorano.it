@@ -28,7 +28,9 @@ export const professionalServiceSchema = (siteUrl: string) => ({
     priceRange: '150-10000 EUR',
     address: {
         '@type': 'PostalAddress',
+        streetAddress: 'Fossano',
         addressLocality: 'Cuneo',
+        postalCode: '12045',
         addressRegion: 'Piemonte',
         addressCountry: 'IT',
     },
