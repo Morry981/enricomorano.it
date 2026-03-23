@@ -6,7 +6,10 @@ export function initAnalytics() {
     if (initialized) return;
     initialized = true;
 
-    mixpanel.init('9e47b77162ddd91c4939724f0ef4834c', {
+    const token = import.meta.env.PUBLIC_MIXPANEL_TOKEN;
+    if (!token) return;
+
+    mixpanel.init(token, {
         autocapture: true,
         record_sessions_percent: 100,
         api_host: 'https://api-eu.mixpanel.com',

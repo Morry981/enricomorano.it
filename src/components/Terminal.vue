@@ -98,6 +98,9 @@ const inputEl = ref<HTMLInputElement | null>(null);
 let lastTabTime = 0;
 const hasExecuted = ref(false);
 
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '';
+const waUrl = `https://wa.me/${waNumber}?text=Sono%20interessato%20ad%20essere%20contattato`;
+
 const c = (color: string, text: string) =>
     `<span style="color:${color}">${text}</span>`;
 const link = (command: string, label?: string, color = '#98C1D9') =>
@@ -126,7 +129,7 @@ const BOOT = [
         `  Digita ${link('help', 'help', '#f39c12')} per i comandi disponibili.`,
     ),
     '',
-    `  ${extLink('https://wa.me/393520220025?text=Sono%20interessato%20ad%20essere%20contattato', '💬 Chatta su WhatsApp')}`,
+    `  ${extLink(waUrl, '💬 Chatta su WhatsApp')}`,
     '',
 ];
 
@@ -231,7 +234,7 @@ const commands: Record<string, (args: string) => string[]> = {
     },
     whatsapp: () => {
         trackWhatsApp();
-        window.open('https://wa.me/393520220025?text=Sono%20interessato%20ad%20essere%20contattato', '_blank', 'noopener,noreferrer');
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
         return [c('#25D366', '  Apertura chat WhatsApp...')];
     },
     clear: () => {
