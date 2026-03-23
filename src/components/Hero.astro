@@ -37,10 +37,12 @@ import logoMorry from '../assets/images/logo-morry98.png';
 >
     <Image
         src={logoMorry}
-        alt=""
+        alt="Logo Enrico Morano"
+        title="Enrico Morano"
         aria-hidden="true"
         widths={[200, 400]}
-        loading="lazy"
+        loading="eager"
+        fetchpriority="high"
         decoding="async"
         class="fixed bottom-[-15%] right-[-4%] h-[60vh] w-auto opacity-[0.02] pointer-events-none select-none object-contain"
     />
@@ -73,12 +75,14 @@ import logoMorry from '../assets/images/logo-morry98.png';
         <div class="photo-frame shrink-0 self-center overflow-hidden border-[5px] border-accent shadow-[0_20px_56px_rgba(0,0,0,0.35)] rounded-2xl corner-squircle">
             <Image
                 src={fotoProfilo}
-                alt="Foto di Enrico Morano"
+                alt="Foto di Enrico Morano, sviluppatore freelance"
+                title="Enrico Morano"
                 width={440}
                 height={587}
                 quality={80}
                 class="block w-full h-full object-cover object-top"
                 loading="eager"
+                fetchpriority="high"
                 decoding="async"
             />
         </div>
