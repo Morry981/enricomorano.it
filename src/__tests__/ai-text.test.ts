@@ -20,7 +20,6 @@ const contentFiles = [
     'src/data/projects.ts',
     'src/data/skills.ts',
     'src/data/schemas/person.ts',
-    'src/data/schemas/service.ts',
     'src/pages/index.astro',
     'src/pages/progetti.astro',
     'src/pages/competenze.astro',

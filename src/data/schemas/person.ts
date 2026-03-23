@@ -23,7 +23,7 @@ export const professionalServiceSchema = (siteUrl: string) => ({
     name: 'Enrico Morano - Sviluppatore Freelance',
     url: siteUrl,
     image: `${siteUrl}/images/foto-profilo.jpg`,
-    description: 'Sviluppo e-commerce, automazione processi e consulenza digitale per PMI italiane.',
+    description: 'Sviluppo e-commerce PrestaShop, applicazioni web, automazione processi e consulenza digitale per PMI italiane.',
     telephone: import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '',
     priceRange: '150-10000 EUR',
     address: {
@@ -32,9 +32,39 @@ export const professionalServiceSchema = (siteUrl: string) => ({
         addressRegion: 'Piemonte',
         addressCountry: 'IT',
     },
+    areaServed: {
+        '@type': 'Country',
+        name: 'Italia',
+    },
     founder: {
         '@type': 'Person',
         name: 'Enrico Morano',
+    },
+    hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Servizi',
+        itemListElement: [
+            {
+                '@type': 'Offer',
+                itemOffered: { '@type': 'Service', name: 'Sviluppo E-commerce PrestaShop', description: 'Moduli custom, catalogo, marketplace, automazione ordini.' },
+            },
+            {
+                '@type': 'Offer',
+                itemOffered: { '@type': 'Service', name: 'Sviluppo Web Full Stack', description: 'Applicazioni web con Vue.js, Astro, TypeScript, PHP.' },
+            },
+            {
+                '@type': 'Offer',
+                itemOffered: { '@type': 'Service', name: 'SEO Tecnica & Tracking', description: 'Audit tecnici, Core Web Vitals, Schema.org, GA4, GTM.' },
+            },
+            {
+                '@type': 'Offer',
+                itemOffered: { '@type': 'Service', name: 'Automazione Processi', description: 'Script, estensioni browser, integrazioni tra sistemi.' },
+            },
+            {
+                '@type': 'Offer',
+                itemOffered: { '@type': 'Service', name: 'Consulenza e Formazione', description: 'Scelta tecnologica, onboarding personale, guide operative.' },
+            },
+        ],
     },
     aggregateRating: {
         '@type': 'AggregateRating',

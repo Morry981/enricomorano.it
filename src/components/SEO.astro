@@ -1,5 +1,5 @@
 ---
-import { personSchema, professionalServiceSchema, serviceSchema, websiteSchema, breadcrumbSchema } from '../data/schemas';
+import { personSchema, professionalServiceSchema, websiteSchema, breadcrumbSchema } from '../data/schemas';
 
 interface Props {
     title: string;
@@ -52,7 +52,6 @@ const breadcrumbData = breadcrumbs && breadcrumbs.length > 0
 
 <script type="application/ld+json" set:html={JSON.stringify(personSchema(siteUrl))} />
 <script type="application/ld+json" set:html={JSON.stringify(professionalServiceSchema(siteUrl))} />
-<script type="application/ld+json" set:html={JSON.stringify(serviceSchema(siteUrl))} />
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema(siteUrl))} />
 {breadcrumbData && (
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />

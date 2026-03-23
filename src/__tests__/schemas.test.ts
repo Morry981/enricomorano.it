@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { personSchema, professionalServiceSchema, serviceSchema, websiteSchema, breadcrumbSchema, projectListSchema } from '../data/schemas';
+import { personSchema, professionalServiceSchema, websiteSchema, breadcrumbSchema, projectListSchema } from '../data/schemas';
 import { projects } from '../data/projects';
 
 const siteUrl = 'https://www.enricomorano.it';
@@ -38,21 +38,13 @@ describe('JSON-LD schemas', () => {
         it('ha aggregateRating', () => {
             expect(psSchema.aggregateRating['@type']).toBe('AggregateRating');
         });
-    });
-
-    describe('serviceSchema', () => {
-        const schema = serviceSchema(siteUrl);
-
-        it('ha tipo ProfessionalService', () => {
-            expect(schema['@type']).toBe('ProfessionalService');
-        });
 
         it('ha un catalogo servizi con almeno 3 offerte', () => {
-            expect(schema.hasOfferCatalog.itemListElement.length).toBeGreaterThanOrEqual(3);
+            expect(psSchema.hasOfferCatalog.itemListElement.length).toBeGreaterThanOrEqual(3);
         });
 
         it('area servita e\' Italia', () => {
-            expect(schema.areaServed.name).toBe('Italia');
+            expect(psSchema.areaServed.name).toBe('Italia');
         });
     });
 
