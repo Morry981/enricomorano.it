@@ -169,6 +169,7 @@ const dotX = (index: number) => (index % 2 === 0 ? 23 : 77);
             </div>
 
             <div
+                :id="project.slug"
                 :ref="(el) => setCardRef(el, i)"
                 class="tl-section"
                 role="listitem"

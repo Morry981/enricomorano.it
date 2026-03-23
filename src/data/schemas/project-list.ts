@@ -10,6 +10,6 @@ export const projectListSchema = (siteUrl: string, projects: Project[]) => ({
         position: i + 1,
         name: p.title,
         description: p.description,
-        url: p.url ?? `${siteUrl}/progetti`,
+        url: p.url ?? `${siteUrl}/progetti#${p.slug}`,
     })),
 });
