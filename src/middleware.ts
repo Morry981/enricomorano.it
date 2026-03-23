@@ -20,12 +20,9 @@ export const onRequest = defineMiddleware(({ url }, next) => {
 
     const target = redirects[path];
     if (target) {
-        const dest = new URL(target, url.origin);
-        dest.search = url.search;
-        dest.hash = url.hash;
         return new Response(null, {
             status: 301,
-            headers: { Location: dest.toString() },
+            headers: { Location: target + url.search },
         });
     }
 
