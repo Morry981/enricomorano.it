@@ -44,11 +44,15 @@ const faqs: FaqItem[] = [
             </p>
         </header>
 
-        <SkillsBento client:only="vue" only="main" />
+        <div class="min-h-[1600px] md:min-h-[1200px]">
+            <SkillsBento client:only="vue" only="main" />
+        </div>
 
         <CtaContact />
 
-        <SkillsBento client:only="vue" only="learning" />
+        <div class="min-h-[400px] md:min-h-[300px]">
+            <SkillsBento client:only="vue" only="learning" />
+        </div>
 
         <FaqSection faqs={faqs} />
     </div>
