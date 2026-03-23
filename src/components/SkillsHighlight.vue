@@ -6,7 +6,7 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                    Come posso aiutare
+                    Come posso aiutarti
                 </h2>
                 <p
                     class="text-lg text-slate-600 max-w-2xl mx-auto text-balance"
@@ -41,7 +41,7 @@
                     </p>
 
                     <a
-                        :href="`/skills#${skill.id}`"
+                        :href="`/competenze#${skill.id}`"
                         class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                     >
                         Approfondisci
@@ -66,7 +66,7 @@
 
             <div class="text-center mt-12">
                 <a
-                    href="/skills"
+                    href="/competenze"
                     class="inline-flex items-center px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors"
                 >
                     Vedi tutte le competenze

@@ -22,9 +22,9 @@ const contentFiles = [
     'src/data/schemas/person.ts',
     'src/data/schemas/service.ts',
     'src/pages/index.astro',
-    'src/pages/projects.astro',
-    'src/pages/skills.astro',
-    'src/pages/about-me.astro',
+    'src/pages/progetti.astro',
+    'src/pages/competenze.astro',
+    'src/pages/chi-sono.astro',
     'src/components/FaqSection.astro',
 ];
 

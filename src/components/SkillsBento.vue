@@ -72,7 +72,7 @@ const props = withDefaults(defineProps<{
 const allCategories: SkillCategory[] = [
     {
         id: 'ecommerce',
-        title: 'E-commerce',
+        title: 'E-commerce e PrestaShop',
         skills: [
             {
                 name: 'PrestaShop',
@@ -114,7 +114,7 @@ const allCategories: SkillCategory[] = [
     },
     {
         id: 'webdev',
-        title: 'Sviluppo Web',
+        title: 'Sviluppo web',
         skills: [
             {
                 name: 'Laravel',
@@ -204,7 +204,7 @@ const allCategories: SkillCategory[] = [
     },
     {
         id: 'seo',
-        title: 'SEO & Performance',
+        title: 'SEO tecnica e tracking',
         skills: [
             {
                 name: 'SEO Tecnica',
@@ -270,7 +270,7 @@ const allCategories: SkillCategory[] = [
     },
     {
         id: 'infra',
-        title: 'Infrastruttura & DevOps',
+        title: 'Automazione e integrazioni',
         skills: [
             {
                 name: 'VPS & Apache',
@@ -336,7 +336,7 @@ const allCategories: SkillCategory[] = [
     },
     {
         id: 'mobile',
-        title: 'Mobile & Altro',
+        title: 'Consulenza e formazione',
         skills: [
             {
                 name: 'iOS & Android',

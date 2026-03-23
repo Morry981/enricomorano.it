@@ -88,7 +88,7 @@ export const projects: Project[] = [
         date: '2024-02',
         role: 'Customer Care Manager',
         note: {
-            text: 'Le uniche criticita emerse riguardavano corrieri e spedizioni, fattori esterni non sempre controllabili, ma ugualmente risolti.',
+            text: 'Le uniche criticità emerse riguardavano corrieri e spedizioni, fattori esterni non sempre controllabili, ma ugualmente risolti.',
         },
     },
     {

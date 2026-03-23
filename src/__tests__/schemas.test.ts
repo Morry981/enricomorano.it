@@ -60,13 +60,13 @@ describe('JSON-LD schemas', () => {
         it('genera le posizioni corrette', () => {
             const schema = breadcrumbSchema(siteUrl, [
                 { name: 'Home', url: '/' },
-                { name: 'Progetti', url: '/projects' },
+                { name: 'Progetti', url: '/progetti' },
             ]);
             expect(schema['@type']).toBe('BreadcrumbList');
             expect(schema.itemListElement).toHaveLength(2);
             expect(schema.itemListElement[0].position).toBe(1);
             expect(schema.itemListElement[1].position).toBe(2);
-            expect(schema.itemListElement[1].item).toBe(`${siteUrl}/projects`);
+            expect(schema.itemListElement[1].item).toBe(`${siteUrl}/progetti`);
         });
     });
 

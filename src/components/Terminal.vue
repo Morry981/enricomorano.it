@@ -107,9 +107,9 @@ const extLink = (url: string, label: string, color = '#25D366') =>
 
 const pages: Record<string, string> = {
     'home.html': '/',
-    'skills.html': '/skills',
-    'projects.html': '/projects',
-    'about-me.html': '/about-me',
+    'skills.html': '/competenze',
+    'projects.html': '/progetti',
+    'about-me.html': '/chi-sono',
 };
 
 const BOOT = [

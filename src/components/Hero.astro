@@ -8,19 +8,19 @@ interface Label {
 }
 
 const labelsEnrico: Label[] = [
-    { text: 'e-commerce',  bg: '#a8e6cf', deg: -4, delay: 0,   href: '/skills#ecommerce'  },
-    { text: 'SEO tecnica', bg: '#b8d4f8', deg:  4, delay: 180, href: '/skills#seo'         },
-    { text: 'consulenza',  bg: '#ffcba4', deg: -6, delay: 330, href: '/skills#strategy'    },
-    { text: 'Vue.js',      bg: '#c3e8c3', deg:  3, delay: 490, href: '/skills#webdev'      },
-    { text: 'performance', bg: '#fde68a', deg: -3, delay: 640, href: '/skills#seo'         },
+    { text: 'e-commerce',  bg: '#a8e6cf', deg: -4, delay: 0,   href: '/competenze#ecommerce'  },
+    { text: 'SEO tecnica', bg: '#b8d4f8', deg:  4, delay: 180, href: '/competenze#seo'         },
+    { text: 'consulenza',  bg: '#ffcba4', deg: -6, delay: 330, href: '/competenze#strategy'    },
+    { text: 'Vue.js',      bg: '#c3e8c3', deg:  3, delay: 490, href: '/competenze#webdev'      },
+    { text: 'performance', bg: '#fde68a', deg: -3, delay: 640, href: '/competenze#seo'         },
 ];
 
 const labelsMorano: Label[] = [
-    { text: 'automazione',        bg: '#c9c5e0', deg:  3, delay: 110, href: '/skills#automation' },
-    { text: 'PrestaShop',         bg: '#ffd4a8', deg: -4, delay: 260, href: '/skills#ecommerce'  },
-    { text: 'strategia digitale', bg: '#f4b8c1', deg:  5, delay: 400, href: '/skills#strategy'   },
-    { text: 'problem solver',     bg: '#b8e8d4', deg:  7, delay: 540, href: '/skills#proactive'  },
-    { text: 'infrastrutture',     bg: '#e8d4b8', deg: -3, delay: 680, href: '/skills#webdev'     },
+    { text: 'automazione',        bg: '#c9c5e0', deg:  3, delay: 110, href: '/competenze#automation' },
+    { text: 'PrestaShop',         bg: '#ffd4a8', deg: -4, delay: 260, href: '/competenze#ecommerce'  },
+    { text: 'strategia digitale', bg: '#f4b8c1', deg:  5, delay: 400, href: '/competenze#strategy'   },
+    { text: 'problem solver',     bg: '#b8e8d4', deg:  7, delay: 540, href: '/competenze#proactive'  },
+    { text: 'infrastrutture',     bg: '#e8d4b8', deg: -3, delay: 680, href: '/competenze#webdev'     },
 ];
 
 function ls(l: Label): string {
@@ -45,7 +45,8 @@ import logoMorry from '../assets/images/logo-morry98.png';
         class="fixed bottom-[-15%] right-[-4%] h-[60vh] w-auto opacity-[0.02] pointer-events-none select-none object-contain"
     />
 
-    <h1
+    <h1 class="sr-only">E-commerce e automazione per PMI - meno attrito, più risultati</h1>
+    <p
         class="hero-row flex flex-row items-stretch justify-center gap-4 w-full m-0 z-[1]"
         aria-label="Enrico Morano"
     >
@@ -99,11 +100,11 @@ import logoMorry from '../assets/images/logo-morry98.png';
                 </a>
             ))}
         </div>
-    </h1>
-
-    <p class="hero-tagline absolute bottom-[9%] left-1/2 -translate-x-1/2 w-[88%] max-w-[520px] text-center text-secondary leading-[1.55] z-30 text-balance">
-        Elimino l'attrito tecnologico tra la tua azienda e i tuoi risultati.
     </p>
+
+    <h2 class="hero-tagline absolute bottom-[9%] left-1/2 -translate-x-1/2 w-[88%] max-w-[520px] text-center text-secondary leading-[1.55] z-30 text-balance">
+        Elimino l'attrito tecnologico tra la tua azienda e i tuoi/suoi risultati.
+    </h2>
 
     <a href="#competenze" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 text-secondary z-30" aria-label="Vai a Come posso aiutare">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

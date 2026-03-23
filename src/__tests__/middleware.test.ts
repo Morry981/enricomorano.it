@@ -25,8 +25,8 @@ describe('middleware redirect logic', () => {
 
     it('non redirect le pagine normali', () => {
         expect(shouldRedirect('/')).toBe(false);
-        expect(shouldRedirect('/projects')).toBe(false);
-        expect(shouldRedirect('/skills')).toBe(false);
-        expect(shouldRedirect('/about-me')).toBe(false);
+        expect(shouldRedirect('/progetti')).toBe(false);
+        expect(shouldRedirect('/competenze')).toBe(false);
+        expect(shouldRedirect('/chi-sono')).toBe(false);
     });
 });

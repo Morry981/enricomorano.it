@@ -22,7 +22,7 @@ const faqs: FaqItem[] = [
     },
     {
         question: 'Quanto dura lo sviluppo di un progetto con Enrico Morano?',
-        answer: 'Dipende dalla complessita. Un modulo PrestaShop puo richiedere pochi giorni, un e-commerce completo diverse settimane. Enrico definisce sempre tempi chiari prima di iniziare.',
+        answer: 'Dipende dalla complessità. Un modulo PrestaShop puo richiedere pochi giorni, un e-commerce completo diverse settimane. Enrico definisce sempre tempi chiari prima di iniziare.',
     },
     {
         question: 'Enrico Morano lavora anche su progetti gia avviati?',
@@ -39,14 +39,14 @@ const projectsSchema = projectListSchema(siteUrl, projects);
 ---
 
 <Layout
-    title="Progetti"
-    description="Progetti di Enrico Morano. E-commerce PrestaShop, applicazioni web e mobile, infrastrutture VPS Apache."
-    breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Progetti', url: '/projects' }]}
+    title="Progetti e-commerce, automazione e consulenza » Enrico Morano"
+    description="Casi reali da 10 anni di lavoro: e-commerce PrestaShop, automazione processi, SEO tecnica, gestionali custom per PMI italiane."
+    breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Progetti', url: '/progetti' }]}
 >
     <div class="py-20" transition:animate="slide">
         <header class="max-w-6xl mx-auto px-8 mb-16">
             <h1 class="text-5xl md:text-6xl font-bold mb-4">
-                I miei <span class="text-accent">Progetti</span>
+                Progetti reali - dal codice ai risultati
             </h1>
             <p class="text-secondary text-xl max-w-2xl text-balance">
                 Dieci anni di percorso, dalle basi fino a oggi.
@@ -55,6 +55,7 @@ const projectsSchema = projectListSchema(siteUrl, projects);
         </header>
 
         <div class="w-full px-2 md:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 max-w-6xl mx-auto px-6">Il percorso completo</h2>
             <ProjectTimeline client:visible projects={timelineProjects} />
         </div>
 
