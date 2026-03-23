@@ -1,5 +1,5 @@
 ---
-import { personSchema, serviceSchema, websiteSchema, breadcrumbSchema } from '../data/schemas';
+import { personSchema, professionalServiceSchema, serviceSchema, websiteSchema, breadcrumbSchema } from '../data/schemas';
 
 interface Props {
     title: string;
@@ -51,6 +51,7 @@ const breadcrumbData = breadcrumbs && breadcrumbs.length > 0
 <meta name="twitter:image:alt" content={fullTitle} />
 
 <script type="application/ld+json" set:html={JSON.stringify(personSchema(siteUrl))} />
+<script type="application/ld+json" set:html={JSON.stringify(professionalServiceSchema(siteUrl))} />
 <script type="application/ld+json" set:html={JSON.stringify(serviceSchema(siteUrl))} />
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema(siteUrl))} />
 {breadcrumbData && (

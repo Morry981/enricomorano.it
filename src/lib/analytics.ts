@@ -1,23 +1,34 @@
-import mixpanel from 'mixpanel-browser';
+let mp: typeof import('mixpanel-browser').default | null = null;
+let loadPromise: Promise<void> | null = null;
 
-let initialized = false;
-
-export function initAnalytics() {
-    if (initialized) return;
-    initialized = true;
+function loadMixpanel(): Promise<void> {
+    if (mp) return Promise.resolve();
+    if (loadPromise) return loadPromise;
 
     const token = import.meta.env.PUBLIC_MIXPANEL_TOKEN;
-    if (!token) return;
+    if (!token) return Promise.resolve();
 
-    mixpanel.init(token, {
-        autocapture: true,
-        record_sessions_percent: 100,
-        api_host: 'https://api-eu.mixpanel.com',
+    loadPromise = import('mixpanel-browser').then((mod) => {
+        mp = mod.default;
+        mp.init(token, {
+            autocapture: true,
+            record_sessions_percent: 100,
+            api_host: 'https://api-eu.mixpanel.com',
+        });
     });
+    return loadPromise;
+}
+
+export function initAnalytics() {
+    if (typeof requestIdleCallback === 'function') {
+        requestIdleCallback(() => loadMixpanel());
+    } else {
+        setTimeout(() => loadMixpanel(), 2000);
+    }
 }
 
 export function trackEvent(name: string, props?: Record<string, unknown>) {
-    mixpanel.track(name, props);
+    loadMixpanel().then(() => mp?.track(name, props));
 }
 
 export function trackPageView(page: string) {

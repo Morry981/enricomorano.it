@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { personSchema, serviceSchema, websiteSchema, breadcrumbSchema, projectListSchema } from '../data/schemas';
+import { personSchema, professionalServiceSchema, serviceSchema, websiteSchema, breadcrumbSchema, projectListSchema } from '../data/schemas';
 import { projects } from '../data/projects';
 
 const siteUrl = 'https://www.enricomorano.it';
@@ -18,16 +18,25 @@ describe('JSON-LD schemas', () => {
             expect(schema.sameAs).toContain('https://www.instagram.com/enrico_morry98_morano/');
         });
 
+    });
+
+    describe('professionalServiceSchema', () => {
+        const psSchema = professionalServiceSchema(siteUrl);
+
+        it('ha tipo ProfessionalService', () => {
+            expect(psSchema['@type']).toBe('ProfessionalService');
+        });
+
         it('ha almeno una review', () => {
-            expect(schema.review.length).toBeGreaterThan(0);
-            schema.review.forEach((r: any) => {
+            expect(psSchema.review.length).toBeGreaterThan(0);
+            psSchema.review.forEach((r: any) => {
                 expect(r['@type']).toBe('Review');
                 expect(r.reviewBody).toBeTruthy();
             });
         });
 
         it('ha aggregateRating', () => {
-            expect(schema.aggregateRating['@type']).toBe('AggregateRating');
+            expect(psSchema.aggregateRating['@type']).toBe('AggregateRating');
         });
     });
 

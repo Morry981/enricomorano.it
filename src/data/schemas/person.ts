@@ -15,6 +15,19 @@ export const personSchema = (siteUrl: string) => ({
         'https://www.linkedin.com/in/enrico-morano/',
         'https://www.instagram.com/enrico_morry98_morano/',
     ],
+});
+
+export const professionalServiceSchema = (siteUrl: string) => ({
+    '@context': 'https://schema.org/',
+    '@type': 'ProfessionalService',
+    name: 'Enrico Morano - Sviluppatore Freelance',
+    url: siteUrl,
+    image: `${siteUrl}/images/foto-profilo.jpg`,
+    description: 'Sviluppo e-commerce, automazione processi e consulenza digitale per PMI italiane.',
+    founder: {
+        '@type': 'Person',
+        name: 'Enrico Morano',
+    },
     aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '5',

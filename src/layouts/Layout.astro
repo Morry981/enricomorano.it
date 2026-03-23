@@ -39,15 +39,27 @@ const {
         <SEO title={title} description={description} breadcrumbs={breadcrumbs} />
         <ViewTransitions prefetch="viewport" />
         <script>
-            import { initAnalytics, setupPageTracking } from '../lib/analytics';
-
-            initAnalytics();
-
             let cleanup: (() => void) | undefined;
 
+            function boot() {
+                import('../lib/analytics').then(({ initAnalytics, setupPageTracking }) => {
+                    initAnalytics();
+                    cleanup?.();
+                    cleanup = setupPageTracking();
+                });
+            }
+
+            if (typeof requestIdleCallback === 'function') {
+                requestIdleCallback(boot);
+            } else {
+                setTimeout(boot, 2000);
+            }
+
             document.addEventListener('astro:page-load', () => {
-                cleanup?.();
-                cleanup = setupPageTracking();
+                import('../lib/analytics').then(({ setupPageTracking }) => {
+                    cleanup?.();
+                    cleanup = setupPageTracking();
+                });
             });
         </script>
     </head>
@@ -64,11 +76,11 @@ const {
         <WhatsAppButton />
 
         <script>
-            import { trackWhatsApp } from '../lib/analytics';
-
             function initTracking() {
                 document.querySelectorAll('[data-track="whatsapp"]').forEach((el) => {
-                    el.addEventListener('click', () => trackWhatsApp());
+                    el.addEventListener('click', () => {
+                        import('../lib/analytics').then(({ trackWhatsApp }) => trackWhatsApp());
+                    });
                 });
             }
 
