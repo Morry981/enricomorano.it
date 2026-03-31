@@ -18,7 +18,8 @@ const {
 } = Astro.props;
 
 const siteUrl = (Astro.site ?? 'https://www.enricomorano.it').toString().replace(/\/$/, '');
-const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const cleanPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const canonicalURL = new URL(cleanPath, siteUrl);
 const fullTitle = title.includes('Enrico Morano') ? title : `${title} | Enrico Morano`;
 const ogImageURL = new URL(image, siteUrl).toString();
 

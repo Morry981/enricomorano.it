@@ -40,6 +40,7 @@ export default defineConfig({
                 item.priority = meta.priority;
                 item.changefreq = meta.changefreq;
                 item.lastmod = new Date().toISOString();
+                item.url = item.url.replace(/\/+$/, '') || item.url;
                 return item;
             },
         }),

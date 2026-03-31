@@ -27,26 +27,70 @@ const {
 <html lang="it">
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="Enrico Morano" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {fullscreen && <link rel="preload" href="/fonts/black-ops-one-latin.woff2" as="font" type="font/woff2" crossorigin />}
-<meta name="theme-color" content="#293241" />
-        <SEO title={title} description={description} breadcrumbs={breadcrumbs} />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/favicon-96x96.png"
+            sizes="96x96"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/favicon.svg"
+        />
+        <link
+            rel="shortcut icon"
+            href="/favicon.ico"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <meta
+            name="apple-mobile-web-app-title"
+            content="Enrico Morano"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+        />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        />
+        {
+            fullscreen && (
+                <link
+                    rel="preload"
+                    href="/fonts/black-ops-one-latin.woff2"
+                    as="font"
+                    type="font/woff2"
+                    crossorigin
+                />
+            )
+        }
+        <meta
+            name="theme-color"
+            content="#293241"
+        />
+        <SEO
+            title={title}
+            description={description}
+            breadcrumbs={breadcrumbs}
+        />
         <ViewTransitions prefetch="viewport" />
         <script>
             let cleanup: (() => void) | undefined;
 
             function boot() {
-                import('../lib/analytics').then(({ initAnalytics, setupPageTracking }) => {
-                    initAnalytics();
-                    cleanup?.();
-                    cleanup = setupPageTracking();
-                });
+                import('../lib/analytics').then(
+                    ({ initAnalytics, setupPageTracking }) => {
+                        initAnalytics();
+                        cleanup?.();
+                        cleanup = setupPageTracking();
+                    },
+                );
             }
 
             if (typeof requestIdleCallback === 'function') {
@@ -64,12 +108,18 @@ const {
         </script>
     </head>
     <body class="flex flex-col min-h-screen antialiased select-none">
-        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-9999 focus:px-3 focus:py-1 focus:text-sm focus:text-accent focus:border focus:border-accent focus:rounded-md focus:bg-dark/80 focus:backdrop-blur-sm">
+        <a
+            href="#main-content"
+            class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-9999 focus:px-3 focus:py-1 focus:text-sm focus:text-accent focus:border focus:border-accent focus:rounded-md focus:bg-dark/80 focus:backdrop-blur-sm"
+        >
             Vai al contenuto principale
         </a>
         <Cursor client:idle />
         <Nav />
-        <main id="main-content" class={`flex-grow${noFooter ? '' : ' pb-20 md:pb-0'}${fullscreen ? '' : ' pt-12 md:pt-14'}`}>
+        <main
+            id="main-content"
+            class={`flex-grow${noFooter ? '' : ' pb-20 md:pb-0'}${fullscreen ? '' : ' pt-12 md:pt-14'}`}
+        >
             <slot />
         </main>
         {!noFooter && <Footer client:idle />}
@@ -77,17 +127,21 @@ const {
 
         <script>
             function initTracking() {
-                document.querySelectorAll('[data-track="whatsapp"]').forEach((el) => {
-                    el.addEventListener('click', () => {
-                        import('../lib/analytics').then(({ trackWhatsApp }) => trackWhatsApp());
+                document
+                    .querySelectorAll('[data-track="whatsapp"]')
+                    .forEach((el) => {
+                        el.addEventListener('click', () => {
+                            import('../lib/analytics').then(
+                                ({ trackWhatsApp }) => trackWhatsApp(),
+                            );
+                        });
                     });
-                });
             }
 
             document.addEventListener('astro:page-load', initTracking);
         </script>
         <script is:inline>
-            document.body.addEventListener("dragstart", (e) => {
+            document.body.addEventListener('dragstart', (e) => {
                 e.preventDefault();
                 return false;
             });
