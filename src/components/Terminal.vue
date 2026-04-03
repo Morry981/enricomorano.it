@@ -101,6 +101,9 @@ const hasExecuted = ref(false);
 const waNumber = (import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '').replace('+', '');
 const waUrl = `https://wa.me/${waNumber}?text=Sono%20interessato%20ad%20essere%20contattato`;
 
+const esc = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
 const c = (color: string, text: string) =>
     `<span style="color:${color}">${text}</span>`;
 const link = (command: string, label?: string, color = '#98C1D9') =>
@@ -166,7 +169,7 @@ const commands: Record<string, (args: string) => string[]> = {
             return [
                 c(
                     '#e74c3c',
-                    `  Pagina "${file}" non trovata. Digita ${c('#f39c12', 'ls')} per la lista.`,
+                    `  Pagina "${esc(file)}" non trovata. Digita ${c('#f39c12', 'ls')} per la lista.`,
                 ),
             ];
         setTimeout(() => (window.location.href = target), 1500);
@@ -177,7 +180,7 @@ const commands: Record<string, (args: string) => string[]> = {
             return [
                 c(
                     '#e74c3c',
-                    `  cat: ${args.trim() || '???'}: file non trovato`,
+                    `  cat: ${esc(args.trim()) || '???'}: file non trovato`,
                 ),
             ];
         return [
@@ -353,7 +356,7 @@ const exec = () => {
         : [
               c(
                   '#e74c3c',
-                  `  Comando "${name}" non trovato. Digita ${c('#f39c12', 'help')}.`,
+                  `  Comando "${esc(name)}" non trovato. Digita ${c('#f39c12', 'help')}.`,
               ),
           ];
     lines.value.push(...output);

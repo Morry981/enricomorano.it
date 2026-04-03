@@ -8,6 +8,32 @@ const redirects: Record<string, string> = {
     '/about-me': '/chi-sono',
 };
 
+const securityHeaders: Record<string, string> = {
+    'Content-Security-Policy': [
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-inline'",
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data: https:",
+        "connect-src 'self' https://api-eu.mixpanel.com",
+        "font-src 'self'",
+        "frame-ancestors 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+    ].join('; '),
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+    'X-Frame-Options': 'DENY',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+};
+
+function applySecurityHeaders(response: Response): Response {
+    for (const [key, value] of Object.entries(securityHeaders)) {
+        response.headers.set(key, value);
+    }
+    return response;
+}
+
 export const onRequest = defineMiddleware(({ url }, next) => {
     const path = url.pathname.replace(/\/+$/, '') || '/';
 
@@ -33,5 +59,5 @@ export const onRequest = defineMiddleware(({ url }, next) => {
         });
     }
 
-    return next();
+    return next().then(applySecurityHeaders);
 });
