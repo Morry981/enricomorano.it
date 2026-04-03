@@ -14,6 +14,9 @@ function loadMixpanel(): Promise<void> {
             autocapture: true,
             record_sessions_percent: 100,
             api_host: 'https://api-eu.mixpanel.com',
+            persistence: 'memory',
+            disable_persistence: true,
+            ip: false,
         });
     });
     return loadPromise;

@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+    title="Privacy e Cookie Policy » Enrico Morano"
+    description="Informativa sul trattamento dei dati personali e sui cookie utilizzati dal sito enricomorano.it, ai sensi del Regolamento UE 2016/679 (GDPR)."
+    breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Privacy e Cookie Policy', url: '/privacy-policy' }]}
+>
+    <div class="max-w-4xl mx-auto px-8 py-20">
+        <h1 class="text-5xl font-bold mb-8">Privacy e <span class="text-accent">Cookie Policy</span></h1>
+        <p class="text-secondary/80 text-sm mb-12">Ultimo aggiornamento: 3 aprile 2026</p>
+
+        <div class="prose prose-invert prose-lg text-light/90 space-y-12">
+
+            <section>
+                <h2 class="text-3xl font-bold mb-6">1. Titolare del trattamento</h2>
+                <p>
+                    <strong>Enrico Morano</strong><br>
+                    Fossano (CN), 12045, Italia<br>
+                    P.IVA: 04211150042<br>
+                    Email: <a href="mailto:web@enricomorano.it" class="text-accent hover:underline">web@enricomorano.it</a>
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold mb-6">2. Tipi di dati raccolti e finalita</h2>
+
+                <h3 class="text-xl font-bold mt-8 mb-4">a) Dati di navigazione (log del server)</h3>
+                <p>
+                    I sistemi informatici preposti al funzionamento del sito acquisiscono, nel normale esercizio, alcuni dati la cui trasmissione e' implicita nell'uso dei protocolli di comunicazione Internet.
+                    Si tratta di informazioni come indirizzi IP, tipo di browser, sistema operativo, data e ora della richiesta e pagine visitate.
+                </p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li><strong>Finalita:</strong> sicurezza, diagnostica tecnica, analisi aggregate.</li>
+                    <li><strong>Base giuridica:</strong> legittimo interesse del titolare (Art. 6.1.f GDPR).</li>
+                    <li><strong>Conservazione:</strong> 30 giorni, poi cancellati automaticamente.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-8 mb-4">b) Dati di analisi statistica (Mixpanel)</h3>
+                <p>
+                    Il sito utilizza Mixpanel in modalita cookieless per raccogliere statistiche anonime di navigazione.
+                    Mixpanel e' configurato con le seguenti impostazioni:
+                </p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li>Endpoint europeo (<code class="text-accent/80">api-eu.mixpanel.com</code>), dati conservati in datacenter UE.</li>
+                    <li>Nessun cookie depositato (<code class="text-accent/80">persistence: memory</code>).</li>
+                    <li>Nessun identificatore persistente tra sessioni (<code class="text-accent/80">disable_persistence: true</code>).</li>
+                    <li>Indirizzo IP non raccolto (<code class="text-accent/80">ip: false</code>).</li>
+                    <li>Autocapture degli eventi di interazione (click, scroll, pageview).</li>
+                    <li>Registrazione sessione anonima per analisi UX.</li>
+                </ul>
+                <p>
+                    Nessun dato raccolto da Mixpanel consente di identificare l'utente. Non viene effettuato alcun tracciamento cross-sessione.
+                </p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li><strong>Finalita:</strong> miglioramento del sito e analisi aggregate di utilizzo.</li>
+                    <li><strong>Base giuridica:</strong> legittimo interesse del titolare (Art. 6.1.f GDPR).</li>
+                    <li><strong>Conservazione:</strong> dati aggregati, non riconducibili a persone fisiche.</li>
+                </ul>
+                <p>
+                    Maggiori informazioni: <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Privacy Policy di Mixpanel</a>.
+                </p>
+
+                <h3 class="text-xl font-bold mt-8 mb-4">c) Dati forniti volontariamente</h3>
+                <p>
+                    Il sito non dispone di form di contatto. La comunicazione avviene tramite email o WhatsApp.
+                    I dati inviati dall'utente attraverso questi canali sono trattati esclusivamente per rispondere alla richiesta.
+                </p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li><strong>Finalita:</strong> riscontro alle richieste dell'utente.</li>
+                    <li><strong>Base giuridica:</strong> misure precontrattuali su richiesta dell'interessato (Art. 6.1.b GDPR).</li>
+                    <li><strong>Conservazione:</strong> per il tempo necessario a gestire la richiesta, poi cancellati.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold mb-6">3. Hosting e responsabile del trattamento</h2>
+                <p>
+                    Il sito e' ospitato sui server di:
+                </p>
+                <p>
+                    <strong>Host S.p.A.</strong><br>
+                    Corso Svizzera 185, 10149 Torino (TO), Italia<br>
+                    P.IVA: 08505460017<br>
+                    DPO: <a href="mailto:dpo@host.it" class="text-accent hover:underline">dpo@host.it</a>
+                </p>
+                <p>
+                    Host S.p.A. opera come responsabile del trattamento ai sensi dell'Art. 28 GDPR.
+                    I datacenter sono situati in Italia (Torino, Lucca e Pisa).
+                    Nessun dato viene trasferito al di fuori dello Spazio Economico Europeo.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold mb-6">4. Cookie e tecnologie di archiviazione locale</h2>
+                <p>
+                    Questo sito <strong>non utilizza cookie di profilazione</strong> ne' cookie di terze parti.
+                </p>
+
+                <h3 class="text-xl font-bold mt-8 mb-4">Cookie tecnici / localStorage</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="border-b border-secondary/20">
+                                <th class="text-left py-3 pr-4">Nome</th>
+                                <th class="text-left py-3 pr-4">Tipo</th>
+                                <th class="text-left py-3 pr-4">Finalita</th>
+                                <th class="text-left py-3">Durata</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-secondary/10">
+                                <td class="py-3 pr-4"><code class="text-accent/80">data-theme</code></td>
+                                <td class="py-3 pr-4">localStorage</td>
+                                <td class="py-3 pr-4">Salva la preferenza tema chiaro/scuro</td>
+                                <td class="py-3">Persistente (fino a cancellazione manuale)</td>
+                            </tr>
+                            <tr class="border-b border-secondary/10">
+                                <td class="py-3 pr-4"><code class="text-accent/80">cookie-notice-dismissed</code></td>
+                                <td class="py-3 pr-4">localStorage</td>
+                                <td class="py-3 pr-4">Ricorda la chiusura dell'avviso cookie</td>
+                                <td class="py-3">Persistente (fino a cancellazione manuale)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4">
+                    Questi dati sono archiviati esclusivamente nel browser dell'utente e non vengono trasmessi al server.
+                    Ai sensi dell'Art. 122 del D.Lgs. 196/2003 e delle Linee Guida del Garante (giugno 2021),
+                    i cookie tecnici non richiedono il consenso dell'utente.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold mb-6">5. Trasferimento dati extra-UE</h2>
+                <p>
+                    I dati personali non vengono trasferiti al di fuori dello Spazio Economico Europeo.
+                    Sia il server di hosting (Host S.p.A.) sia l'endpoint di Mixpanel utilizzato (<code class="text-accent/80">api-eu.mixpanel.com</code>) risiedono in datacenter europei.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold mb-6">6. Diritti dell'interessato</h2>
+                <p>
+                    In qualita di interessato, hai diritto di:
+                </p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li><strong>Accesso</strong> (Art. 15 GDPR): ottenere conferma dell'esistenza di un trattamento e accedere ai tuoi dati.</li>
+                    <li><strong>Rettifica</strong> (Art. 16 GDPR): ottenere la correzione di dati inesatti o incompleti.</li>
+                    <li><strong>Cancellazione</strong> (Art. 17 GDPR): ottenere la cancellazione dei dati, nei casi previsti.</li>
+                    <li><strong>Limitazione</strong> (Art. 18 GDPR): ottenere la limitazione del trattamento.</li>
+                    <li><strong>Portabilita</strong> (Art. 20 GDPR): ricevere i dati in formato strutturato e leggibile.</li>
+                    <li><strong>Opposizione</strong> (Art. 21 GDPR): opporti al trattamento basato sul legittimo interesse.</li>
+                </ul>
+                <p>
+                    Per esercitare i tuoi diritti, scrivi a
+                    <a href="mailto:web@enricomorano.it" class="text-accent hover:underline">web@enricomorano.it</a>.
+                </p>
+                <p>
+                    Hai inoltre il diritto di proporre reclamo all'Autorita Garante per la Protezione dei Dati Personali:
+                    <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">www.garanteprivacy.it</a>.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold mb-6">7. Modifiche a questa informativa</h2>
+                <p>
+                    Il titolare si riserva di aggiornare questa informativa per adeguarla a nuove normative o modifiche nei servizi offerti.
+                    La data dell'ultimo aggiornamento e' indicata in cima alla pagina.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</Layout>

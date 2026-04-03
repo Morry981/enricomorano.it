@@ -6,7 +6,13 @@
         :class="{'translate-y-full': !isScrolledDown}"
     >
         <div class="max-w-6xl mx-auto text-sm text-secondary flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>&copy; {{ currentYear }} Enrico Morano. Tutti i diritti riservati.</p>
+            <div class="flex flex-col md:flex-row items-center gap-1 md:gap-3">
+                <p>&copy; {{ currentYear }} Enrico Morano. Tutti i diritti riservati.</p>
+                <span class="hidden md:inline text-secondary/40">|</span>
+                <p>P.IVA 04211150042</p>
+                <span class="hidden md:inline text-secondary/40">|</span>
+                <a href="/privacy-policy" class="hover:text-light transition-colors">Privacy e Cookie Policy</a>
+            </div>
             <div class="flex items-center gap-6">
                 <AntiSpamEmail />
                 <a

@@ -28,6 +28,10 @@ export default defineConfig({
             },
         }),
         sitemap({
+            filter: (page) =>
+                !['/projects', '/skills', '/about-me', '/404'].some((path) =>
+                    new URL(page).pathname.replace(/\/$/, '') === path,
+                ),
             serialize(item) {
                 const priorities = {
                     '/': { priority: 1.0, changefreq: 'weekly' },
