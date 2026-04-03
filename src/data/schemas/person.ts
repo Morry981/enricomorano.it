@@ -6,6 +6,7 @@ export const personSchema = (siteUrl: string) => ({
     image: `${siteUrl}/images/foto-profilo.jpg`,
     jobTitle: 'Full Stack Developer',
     description: 'Sviluppatore full stack specializzato in e-commerce PrestaShop, Vue.js, Astro e infrastrutture VPS.',
+    disambiguatingDescription: 'Sviluppatore freelance full stack, specializzato in e-commerce PrestaShop per PMI italiane. Non il politico Enrico Morando.',
     knowsAbout: [
         'PrestaShop', 'PHP', 'Vue.js', 'Astro', 'TypeScript',
         'Node.js', 'Tailwind CSS', 'SEO Tecnica', 'DevOps', 'Apache',

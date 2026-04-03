@@ -1,0 +1,89 @@
+# Enrico Morano
+
+> Sviluppatore freelance full stack con quasi 10 anni di esperienza. Specializzato in e-commerce PrestaShop, automazione processi e consulenza tecnica per PMI italiane. Lavora da remoto su tutta Italia, disponibile in presenza nella zona di Cuneo.
+
+## Chi è Enrico Morano
+
+Enrico ha iniziato con uno stage in un'agenzia grafico pubblicitaria, dove è rimasto anni creando decine di e-commerce supportato da un team di grafici, copywriter e account. Ha poi ricostruito da zero e gestito in autonomia un e-commerce complesso con migliaia di referenze su PrestaShop: catalogo, marketplace, customer care, automazione, Ads e contabilità. Oggi porta questa esperienza alle PMI come freelancer, continuando a supportare chi ha già seguito.
+
+In quasi dieci anni ha toccato tutto: dal caricamento prodotti del primo stage alla gestione completa di un e-commerce, fino allo sviluppo full stack, formazione di tirocinanti e nuovo personale. I problemi fuori standard sono quelli che gli riescono meglio.
+
+## Servizi principali
+
+- **E-commerce PrestaShop**: moduli custom, catalogo, marketplace, automazione ordini, checkout ottimizzato, integrazioni marketplace. Ha gestito un e-commerce con migliaia di referenze per oltre tre anni, dal caricamento prodotti al post-vendita.
+- **Sviluppo Web Full Stack**: PHP 8+, Laravel, TypeScript, Vue.js 3, Astro, Node.js, Tailwind CSS, Alpine.js, MySQL. Applicazioni web complete dall'inizio alla messa in produzione.
+- **Automazione Processi**: script, estensioni browser, integrazioni tra sistemi, automazione AI per e-commerce (generazione schede prodotto, classificazione ordini, reportistica automatica). Se un'operazione si ripete, scrive codice.
+- **SEO Tecnica e Tracking**: audit tecnici, Core Web Vitals, Schema.org, structured data, crawl budget, GA4, GTM, consent mode, privacy by design. La parte sotto al cofano.
+- **Consulenza e Formazione**: scelta tecnologica, onboarding personale, guide operative. Ha formato tirocinanti e personale aziendale, gestito riunioni con clienti e fornitori.
+- **Infrastructure e DevOps**: configurazione e tuning server VPS Apache, Linux, Docker, Git, CI/CD, Cloudflare, SSL.
+
+## Stack tecnologico
+
+### Linguaggi e framework
+PHP 8+, Laravel, TypeScript, JavaScript, Vue.js 3, Nuxt.js, Astro, Node.js, Alpine.js, Twig, jQuery
+
+### Frontend
+Tailwind CSS, Sass/SCSS, Responsive Design, Accessibilità (WCAG), PWA
+
+### E-commerce
+PrestaShop 8+, WooCommerce, Shopify, Marketplace, Pagamenti (Stripe, PayPal), Checkout
+
+### Database e API
+MySQL, REST API, WebSocket
+
+### DevOps e infrastruttura
+VPS Apache, Linux, Nginx, Docker, Git, GitHub Actions, CI/CD, Vite, Composer, SSH/SFTP, Cloudflare, Certbot/Let's Encrypt, cPanel/Plesk
+
+### Marketing tecnico
+SEO Tecnica, Schema.org, Lighthouse, Core Web Vitals, GA4/GTM, Google Search Console, Privacy/GDPR, A/B Testing, Hotjar/Clarity, Meta Pixel, Google Ads, Mailchimp/Brevo
+
+### Altro
+iOS e Android, Automazione, Problem Solving, Sicurezza Web, Testing
+
+### In corso di apprendimento
+GraphQL, AWS, Symfony, Redis, Pinia, MongoDB, Figma, Python, Elasticsearch, Deno, Terraform, React
+
+## Progetti principali
+
+- **Sito Portfolio** (2026): questo sito. Astro v5, Vue 3, Tailwind CSS v4, TypeScript strict. SSR, View Transitions, design system custom e JSON-LD. Codice open source.
+- **Lab e Nuove Tecnologie** (2025): sperimentazione su AI, nuovi framework e tool di sviluppo. Ogni tecnologia viene testata prima di essere proposta ai clienti.
+- **Automazioni + AI** (2025): automazione flussi e-commerce con AI: generazione schede prodotto, classificazione ordini, reportistica automatica.
+- **Ads Optimization** (2025): ottimizzazione campagne Google Ads e Meta Ads per e-commerce. A/B testing, audience segmentation, ROAS.
+- **Ricostruzione E-commerce** (2025): ricostruzione da zero di un e-commerce PrestaShop. Migrazione dati, nuovo catalogo, checkout ottimizzato, integrazioni marketplace.
+- **Recensioni Clienti e Customer Care** (2024): customer care completo: assistenza pre/post vendita, gestione resi, fidelizzazione.
+- **Gestione Completa E-commerce** (2023): gestione tecnica e operativa di un e-commerce: catalogo, ordini, customer care, marketplace, strategia di crescita.
+- **Cookie, Privacy e GTM** (2022): configurazione GDPR-compliant: consent mode, cookie banner, GTM, tracciamento server-side.
+- **Analytics e SEO Tecnica** (2020): GA4, audit SEO, structured data, ottimizzazione crawl budget.
+- **Progetto Laravel Full Cycle** (2020): applicazione web completa in Laravel: sviluppo, testing, deploy e ottimizzazione.
+- **Formazione e Stack Backend** (2019): studio e pratica su mail server, API REST, PrestaShop, configurazione server.
+- **Siti Web Completi** (2018): primi siti da zero senza framework: HTML, CSS, JavaScript, PHP.
+- **Inizio Lavori in Agenzia** (2017): primo impiego in agenzia grafico pubblicitaria. Formazione su e-commerce, grafica web, gestione clienti in team.
+
+## Cosa dicono i clienti
+
+> "Enrico non è solo un ottimo sviluppatore, ma anche un partner strategico. La sua capacità di tradurre le esigenze di business in soluzioni tecniche è stata fondamentale per il successo del nostro progetto." — Abc Arredamenti
+
+> "Ho apprezzato la proattività e la curiosità di Enrico. è sempre pronto a esplorare nuove tecnologie per trovare la soluzione migliore, senza mai perdere di vista gli obiettivi." — Dinamitek
+
+## Come lavora
+
+Parte dal problema, non dallo strumento. Valuta complessità, budget e obiettivi del cliente, poi sceglie la soluzione più adatta. Lavora da remoto su tutta Italia, disponibile in presenza nella zona di Cuneo e provincia. Si parte da una call conoscitiva, poi tempi e costi chiari, e si lavora a step con aggiornamenti continui. Offre supporto continuativo dopo il lancio.
+
+## Fuori dal codice
+
+Balla da quando ha sei anni: liscio da sala, standard, latino agonistico e caraibico. Fa da tutor nella sua scuola di ballo. Film, serie, anime, musica coreana e giapponese. Viaggia appena può, mostre d'arte e musei compresi. Programma anche nel tempo libero, con utility ed estensioni che gli servono al momento.
+
+## Pagine principali
+
+- [Home](https://www.enricomorano.it)
+- [Progetti](https://www.enricomorano.it/progetti)
+- [Competenze](https://www.enricomorano.it/competenze)
+- [Chi Sono](https://www.enricomorano.it/chi-sono)
+
+## Contatti
+
+- WhatsApp: +39 352 022 0025
+- LinkedIn: https://www.linkedin.com/in/enrico-morano/
+- GitHub: https://github.com/Morry981
+- Zona: Fossano (CN), Piemonte, Italia
+- Lavora da remoto su tutta Italia ed anche all'estero
