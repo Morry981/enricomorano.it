@@ -1,11 +1,12 @@
 // @ts-check
 
 import node from '@astrojs/node';
-import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
+
+import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
+import indexnow from "astro-indexnow";
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,13 +25,15 @@ export default defineConfig({
         vue({
             appEntrypoint: '/src/plugins/vue',
             vueCompilerOptions: {
-                isCustomElement: (tag) => ['ClientRouter', 'ViewTransitions'].includes(tag),
+                isCustomElement: (tag) =>
+                    ['ClientRouter', 'ViewTransitions'].includes(tag),
             },
         }),
         sitemap({
             filter: (page) =>
-                !['/projects', '/skills', '/about-me', '/404'].some((path) =>
-                    new URL(page).pathname.replace(/\/$/, '') === path,
+                !['/projects', '/skills', '/about-me', '/404'].some(
+                    (path) =>
+                        new URL(page).pathname.replace(/\/$/, '') === path,
                 ),
             serialize(item) {
                 const priorities = {
@@ -39,14 +42,21 @@ export default defineConfig({
                     '/competenze': { priority: 0.8, changefreq: 'monthly' },
                     '/chi-sono': { priority: 0.7, changefreq: 'monthly' },
                 };
-                const path = new URL(item.url).pathname.replace(/\/$/, '') || '/';
-                const meta = priorities[path] ?? { priority: 0.5, changefreq: 'monthly' };
+                const path =
+                    new URL(item.url).pathname.replace(/\/$/, '') || '/';
+                const meta = priorities[path] ?? {
+                    priority: 0.5,
+                    changefreq: 'monthly',
+                };
                 item.priority = meta.priority;
                 item.changefreq = meta.changefreq;
                 item.lastmod = new Date().toISOString();
                 item.url = item.url.replace(/\/+$/, '') || item.url;
                 return item;
             },
+        }),
+        indexnow({
+            key: "dcc96a5514364379899ca9f9b46e61ca",
         }),
     ],
 });

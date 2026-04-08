@@ -11,13 +11,14 @@
         "test:e2e": "playwright test"
     },
     "dependencies": {
-        "@astrojs/node": "^9.5.4",
+        "@astrojs/node": "^9.5.5",
         "@astrojs/sitemap": "^3.7.0",
         "@astrojs/vue": "^5.1.4",
         "@tailwindcss/vite": "^4.2.0",
         "@toolwind/corner-shape": "0.0.8-3",
         "@vueuse/motion": "^3.0.3",
         "astro": "^5.17.3",
+        "astro-indexnow": "^2.1.1",
         "lucide-vue-next": "^0.575.0",
         "mixpanel-browser": "^2.76.0",
         "tailwindcss": "^4.2.0",
