@@ -181,10 +181,9 @@ const formattedDate = computed(() => {
 .timeline-card {
     --border-angle: 0deg;
     position: relative;
-    background-color: var(--surface);
+    background-color: var(--bg);
     border: 1px solid var(--border);
     padding: 2rem;
-    backdrop-filter: blur(4px);
     border-radius: 1rem;
     transition: all 0.5s;
 }
@@ -218,18 +217,11 @@ const formattedDate = computed(() => {
 
 .timeline-card:hover {
     border-color: rgba(238, 108, 77, 0.3);
-    background-color: color-mix(in srgb, var(--surface) 200%, transparent);
+    background-color: color-mix(in srgb, var(--bg) 92%, var(--color-accent) 8%);
 }
 
 @keyframes spin-border {
     to { --border-angle: 360deg; }
-}
-
-@media (max-width: 767px) {
-    .timeline-card {
-        background-color: var(--bg, #0d1117);
-        backdrop-filter: none;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
