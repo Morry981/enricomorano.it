@@ -2,6 +2,21 @@ import type { Project } from '../types';
 
 export const projects: Project[] = [
     {
+        slug: 'gestionale-termoidraulica-angioj',
+        title: 'Gestionale Magazzino Termoidraulica',
+        description:
+            "Gestionale magazzino e automazione ordini sviluppato su misura per azienda termoidraulica. Software web in Laravel e FilamentPHP con estensione Chrome dedicata e integrazione Fatture in Cloud, pensato per sostituire Excel e inserimenti manuali sui portali fornitori. Risparmio stimato di oltre 5 ore al mese e rientro dell'investimento in circa 6 mesi. Architettura modulare che cresce con l'azienda: gestione furgoni e manutenzione attrezzatura, commesse e rapportini (anche con AI), manutenzioni programmate e notifiche calendario, indici di produttivita' e compilazione automatica sui portali esterni.",
+        category: 'Web App',
+        tags: ['Laravel', 'FilamentPHP', 'Chrome Extension', 'Fatture in Cloud'],
+        image: '/images/projects/pannello-amministrativo-termoidraulica-angioj-opt.jpg',
+        featured: true,
+        date: '2026-03',
+        role: 'Full Stack Developer',
+        note: {
+            text: 'Excel e inserimenti manuali sostituiti in 6 mesi. Scrivimi se vuoi vedere come.',
+        },
+    },
+    {
         slug: 'portfolio-personale',
         title: 'Sito Portfolio',
         description:
