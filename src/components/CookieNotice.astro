@@ -1,0 +1,49 @@
+---
+---
+
+<div
+    id="cookie-notice"
+    role="status"
+    aria-live="polite"
+    class="hidden fixed bottom-3 left-3 sm:bottom-4 sm:left-4 z-50 w-[calc(100%-1.5rem)] sm:w-auto max-w-sm px-4 py-3 rounded-2xl corner-squircle bg-dark/70 backdrop-blur-lg border border-[var(--border)] shadow-lg text-center text-xs sm:text-sm text-light/80 flex flex-col items-center gap-2"
+>
+    <div>
+        Questo sito usa solo cookie tecnici e analytics anonimi, nessun
+        tracciamento di profilazione.
+        <a
+            href="/privacy-policy"
+            class="ml-1 text-accent underline"
+        >
+            Maggiori info
+        </a>
+    </div>
+    <button
+        id="cookie-notice-close"
+        aria-label="Chiudi avviso cookie"
+        class="px-3 py-1 border border-light/20 rounded-md bg-transparent text-light text-[12px] cursor-pointer"
+    >
+        OK
+    </button>
+</div>
+
+<script is:inline>
+    (function () {
+        var run = function () {
+            if (localStorage.getItem('cookie-notice-dismissed')) return;
+            var banner = document.getElementById('cookie-notice');
+            if (!banner) return;
+            banner.classList.remove('hidden');
+            document
+                .getElementById('cookie-notice-close')
+                .addEventListener('click', function () {
+                    banner.classList.add('hidden');
+                    localStorage.setItem('cookie-notice-dismissed', '1');
+                });
+        };
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(run, { timeout: 2000 });
+        } else {
+            setTimeout(run, 1000);
+        }
+    })();
+</script>

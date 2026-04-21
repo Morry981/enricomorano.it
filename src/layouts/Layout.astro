@@ -6,6 +6,7 @@ import SEO from '../components/SEO.astro';
 import Cursor from '../components/Cursor.vue';
 import Footer from '../components/Footer.vue';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import CookieNotice from '../components/CookieNotice.astro';
 
 interface Props {
     title?: string;
@@ -147,31 +148,6 @@ const {
             });
         </script>
 
-        <div
-            id="cookie-notice"
-            role="status"
-            aria-live="polite"
-            style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;padding:12px 16px;background:rgba(41,50,65,0.95);backdrop-filter:blur(8px);border-top:1px solid rgba(224,251,252,0.1);text-align:center;font-size:14px;color:rgba(224,251,252,0.8)"
-        >
-            Questo sito usa solo cookie tecnici e analytics anonimi, nessun tracciamento di profilazione.
-            <a href="/privacy-policy" style="color:#fd8e74;text-decoration:underline;margin-left:4px">Maggiori info</a>
-            <button
-                id="cookie-notice-close"
-                aria-label="Chiudi avviso cookie"
-                style="margin-left:12px;padding:4px 12px;border:1px solid rgba(224,251,252,0.2);border-radius:6px;background:transparent;color:#E0FBFC;cursor:pointer;font-size:13px"
-            >OK</button>
-        </div>
-        <script is:inline>
-            (function() {
-                if (localStorage.getItem('cookie-notice-dismissed')) return;
-                var banner = document.getElementById('cookie-notice');
-                if (!banner) return;
-                banner.style.display = 'block';
-                document.getElementById('cookie-notice-close').addEventListener('click', function() {
-                    banner.style.display = 'none';
-                    localStorage.setItem('cookie-notice-dismissed', '1');
-                });
-            })();
-        </script>
+        <CookieNotice />
     </body>
 </html>
