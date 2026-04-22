@@ -128,7 +128,7 @@ const handleCardClick = (skillId: string) => {
 <style scoped>
 .line-clamp-3 {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

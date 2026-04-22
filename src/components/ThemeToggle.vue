@@ -35,7 +35,7 @@ const toggle = () => {
         @click="toggle"
         :aria-label="isDark ? 'Passa al tema chiaro' : 'Passa al tema scuro'"
         :aria-pressed="!isDark"
-        class="p-2 rounded-lg hover:bg-[var(--surface)] transition-colors text-lg leading-none"
+        class="p-2 rounded-lg hover:bg-(--surface) transition-colors text-lg leading-none"
     >
         <span aria-hidden="true">{{ isDark ? '☀️' : '🌙' }}</span>
     </button>

@@ -16,7 +16,7 @@ const links = [
 <header class="fixed top-4 z-50 px-4 md:px-8 w-full">
     <nav
         aria-label="Navigazione principale"
-        class="max-w-6xl mx-auto p-4 bg-dark/70 backdrop-blur-lg rounded-2xl corner-squircle border border-[var(--border)] flex items-center justify-between"
+        class="max-w-6xl mx-auto p-4 bg-dark/70 backdrop-blur-lg rounded-2xl corner-squircle border border-(--border) flex items-center justify-between"
     >
         <a href="/" aria-label="Home - Enrico Morano" class="transition-opacity hover:opacity-70">
             <Image src={logoMorry} alt="Logo Enrico Morano" title="Enrico Morano - Home" width={32} height={32} loading="eager" fetchpriority="high" decoding="async" quality={80} class="h-8 w-8 object-contain rounded corner-squircle" />
@@ -51,7 +51,7 @@ const links = [
                 aria-controls="mobile-menu"
                 aria-expanded="false"
                 aria-label="Apri menu"
-                class="flex flex-col gap-1.5 p-3 min-w-12 min-h-12 items-center justify-center rounded-lg hover:bg-[var(--surface)] transition-colors"
+                class="flex flex-col gap-1.5 p-3 min-w-12 min-h-12 items-center justify-center rounded-lg hover:bg-(--surface) transition-colors"
             >
                 <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar1" aria-hidden="true"></span>
                 <span class="block w-5 h-0.5 bg-light transition-all duration-300" id="bar2" aria-hidden="true"></span>
@@ -62,7 +62,7 @@ const links = [
 
     <div
         id="mobile-menu"
-        class="md:hidden hidden mt-2 max-w-6xl mx-auto bg-dark/90 backdrop-blur-lg rounded-2xl corner-squircle border border-[var(--border)] overflow-hidden"
+        class="md:hidden hidden mt-2 max-w-6xl mx-auto bg-dark/90 backdrop-blur-lg rounded-2xl corner-squircle border border-(--border) overflow-hidden"
         aria-hidden="true"
     >
         <ul class="flex flex-col p-4 gap-1" role="list">
@@ -74,7 +74,7 @@ const links = [
                     <li>
                         <a
                             href={href}
-                            class={`block px-4 py-3 rounded-lg transition-colors hover:bg-[var(--surface)] font-medium${isActive ? ' text-accent bg-accent/10' : ' text-light'}`}
+                            class={`block px-4 py-3 rounded-lg transition-colors hover:bg-(--surface) font-medium${isActive ? ' text-accent bg-accent/10' : ' text-light'}`}
                             aria-current={isActive ? 'page' : undefined}
                         >
                             {label}

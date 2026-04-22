@@ -1,4 +1,5 @@
 {
+    "peacock.color": "#1d7cb8",
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#2a98dd",
         "activityBar.background": "#2a98dd",
@@ -18,5 +19,5 @@
         "titleBar.inactiveBackground": "#1d7cb899",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#1d7cb8"
+    "cSpell.words": ["volevih"]
 }

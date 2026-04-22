@@ -1,17 +1,25 @@
 <template>
-    <footer 
+    <footer
         v-if="isVisible"
-        class="fixed bottom-0 left-0 right-0 p-4 bg-dark/80 backdrop-blur-sm
-               border-t border-[var(--border)] text-center transition-transform duration-500 z-40"
-        :class="{'translate-y-full': !isScrolledDown}"
+        class="fixed bottom-0 left-0 right-0 p-4 bg-dark/80 backdrop-blur-sm border-t border-(--border) text-center transition-transform duration-500 z-40"
+        :class="{ 'translate-y-full': !isScrolledDown }"
     >
-        <div class="max-w-6xl mx-auto text-sm text-secondary flex flex-col md:flex-row justify-between items-center gap-4">
+        <div
+            class="max-w-6xl mx-auto text-sm text-secondary flex flex-col md:flex-row justify-between items-center gap-4"
+        >
             <div class="flex flex-col md:flex-row items-center gap-1 md:gap-3">
-                <p>&copy; {{ currentYear }} Enrico Morano. Tutti i diritti riservati.</p>
+                <p>
+                    &copy; {{ currentYear }} Enrico Morano. Tutti i diritti
+                    riservati.
+                </p>
                 <span class="hidden md:inline text-secondary/40">|</span>
                 <p>P.IVA 04211150042</p>
                 <span class="hidden md:inline text-secondary/40">|</span>
-                <a href="/privacy-policy" class="hover:text-light transition-colors">Privacy e Cookie Policy</a>
+                <a
+                    href="/privacy-policy"
+                    class="hover:text-light transition-colors"
+                    >Privacy e Cookie Policy</a
+                >
             </div>
             <div class="flex items-center gap-6">
                 <AntiSpamEmail />
@@ -56,13 +64,25 @@
                     @click.self="showPopup = false"
                     @keydown.escape="showPopup = false"
                 >
-                    <div class="relative rounded-xl overflow-hidden shadow-2xl mx-4">
+                    <div
+                        class="relative rounded-xl overflow-hidden shadow-2xl mx-4"
+                    >
                         <button
                             @click="showPopup = false"
                             class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors text-xl leading-none cursor-pointer"
                             aria-label="Chiudi"
-                        >&times;</button>
-                        <img src="/images/eeh-volevih.gif" alt="Eeh volevi!" width="480" height="360" loading="lazy" decoding="async" class="block w-[480px] max-w-[90vw] h-auto" />
+                        >
+                            &times;
+                        </button>
+                        <img
+                            src="/images/eeh-volevih.gif"
+                            alt="Eeh volevi!"
+                            width="480"
+                            height="360"
+                            loading="lazy"
+                            decoding="async"
+                            class="block w-120 max-w-[90vw] h-auto"
+                        />
                     </div>
                 </div>
             </Transition>
@@ -83,10 +103,11 @@ const currentYear = new Date().getFullYear();
 const handleScroll = () => {
     // Il footer appare se la pagina è corta (non c'è scrollbar)
     const pageHasNoScroll = document.body.scrollHeight <= window.innerHeight;
-    
+
     // O se lo scroll ha raggiunto l'ultimo 10% della pagina
-    const scrollThreshold = document.body.scrollHeight * 0.90; // 90% della pagina
-    const scrolledPastThreshold = window.scrollY + window.innerHeight >= scrollThreshold;
+    const scrollThreshold = document.body.scrollHeight * 0.9; // 90% della pagina
+    const scrolledPastThreshold =
+        window.scrollY + window.innerHeight >= scrollThreshold;
 
     if (pageHasNoScroll || scrolledPastThreshold) {
         if (!isVisible.value) isVisible.value = true;
@@ -95,13 +116,13 @@ const handleScroll = () => {
         isScrolledDown.value = false;
         setTimeout(() => {
             if (!isScrolledDown.value) isVisible.value = false;
-        }, 500); 
+        }, 500);
     }
 };
 
 onMounted(() => {
     // Controllo iniziale anche per le pagine corte
-    handleScroll(); 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
 });
 
