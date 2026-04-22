@@ -159,7 +159,7 @@ const formattedDate = computed(() => {
                 v-if="project.repo"
                 :href="project.repo"
                 target="_blank"
-                rel="noopener noreferrer nofollow"
+                rel="noopener noreferrer"
                 class="flex items-center text-secondary/70 hover:text-light font-semibold transition-colors"
                 :aria-label="`Repository GitHub di ${project.title}`"
             >
