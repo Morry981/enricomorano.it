@@ -3,6 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import CtaContact from '../components/CtaContact.astro';
 import FaqSection from '../components/FaqSection.astro';
 import type { FaqItem } from '../components/FaqSection.astro';
+import { clientReviews } from '../data/reviews';
+
+// Layout 3+2: prime 3 sopra a tutta larghezza, ultime 2 centrate sotto.
+const topReviews = clientReviews.slice(0, 3);
+const bottomReviews = clientReviews.slice(3, 5);
+
+// Palette icone: una colorata per ogni card, ciclica.
+const iconPalette = ['text-accent', 'text-emerald-400', 'text-sky-400', 'text-fuchsia-400', 'text-amber-400'];
 
 const faqs: FaqItem[] = [
     {
@@ -77,19 +85,62 @@ const faqs: FaqItem[] = [
             </div>
         </div>
 
-        <div class="mt-16 space-y-6">
+        <section class="mt-16 space-y-6">
             <h2 class="text-3xl font-bold">Cosa dicono i clienti</h2>
-            <blockquote class="border-l-2 border-accent pl-6 text-light/70 italic text-balance">
-                "Enrico non è solo un ottimo sviluppatore, ma anche un partner strategico.
-                La sua capacità di tradurre le esigenze di business in soluzioni tecniche è stata fondamentale per il successo del nostro progetto."
-                <footer class="mt-2 text-secondary not-italic text-sm">- Abc Arredamenti</footer>
-            </blockquote>
-            <blockquote class="border-l-2 border-accent pl-6 text-light/70 italic text-balance">
-                "Ho apprezzato la proattività e la curiosità di Enrico.
-                È sempre pronto a esplorare nuove tecnologie per trovare la soluzione migliore, senza mai perdere di vista gli obiettivi."
-                <footer class="mt-2 text-secondary not-italic text-sm">- Dinamitek</footer>
-            </blockquote>
-        </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {topReviews.map((r, i) => (
+                    <article class="bento-card flex flex-col gap-3">
+                        <div class="flex items-center gap-3">
+                            <svg
+                                class={`w-8 h-8 ${iconPalette[i % iconPalette.length]}`}
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
+                            >
+                                <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
+                            </svg>
+                            <div aria-label={`Valutazione: ${r.rating} stelle su 5`} class="text-base tracking-wide">⭐⭐⭐⭐⭐</div>
+                        </div>
+                        <h3 class="text-lg font-bold text-light text-balance">{r.title}</h3>
+                        <p class="text-light/80 text-sm text-balance flex-1">{r.body}</p>
+                        <footer class="text-secondary text-xs pt-2 border-t border-secondary/10">
+                            <span class="font-semibold text-light/90">{r.author}</span>
+                        </footer>
+                    </article>
+                ))}
+            </div>
+
+            {bottomReviews.length > 0 && (
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                    {bottomReviews.map((r, i) => (
+                        <article class="bento-card flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <svg
+                                    class={`w-8 h-8 ${iconPalette[(i + 3) % iconPalette.length]}`}
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
+                                </svg>
+                                <div aria-label={`Valutazione: ${r.rating} stelle su 5`} class="text-base tracking-wide">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <h3 class="text-lg font-bold text-light text-balance">{r.title}</h3>
+                            <p class="text-light/80 text-sm text-balance flex-1">{r.body}</p>
+                            <footer class="text-secondary text-xs flex items-center justify-between pt-2 border-t border-secondary/10">
+                                <span class="font-semibold text-light/90">{r.author}</span>
+                                {r.sourceUrl ? (
+                                    <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">
+                                        via {r.sourceLabel}
+                                    </a>
+                                ) : null}
+                            </footer>
+                        </article>
+                    ))}
+                </div>
+            )}
+        </section>
 
         <div class="mt-16 space-y-6">
             <h2 class="text-3xl font-bold">Fuori dal codice</h2>

@@ -1,3 +1,5 @@
+import { verifiedReviews } from '../reviews';
+
 export const personSchema = (siteUrl: string) => ({
     '@context': 'https://schema.org/',
     '@type': 'Person',
@@ -73,20 +75,24 @@ export const professionalServiceSchema = (siteUrl: string) => ({
         '@type': 'AggregateRating',
         ratingValue: '5',
         bestRating: '5',
-        ratingCount: '2',
+        ratingCount: String(verifiedReviews.length),
+        url: 'https://it.trustpilot.com/review/enricomorano.it',
     },
-    review: [
-        {
-            '@type': 'Review',
-            author: { '@type': 'Organization', name: 'Abc Arredamenti' },
-            reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-            reviewBody: 'Enrico non è solo un ottimo sviluppatore, ma anche un partner strategico. La sua capacità di tradurre le esigenze di business in soluzioni tecniche è stata fondamentale per il successo del nostro progetto.',
-        },
-        {
-            '@type': 'Review',
-            author: { '@type': 'Organization', name: 'Dinamitek' },
-            reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-            reviewBody: 'Ho apprezzato la proattività e la curiosità di Enrico. È sempre pronto a esplorare nuove tecnologie per trovare la soluzione migliore, senza mai perdere di vista gli obiettivi.',
-        },
-    ],
+    review: verifiedReviews.map((r) => ({
+        '@type': 'Review',
+        author: { '@type': r.authorType, name: r.author },
+        datePublished: r.date,
+        reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5' },
+        name: r.title,
+        reviewBody: r.body,
+        ...(r.sourceUrl && r.sourceLabel
+            ? {
+                publisher: {
+                    '@type': 'Organization',
+                    name: r.sourceLabel,
+                    url: r.sourceUrl,
+                },
+            }
+            : {}),
+    })),
 });
