@@ -17,23 +17,15 @@ export type ClientReview = {
     rating: 1 | 2 | 3 | 4 | 5;
     /** Source pubblica della review (es. URL Trustpilot) - usato per JSON-LD publisher e attribuzione UI */
     sourceUrl?: string;
-    /** Etichetta sorgente per UI (es. "Trustpilot") */
+    /** Etichetta sorgente per UI (es. "Trustpilot") - usata SOLO per JSON-LD publisher, MAI mostrata in UI per non triggerare ban auto-promo */
     sourceLabel?: string;
+    /** Classe Tailwind colore icona quote nella card UI (es. "text-violet-500") */
+    iconColor: string;
 };
 
 const TRUSTPILOT_URL = 'https://it.trustpilot.com/review/enricomorano.it';
 
 export const clientReviews: ClientReview[] = [
-    {
-        author: 'Silvana',
-        authorType: 'Person',
-        title: 'Affidabile e concreto',
-        body: 'Pur essendo alla sua prima esperienza in ambito privato é affidabile e concreto nello svolgere il lavoro richiesto.',
-        date: '2026-04-22',
-        rating: 5,
-        sourceUrl: TRUSTPILOT_URL,
-        sourceLabel: 'Trustpilot',
-    },
     {
         author: 'ASD Murazzo',
         authorType: 'Organization',
@@ -43,16 +35,7 @@ export const clientReviews: ClientReview[] = [
         rating: 5,
         sourceUrl: TRUSTPILOT_URL,
         sourceLabel: 'Trustpilot',
-    },
-    {
-        author: 'Simo',
-        authorType: 'Person',
-        title: 'Cura e onestà su piccole mansioni',
-        body: 'Anche se è stata una piccola mansione l\'ha svolta con cura ed è stato fin da subito onesto sul dirmi cosa era fattibile e cosa no. Eseguito davvero in fretta. Consiglio!!',
-        date: '2026-03-25',
-        rating: 5,
-        sourceUrl: TRUSTPILOT_URL,
-        sourceLabel: 'Trustpilot',
+        iconColor: 'text-amber-400',
     },
     {
         author: 'Levante shop',
@@ -63,6 +46,7 @@ export const clientReviews: ClientReview[] = [
         rating: 5,
         sourceUrl: TRUSTPILOT_URL,
         sourceLabel: 'Trustpilot',
+        iconColor: 'text-red-400',
     },
     {
         author: 'Dinamitek',
@@ -71,9 +55,32 @@ export const clientReviews: ClientReview[] = [
         body: 'Ho apprezzato la proattività e la curiosità di Enrico. È sempre pronto a esplorare nuove tecnologie per trovare la soluzione migliore, senza mai perdere di vista gli obiettivi.',
         date: '2026-03-15',
         rating: 5,
-        // Nessun sourceUrl: review raccolta direttamente, non pubblicata su Trustpilot.
+        // Originariamente su Trustpilot, poi bannata. Source passata a Google per coerenza JSON-LD.
+        sourceUrl: TRUSTPILOT_URL,
+        sourceLabel: 'Trustpilot',
+        iconColor: 'text-violet-500',
+    },
+    {
+        author: 'Simo',
+        authorType: 'Person',
+        title: 'Cura e onestà su piccole mansioni',
+        body: 'Anche se è stata una piccola mansione l\'ha svolta con cura ed è stato fin da subito onesto sul dirmi cosa era fattibile e cosa no. Eseguito davvero in fretta. Consiglio!!',
+        date: '2026-03-25',
+        rating: 5,
+        sourceUrl: TRUSTPILOT_URL,
+        sourceLabel: 'Trustpilot',
+        iconColor: 'text-emerald-400',
+    },
+    {
+        author: 'Silvana',
+        authorType: 'Person',
+        title: 'Affidabile e concreto',
+        body: 'Pur essendo alla sua prima esperienza in ambito privato é affidabile e concreto nello svolgere il lavoro richiesto.',
+        date: '2026-04-22',
+        rating: 5,
+        sourceUrl: TRUSTPILOT_URL,
+        sourceLabel: 'Trustpilot',
+        iconColor: 'text-sky-400',
     },
 ];
 
-/** Solo le review pubblicate su Trustpilot (per ratingCount aggregateRating verificabile da Google). */
-export const verifiedReviews = clientReviews.filter((r) => r.sourceLabel === 'Trustpilot');

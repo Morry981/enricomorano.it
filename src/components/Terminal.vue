@@ -1,28 +1,28 @@
 <template>
     <section
-        class="fixed inset-x-0 bottom-0 top-20 md:top-24 flex flex-col bg-[#1a1a2e] text-[#98C1D9] font-mono text-sm sm:text-base overflow-hidden"
+        class="fixed inset-x-0 bottom-0 top-20 md:top-24 flex flex-col bg-slate-900 text-sky-300 font-mono text-sm sm:text-base overflow-hidden"
         @click="focusInput"
         aria-label="Terminale 404"
     >
         <div
-            class="flex items-center gap-2 px-4 py-2 bg-[#16213e] border-b border-[#0f3460] shrink-0"
+            class="flex items-center gap-2 px-4 py-2 bg-slate-800 border-b border-blue-900 shrink-0"
         >
             <button
                 @click.stop="goBack"
-                class="w-4 h-4 rounded-full bg-[#e74c3c] hover:brightness-125 transition-all cursor-pointer flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]"
+                class="w-4 h-4 rounded-full bg-red-500 hover:brightness-125 transition-all cursor-pointer flex items-center justify-center text-[0.875rem] leading-none font-bold text-slate-900"
                 aria-label="Torna indietro"
             >
                 &times;
             </button>
             <span
-                class="w-4 h-4 rounded-full bg-[#f39c12] flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]"
+                class="w-4 h-4 rounded-full bg-amber-500 flex items-center justify-center text-[0.875rem] leading-none font-bold text-slate-900"
                 >&minus;</span
             >
             <span
-                class="w-4 h-4 rounded-full bg-[#2ecc71] flex items-center justify-center text-[0.875rem] leading-none font-bold text-[#1a1a2e]"
+                class="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-[0.875rem] leading-none font-bold text-slate-900"
                 >+</span
             >
-            <span class="ml-3 text-[#8892b0] text-xs"
+            <span class="ml-3 text-slate-400 text-xs"
                 >guest@enricomorano.it - 404</span
             >
         </div>
@@ -44,12 +44,12 @@
 
         <form
             @submit.prevent="exec"
-            class="flex items-center px-4 py-3 border-t border-[#0f3460] shrink-0 gap-2"
+            class="flex items-center px-4 py-3 border-t border-blue-900 shrink-0 gap-2"
         >
-            <span class="text-[#e74c3c] shrink-0"
-                >guest<span class="text-[#8892b0]">@</span
-                ><span class="text-[#98C1D9]"><span class="hidden md:inline">enricomorano.it</span><span class="md:hidden">enrmor.it</span></span
-                ><span class="text-[#8892b0]">:~$</span></span
+            <span class="text-red-500 shrink-0"
+                >guest<span class="text-slate-400">@</span
+                ><span class="text-sky-300"><span class="hidden md:inline">enricomorano.it</span><span class="md:hidden">enrmor.it</span></span
+                ><span class="text-slate-400">:~$</span></span
             >
             <input
                 ref="inputEl"
@@ -61,14 +61,14 @@
                 enterkeyhint="send"
                 :placeholder="hasExecuted ? 'exit' : 'help'"
                 aria-label="Comando terminale"
-                class="flex-1 bg-transparent text-[#98C1D9] outline-none caret-[#98C1D9] min-w-0 placeholder:text-[#98C1D9]/30 text-base"
+                class="flex-1 bg-transparent text-sky-300 outline-none caret-sky-300 min-w-0 placeholder:text-sky-300/30 text-base"
                 @keydown.up.prevent="historyUp"
                 @keydown.down.prevent="historyDown"
                 @keydown="handleTab"
             />
             <button
                 type="submit"
-                class="shrink-0 w-8 h-8 flex items-center justify-center text-[#8892b0] hover:text-[#98C1D9] active:text-[#e74c3c] transition-colors md:hidden"
+                class="shrink-0 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-300 active:text-red-500 transition-colors md:hidden"
                 aria-label="Esegui comando"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true">

@@ -1,4 +1,4 @@
-import { verifiedReviews } from '../reviews';
+import { clientReviews } from '../reviews';
 
 export const personSchema = (siteUrl: string) => ({
     '@context': 'https://schema.org/',
@@ -75,10 +75,10 @@ export const professionalServiceSchema = (siteUrl: string) => ({
         '@type': 'AggregateRating',
         ratingValue: '5',
         bestRating: '5',
-        ratingCount: String(verifiedReviews.length),
+        ratingCount: String(clientReviews.length),
         url: 'https://it.trustpilot.com/review/enricomorano.it',
     },
-    review: verifiedReviews.map((r) => ({
+    review: clientReviews.map((r) => ({
         '@type': 'Review',
         author: { '@type': r.authorType, name: r.author },
         datePublished: r.date,
