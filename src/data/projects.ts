@@ -2,12 +2,32 @@ import type { Project } from '../types';
 
 export const projects: Project[] = [
     {
+        slug: 'todos-ai',
+        title: 'Todos - Supervisione Progetti con AI',
+        description:
+            "Vault integrato con TODO list organizzato, conoscenza base personale e LLM che monitora scadenze, genera riassunti e segnala priorità. Tiene in parallelo più clienti e progetti senza confonderne i contesti, partendo da una struttura precisa e chiara del mio modo di operare, mantiene inoltre tutti i sistemi di integrazione e best practice dei progetti. L'AI suggerisce collegamenti tra note di progetti diversi facendo crescere le connessioni, ed estrae pattern ricorrenti dai lavori chiusi per riproporli sui nuovi: ogni cliente eredita la conoscenza accumulata sui precedenti. Lo uso ogni giorno per alimentare una memoria di lavoro che torna utile a tutti.",
+        category: 'Automazione',
+        tags: ['AI', 'LLM', 'Productivity', 'Obsidian'],
+        image: '/images/projects/grafo-progetto-ai-todos-analisi-progetti-clienti-ottimizzato-opt.jpg',
+        featured: true,
+        date: '2026-04',
+        role: 'Personal Tooling / R&D',
+        note: {
+            text: "Una mente unica sopra a tutti i progetti significa non lasciare niente in sospeso o indietro. L'AI legge e sistema come un segretario, io decido le priorità e il flusso operativo.",
+        },
+    },
+    {
         slug: 'gestionale-termoidraulica-angioj',
         title: 'Gestionale Magazzino Termoidraulica',
         description:
-            "Gestionale magazzino e automazione ordini sviluppato su misura per azienda termoidraulica. Software web in Laravel e FilamentPHP con estensione Chrome dedicata e integrazione Fatture in Cloud, pensato per sostituire Excel e inserimenti manuali sui portali fornitori. Risparmio stimato di oltre 5 ore al mese e rientro dell'investimento in circa 6 mesi. Architettura modulare che cresce con l'azienda: gestione furgoni e manutenzione attrezzatura, commesse e rapportini (anche con AI), manutenzioni programmate e notifiche calendario, indici di produttivita' e compilazione automatica sui portali esterni.",
+            "Gestionale magazzino e automazione ordini sviluppato su misura per azienda termoidraulica. Software web in Laravel e FilamentPHP con estensione Chrome dedicata e integrazione Fatture in Cloud, pensato per sostituire Excel e inserimenti manuali sui portali fornitori. Risparmio stimato di oltre 5 ore al mese e rientro dell'investimento in circa 6 mesi. Architettura modulare che cresce con l'azienda: gestione furgoni e manutenzione attrezzatura, commesse e rapportini (anche con AI), manutenzioni programmate e notifiche calendario, indici di produttività e compilazione automatica sui portali esterni.",
         category: 'Web App',
-        tags: ['Laravel', 'FilamentPHP', 'Chrome Extension', 'Fatture in Cloud'],
+        tags: [
+            'Laravel',
+            'FilamentPHP',
+            'Chrome Extension',
+            'Fatture in Cloud',
+        ],
         image: '/images/projects/pannello-amministrativo-termoidraulica-angioj-opt.jpg',
         featured: true,
         date: '2026-03',
@@ -59,7 +79,7 @@ export const projects: Project[] = [
         date: '2025-04',
         role: 'Digital Ads Specialist',
         note: {
-            text: "Il budget Ads senza dati puliti e tracking affidabile e' budget sprecato. Prima i fondamentali, poi le campagne.",
+            text: 'Il budget Ads senza dati puliti e tracking affidabile è budget sprecato. Prima i fondamentali, poi le campagne.',
         },
     },
     {
@@ -89,7 +109,7 @@ export const projects: Project[] = [
         date: '2025-07',
         role: 'Automation Developer',
         note: {
-            text: "L'AI funziona solo se integrata nei flussi reali. Automatizzare senza capire il processo e' controproducente.",
+            text: "L'AI funziona solo se integrata nei flussi reali. Automatizzare senza capire il processo è controproducente.",
         },
     },
     {
@@ -132,7 +152,7 @@ export const projects: Project[] = [
         date: '2022-01',
         role: 'Tracking & Privacy Specialist',
         note: {
-            text: "Configurazione errata del consent mode = dati inutilizzabili. La privacy non e' un ostacolo, e' un vincolo da progettare.",
+            text: 'Configurazione errata del consent mode = dati inutilizzabili. La privacy non è un ostacolo, è un vincolo da progettare.',
         },
     },
     {
@@ -188,7 +208,7 @@ export const projects: Project[] = [
         date: '2018-01',
         role: 'Web Developer',
         note: {
-            text: "Reinventare la ruota e' inefficiente, ma insegna come funziona. Nessun framework sostituisce le basi.",
+            text: 'Reinventare la ruota è inefficiente, ma insegna come funziona. Nessun framework sostituisce le basi.',
         },
     },
     {
