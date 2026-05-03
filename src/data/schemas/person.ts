@@ -7,11 +7,21 @@ export const personSchema = (siteUrl: string) => ({
     url: siteUrl,
     image: `${siteUrl}/images/foto-profilo.jpg`,
     jobTitle: 'Full Stack Developer',
-    description: 'Sviluppatore full stack specializzato in e-commerce PrestaShop, Vue.js, Astro e infrastrutture VPS.',
-    disambiguatingDescription: "Sviluppatore freelance full stack specializzato in e-commerce PrestaShop e automazione per PMI italiane, con sede a Fossano (CN). Da non confondere con l'omonimo filologo e iranista Enrico Morano, ne' con il politico Enrico Morando.",
+    description:
+        'Sviluppatore full stack specializzato in e-commerce PrestaShop, Vue.js, Astro e infrastrutture VPS.',
+    disambiguatingDescription:
+        "Sviluppatore freelance full stack specializzato in e-commerce PrestaShop e automazione per PMI italiane, con sede a Fossano (CN). Da non confondere con l'omonimo filologo e iranista Enrico Morano, né con il politico Enrico Morando.",
     knowsAbout: [
-        'PrestaShop', 'PHP', 'Vue.js', 'Astro', 'TypeScript',
-        'Node.js', 'Tailwind CSS', 'SEO Tecnica', 'DevOps', 'Apache',
+        'PrestaShop',
+        'PHP',
+        'Vue.js',
+        'Astro',
+        'TypeScript',
+        'Node.js',
+        'Tailwind CSS',
+        'SEO Tecnica',
+        'DevOps',
+        'Apache',
     ],
     sameAs: [
         'https://github.com/Morry981',
@@ -26,7 +36,8 @@ export const professionalServiceSchema = (siteUrl: string) => ({
     name: 'Enrico Morano - Sviluppatore Freelance',
     url: siteUrl,
     image: `${siteUrl}/images/foto-profilo.jpg`,
-    description: 'Sviluppo e-commerce PrestaShop, applicazioni web, automazione processi e consulenza digitale per PMI italiane.',
+    description:
+        'Sviluppo e-commerce PrestaShop, applicazioni web, automazione processi e consulenza digitale per PMI italiane.',
     telephone: import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '',
     priceRange: '150-10000 EUR',
     address: {
@@ -51,23 +62,48 @@ export const professionalServiceSchema = (siteUrl: string) => ({
         itemListElement: [
             {
                 '@type': 'Offer',
-                itemOffered: { '@type': 'Service', name: 'Sviluppo E-commerce PrestaShop', description: 'Moduli custom, catalogo, marketplace, automazione ordini.' },
+                itemOffered: {
+                    '@type': 'Service',
+                    name: 'Sviluppo E-commerce PrestaShop',
+                    description:
+                        'Moduli custom, catalogo, marketplace, automazione ordini.',
+                },
             },
             {
                 '@type': 'Offer',
-                itemOffered: { '@type': 'Service', name: 'Sviluppo Web Full Stack', description: 'Applicazioni web con Vue.js, Astro, TypeScript, PHP.' },
+                itemOffered: {
+                    '@type': 'Service',
+                    name: 'Sviluppo Web Full Stack',
+                    description:
+                        'Applicazioni web con Vue.js, Astro, TypeScript, PHP.',
+                },
             },
             {
                 '@type': 'Offer',
-                itemOffered: { '@type': 'Service', name: 'SEO Tecnica & Tracking', description: 'Audit tecnici, Core Web Vitals, Schema.org, GA4, GTM.' },
+                itemOffered: {
+                    '@type': 'Service',
+                    name: 'SEO Tecnica & Tracking',
+                    description:
+                        'Audit tecnici, Core Web Vitals, Schema.org, GA4, GTM.',
+                },
             },
             {
                 '@type': 'Offer',
-                itemOffered: { '@type': 'Service', name: 'Automazione Processi', description: 'Script, estensioni browser, integrazioni tra sistemi.' },
+                itemOffered: {
+                    '@type': 'Service',
+                    name: 'Automazione Processi',
+                    description:
+                        'Script, estensioni browser, integrazioni tra sistemi.',
+                },
             },
             {
                 '@type': 'Offer',
-                itemOffered: { '@type': 'Service', name: 'Consulenza e Formazione', description: 'Scelta tecnologica, onboarding personale, guide operative.' },
+                itemOffered: {
+                    '@type': 'Service',
+                    name: 'Consulenza e Formazione',
+                    description:
+                        'Scelta tecnologica, onboarding personale, guide operative.',
+                },
             },
         ],
     },
@@ -82,17 +118,21 @@ export const professionalServiceSchema = (siteUrl: string) => ({
         '@type': 'Review',
         author: { '@type': r.authorType, name: r.author },
         datePublished: r.date,
-        reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5' },
+        reviewRating: {
+            '@type': 'Rating',
+            ratingValue: String(r.rating),
+            bestRating: '5',
+        },
         name: r.title,
         reviewBody: r.body,
         ...(r.sourceUrl && r.sourceLabel
             ? {
-                publisher: {
-                    '@type': 'Organization',
-                    name: r.sourceLabel,
-                    url: r.sourceUrl,
-                },
-            }
+                  publisher: {
+                      '@type': 'Organization',
+                      name: r.sourceLabel,
+                      url: r.sourceUrl,
+                  },
+              }
             : {}),
     })),
 });
