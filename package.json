@@ -11,27 +11,33 @@
         "test:e2e": "playwright test"
     },
     "dependencies": {
-        "@astrojs/node": "^9.5.5",
-        "@astrojs/sitemap": "^3.7.0",
-        "@astrojs/vue": "^5.1.4",
-        "@tailwindcss/vite": "^4.2.0",
+        "@astrojs/node": "^10.0.6",
+        "@astrojs/sitemap": "^3.7.2",
+        "@astrojs/vue": "^6.0.1",
+        "@tailwindcss/vite": "^4.2.4",
         "@toolwind/corner-shape": "0.0.8-3",
         "@vueuse/motion": "^3.0.3",
-        "astro": "^5.17.3",
+        "astro": "^6.2.1",
         "astro-indexnow": "^2.1.1",
         "lucide-vue-next": "^0.575.0",
-        "mixpanel-browser": "^2.76.0",
-        "tailwindcss": "^4.2.0",
-        "vue": "^3.5.28"
+        "mixpanel-browser": "^2.78.0",
+        "tailwindcss": "^4.2.4",
+        "vue": "^3.5.33"
     },
     "devDependencies": {
-        "@playwright/experimental-ct-vue": "^1.58.2",
-        "@playwright/test": "^1.58.2",
+        "@playwright/experimental-ct-vue": "^1.59.1",
+        "@playwright/test": "^1.59.1",
         "@testing-library/vue": "^8.1.0",
-        "@vitejs/plugin-vue": "^6.0.4",
-        "@vue/test-utils": "^2.4.6",
+        "@vitejs/plugin-vue": "^6.0.6",
+        "@vue/test-utils": "^2.4.10",
         "jsdom": "^28.1.0",
-        "vitest": "^4.0.18"
+        "vitest": "^4.1.5"
     },
-    "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
+    "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "esbuild",
+            "sharp"
+        ]
+    }
 }

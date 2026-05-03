@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import SEO from '../components/SEO.astro';
@@ -80,7 +80,7 @@ const {
             description={description}
             breadcrumbs={breadcrumbs}
         />
-        <ViewTransitions prefetch="viewport" />
+        <ClientRouter prefetch="viewport" />
         <script>
             let cleanup: (() => void) | undefined;
 

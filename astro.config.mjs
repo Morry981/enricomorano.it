@@ -26,7 +26,7 @@ export default defineConfig({
             appEntrypoint: '/src/plugins/vue',
             vueCompilerOptions: {
                 isCustomElement: (tag) =>
-                    ['ClientRouter', 'ViewTransitions'].includes(tag),
+                    ['ClientRouter'].includes(tag),
             },
         }),
         sitemap({

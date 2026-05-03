@@ -34,6 +34,8 @@ function applySecurityHeaders(response: Response): Response {
     return response;
 }
 
+const isDev = import.meta.env.DEV;
+
 export const onRequest = defineMiddleware(({ url }, next) => {
     const path = url.pathname.replace(/\/+$/, '') || '/';
 
@@ -59,5 +61,5 @@ export const onRequest = defineMiddleware(({ url }, next) => {
         });
     }
 
-    return next().then(applySecurityHeaders);
+    return isDev ? next() : next().then(applySecurityHeaders);
 });
