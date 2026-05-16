@@ -12,7 +12,7 @@ RewriteRule ^(.*)$ https://www.enricomorano.it/$1 [L,R=301]
 # Strip trailing slash (eccetto root) per canonical URL pulito
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} ^(.+)/$
-RewriteRule ^ %1 [R=301,L]
+RewriteRule ^ %1 [R=301,L,QSA]
 
 # Markdown content negotiation: agent con Accept: text/markdown riceve il .md
 # corrispondente generato al build dall'integration markdown-generator.
