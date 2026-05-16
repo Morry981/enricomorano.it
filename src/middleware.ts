@@ -49,13 +49,6 @@ const isDev = import.meta.env.DEV;
 export const onRequest = defineMiddleware(({ url }, next) => {
     const path = url.pathname.replace(/\/+$/, '') || '/';
 
-    if (path !== '/' && url.pathname.endsWith('/')) {
-        return new Response(null, {
-            status: 301,
-            headers: { Location: path + url.search },
-        });
-    }
-
     if (publicDirs.includes(path)) {
         return new Response(null, {
             status: 301,

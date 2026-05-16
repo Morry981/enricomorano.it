@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
 import indexnow from "astro-indexnow";
+import { markdownGenerator } from './src/integrations/markdown-generator';
 
 // https://astro.build/config
 export default defineConfig({
@@ -57,6 +58,9 @@ export default defineConfig({
         }),
         indexnow({
             key: "dcc96a5514364379899ca9f9b46e61ca",
+        }),
+        markdownGenerator({
+            exclude: ['404', '_astro'],
         }),
     ],
 });
