@@ -16,18 +16,21 @@ RewriteRule ^ %1 [R=301,L,QSA]
 
 # Markdown content negotiation: agent con Accept: text/markdown riceve il .md
 # corrispondente generato al build dall'integration markdown-generator.
+# Approccio R=303 (See Other): redirect esterno bypassa LSCache e Astro Node adapter.
+# DOCUMENT_ROOT su CloudLinux Node + LiteSpeed non punta a dist/client, niente check -f.
 RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
 RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^$ /index.md [L,T=text/markdown,E=MD_HIT:1]
+RewriteRule ^$ /index.md [R=303,L]
 
 RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
 RewriteCond %{REQUEST_URI} !\.(md|html?|xml|txt|json|js|css|png|jpe?g|webp|svg|ico|woff2?)$
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.md -f
-RewriteRule ^(.+)$ /$1.md [L,T=text/markdown,E=MD_HIT:1]
+RewriteRule ^(.+?)/?$ /$1.md [R=303,L]
 
 <IfModule mod_setenvif.c>
     # Cattura il path della request originale (no query string) per Link canonical
     SetEnvIf Request_URI "^([^?]*?)(\.md)?$" CANONICAL_PATH=$1
+    # Override per home: /index e /index.md devono avere canonical / (slash root)
+    SetEnvIf Request_URI "^/index(\.md)?$" CANONICAL_PATH=/
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -38,7 +41,8 @@ RewriteRule ^(.+)$ /$1.md [L,T=text/markdown,E=MD_HIT:1]
 
     # Link rel="canonical" HTTP header dinamico path-aware (RFC 8288 / 6596).
     # Punta sempre alla versione canonical HTML anche quando si serve il .md.
-    Header set Link "<https://www.enricomorano.it%{CANONICAL_PATH}e>; rel=\"canonical\""
+    # rel=canonical senza virgolette: 'canonical' e' un token RFC, equivalente a rel="canonical"
+    Header set Link "<https://www.enricomorano.it%{CANONICAL_PATH}e>; rel=canonical"
 
     # Vary: Accept su risposte negoziabili (HTML default vs MD via Accept)
     Header append Vary "Accept"
