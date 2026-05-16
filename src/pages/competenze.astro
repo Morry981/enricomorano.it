@@ -5,6 +5,8 @@ import CtaContact from '../components/CtaContact.astro';
 import FaqSection from '../components/FaqSection.astro';
 import type { FaqItem } from '../components/FaqSection.astro';
 
+export const prerender = true;
+
 const faqs: FaqItem[] = [
     {
         question: 'Quali linguaggi di programmazione conosce Enrico Morano?',

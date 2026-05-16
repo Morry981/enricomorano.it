@@ -27,11 +27,21 @@ const securityHeaders: Record<string, string> = {
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
 };
 
+const SITE_ORIGIN = 'https://www.enricomorano.it';
+
 function applySecurityHeaders(response: Response): Response {
     for (const [key, value] of Object.entries(securityHeaders)) {
         response.headers.set(key, value);
     }
     return response;
+}
+
+function applyCanonicalLinkHeader(path: string) {
+    return (response: Response): Response => {
+        const canonical = path === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${path}`;
+        response.headers.set('Link', `<${canonical}>; rel="canonical"`);
+        return response;
+    };
 }
 
 const isDev = import.meta.env.DEV;
@@ -61,5 +71,6 @@ export const onRequest = defineMiddleware(({ url }, next) => {
         });
     }
 
-    return isDev ? next() : next().then(applySecurityHeaders);
+    const withCanonical = next().then(applyCanonicalLinkHeader(path));
+    return isDev ? withCanonical : withCanonical.then(applySecurityHeaders);
 });

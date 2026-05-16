@@ -21,6 +21,7 @@
         "astro-indexnow": "^2.1.1",
         "lucide-vue-next": "^0.575.0",
         "mixpanel-browser": "^2.78.0",
+        "sharp": "^0.34.5",
         "tailwindcss": "^4.2.4",
         "vue": "^3.5.33"
     },

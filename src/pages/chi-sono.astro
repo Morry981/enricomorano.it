@@ -5,6 +5,8 @@ import FaqSection from '../components/FaqSection.astro';
 import type { FaqItem } from '../components/FaqSection.astro';
 import { clientReviews } from '../data/reviews';
 
+export const prerender = true;
+
 // Layout 2+3: prime 2 sopra centrate, ultime 3 sotto.
 const topReviews = clientReviews.slice(0, 2);
 const bottomReviews = clientReviews.slice(2, 5);

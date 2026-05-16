@@ -7,6 +7,8 @@ import FaqSection from '../components/FaqSection.astro';
 import type { FaqItem } from '../components/FaqSection.astro';
 import { projectListSchema } from '../data/schemas';
 
+export const prerender = true;
+
 const faqs: FaqItem[] = [
     {
         question: 'Che tipo di progetti realizza Enrico Morano?',
