@@ -10,7 +10,7 @@ import {
     Bot,
     GraduationCap,
     Info,
-} from 'lucide-vue-next';
+} from '@lucide/vue';
 import type { Project } from '../types';
 
 interface Props {
