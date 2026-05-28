@@ -127,19 +127,19 @@ const {
         <WhatsAppButton />
 
         <script>
-            function initTracking() {
-                document
-                    .querySelectorAll('[data-track="whatsapp"]')
-                    .forEach((el) => {
-                        el.addEventListener('click', () => {
-                            import('../lib/analytics').then(
-                                ({ trackWhatsApp }) => trackWhatsApp(),
-                            );
-                        });
-                    });
+            // Event delegation: 1 listener globale, dedupe-safe contro view transitions.
+            if (!(window as any).__trackingDelegated) {
+                (window as any).__trackingDelegated = true;
+                document.addEventListener('click', (e) => {
+                    const el = (e.target as HTMLElement | null)?.closest(
+                        '[data-track="whatsapp"]',
+                    );
+                    if (!el) return;
+                    import('../lib/analytics').then(({ trackWhatsApp }) =>
+                        trackWhatsApp(),
+                    );
+                });
             }
-
-            document.addEventListener('astro:page-load', initTracking);
         </script>
         <script is:inline>
             document.body.addEventListener('dragstart', (e) => {
