@@ -2,6 +2,68 @@ import type { Project } from '../types';
 
 export const projects: Project[] = [
     {
+        slug: 'chatbot-telegram-ai-ordini-b2b',
+        title: 'Chatbot Telegram con AI - Ordini B2B Ortofrutta',
+        description:
+            "Bot Telegram pilotato da AI conversazionale per la raccolta ordini B2B nel settore ortofrutta: ristoranti, rivenditori e mercati ordinano in chat in linguaggio naturale, il bot estrae la struttura dell'ordine (prodotti, quantita, consegna) e attiva in automatico recap al fornitore, notifica interna al titolare e stampa fisica opzionale. Stack Laravel + telegram-bot-sdk in polling + integrazione Claude API per la conversazione, SQLite per lo stato. Demo live consegnata in poche ore di sessione.",
+        category: 'Automazione',
+        tags: ['Laravel', 'Telegram Bot', 'AI', 'Claude API'],
+        image: '/images/projects/chatbot-telegram-ai-ordini-b2b-opt.jpg',
+        featured: true,
+        date: '2026-06',
+        role: 'Full Stack Developer',
+        note: {
+            text: 'Ordinare diventa una chat. Il bot capisce, struttura e smista: il fornitore riceve il recap pronto, il titolare la notifica, il cliente la conferma.',
+        },
+    },
+    {
+        slug: 'gestionale-noleggio-flotta-mezzi',
+        title: 'Gestionale Noleggio Flotta Mezzi',
+        description:
+            "Gestionale custom per azienda di noleggio attrezzature e mezzi (~100 unita in flotta). Sostituisce i moduli cartacei di noleggio con form mobile-friendly compilabili in meno di 3 minuti: anagrafica cliente on-demand, listino mezzi con sigle e foto, stato pre e post noleggio, firma cliente su tablet o smartphone, lifecycle foto con cancellazione automatica dopo 5 mesi. Memo recap automatico al rientro mezzo via mail e WhatsApp. Stack Laravel + FilamentPHP per continuita con altri gestionali interni.",
+        category: 'Web App',
+        tags: ['Laravel', 'FilamentPHP', 'Mobile-first', 'Firma Digitale'],
+        image: '/images/projects/gestionale-noleggio-flotta-mezzi-opt.jpg',
+        featured: true,
+        date: '2026-06',
+        role: 'Full Stack Developer',
+        note: {
+            text: 'La carta sparisce, il flusso resta. Form compilabile in cantiere, firma sul posto, recap automatico: niente passaggi a mano sul gestionale a fine giornata.',
+        },
+    },
+    {
+        slug: 'rilancio-vetrina-wordpress-pmi',
+        title: 'Rilancio Sito Vetrina WordPress - Energy Setting',
+        description:
+            "Sito vetrina WordPress di Energy Setting (Angioj) fermo in maintenance mode probabilmente da circa due anni, sbloccato e pubblicato in poche sessioni. Recupero accessi (RSS + WP admin), audit tecnico tema The7, riempimento contenuti minimi sintetizzando i canali Facebook e Instagram aziendali, sezione recensioni reali, pagina progetti realizzati estratti dai social. Rimosso maintenance mode e portato live insieme alla configurazione GSC e ping SEO iniziale. Approccio pragmatico: pubblicare con i materiali esistenti e iterare, invece di rincorrere il 'template finito' che teneva il sito offline da troppo.",
+        category: 'Frontend',
+        tags: ['WordPress', 'Contenuti', 'Go-live', 'SEO Tecnica'],
+        image: '/images/projects/rilancio-vetrina-wordpress-pmi-opt.jpg',
+        url: 'https://www.energysetting.it',
+        featured: true,
+        date: '2026-05',
+        role: 'WordPress Developer + Content',
+        note: {
+            text: "Probabilmente due anni fermi in maintenance per 'template non finito': contenuti tirati fuori dai social e dalle recensioni esistenti, sito pubblicato senza altri rinvii. Si itera live, non a porte chiuse.",
+        },
+    },
+    {
+        slug: 'vetrina-ottimizzazione-seo-gmb',
+        title: 'Sito Vetrina + SEO Tecnica + Google Business',
+        description:
+            "Sito vetrina su misura per struttura ricettiva delle Langhe: dominio proprio, hosting curato, design responsive con palette su misura, schema.org LodgingBusiness con aggregateRating reale da recensioni multi-piattaforma, tagline coerente tra hero/meta/footer, integrazione widget Google Business Profile. Stack Astro SSR + Vue 3 + Tailwind 4 + TypeScript strict, build verde a ogni stage. Obiettivo: avere un canale diretto proprio accanto agli intermediari, intercettando prenotazioni via SEO locale e GMB ottimizzato.",
+        category: 'Frontend',
+        tags: ['Astro', 'Vue.js', 'SEO Tecnica', 'Google Business'],
+        image: '/images/projects/vetrina-ottimizzazione-seo-gmb-opt.jpg',
+        url: 'https://www.ninascasadilanga.it',
+        featured: true,
+        date: '2026-05',
+        role: 'Full Stack Developer + SEO',
+        note: {
+            text: 'Vetrina propria + SEO locale + GMB curato = prenotazioni dirette al posto del passaggio dagli intermediari.',
+        },
+    },
+    {
         slug: 'todos-ai',
         title: 'Todos - Supervisione Progetti con AI',
         description:
