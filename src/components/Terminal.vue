@@ -266,7 +266,7 @@ const argPool: Record<string, string[]> = {
 };
 
 const prompt = (text: string) =>
-    `${c('#e74c3c', 'guest')}${c('#8892b0', '@')}${c('#98C1D9', 'enricomorano.it')}${c('#8892b0', ':~$')} ${text}`;
+    `${c('#e74c3c', 'guest')}${c('#8892b0', '@')}${c('#98C1D9', 'enricomorano.it')}${c('#8892b0', ':~$')} ${esc(text)}`;
 
 const scrollDown = async () => {
     await nextTick();
