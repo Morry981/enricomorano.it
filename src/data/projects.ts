@@ -39,7 +39,7 @@ export const projects: Project[] = [
         category: 'Frontend',
         tags: ['WordPress', 'Contenuti', 'Go-live', 'SEO Tecnica'],
         image: '/images/projects/rilancio-vetrina-wordpress-pmi-opt.jpg',
-        url: 'https://www.energysetting.it',
+        url: 'https://energysetting.it/',
         featured: true,
         date: '2026-05',
         role: 'WordPress Developer + Content',
