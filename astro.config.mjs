@@ -6,8 +6,13 @@ import tailwindcss from '@tailwindcss/vite';
 
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
-import indexnow from "astro-indexnow";
+import indexnow from 'astro-indexnow';
 import { markdownGenerator } from './src/integrations/markdown-generator';
+
+// IndexNow pinga i motori a ogni build: lo attiviamo SOLO quando esplicitamente
+// richiesto (deploy/produzione, build con INDEXNOW=on), per non notificare URL
+// durante i build locali.
+const enableIndexNow = process.env.INDEXNOW === 'on';
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,8 +31,7 @@ export default defineConfig({
         vue({
             appEntrypoint: '/src/plugins/vue',
             vueCompilerOptions: {
-                isCustomElement: (tag) =>
-                    ['ClientRouter'].includes(tag),
+                isCustomElement: (tag) => ['ClientRouter'].includes(tag),
             },
         }),
         sitemap({
@@ -56,9 +60,13 @@ export default defineConfig({
                 return item;
             },
         }),
-        indexnow({
-            key: "dcc96a5514364379899ca9f9b46e61ca",
-        }),
+        ...(enableIndexNow
+            ? [
+                  indexnow({
+                      key: 'dcc96a5514364379899ca9f9b46e61ca',
+                  }),
+              ]
+            : []),
         markdownGenerator({
             exclude: ['404', '_astro'],
         }),

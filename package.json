@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "astro dev",
         "build": "GOMAXPROCS=1 UV_THREADPOOL_SIZE=2 astro build",
+        "build:deploy": "INDEXNOW=on pnpm build",
         "preview": "astro preview",
         "astro": "astro",
         "test": "vitest",
