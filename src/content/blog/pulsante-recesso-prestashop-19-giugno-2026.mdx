@@ -1,0 +1,226 @@
+---
+title: "Pulsante di recesso PrestaShop: modulo e codice (art. 54-bis)"
+titleHtml: 'Pulsante di recesso obbligatorio dal <span class="hl">19 giugno</span>: come adeguo <span class="hl">PrestaShop</span>'
+description: "Dal 19 giugno 2026 ogni e-commerce deve avere il pulsante di recesso (art. 54-bis). Cosa serve davvero per essere a norma su PrestaShop: requisiti, codice e l'errore che ti costa 12 mesi di resi."
+pubDate: 2026-06-17
+tags:
+    - prestashop
+    - recesso
+    - normativa
+    - ecommerce
+cluster: assistenza-prestashop
+pillar: /assistenza-prestashop
+cover: /blog/modulo-return-button-form.webp
+draft: false
+---
+
+import Callout from '../../components/Callout.astro';
+import PullQuote from '../../components/PullQuote.astro';
+import Faq from '../../components/Faq.astro';
+
+Dal **19 giugno 2026** ogni e-commerce che vende in Italia deve mettere a disposizione un **pulsante di recesso** online. Non è un consiglio di usabilità: è un obbligo di legge (art. 54-bis del Codice del Consumo). E la sanzione vera non è una multa astratta - è molto più concreta: senza una funzione di recesso a norma, **il diritto di recesso del cliente passa da 14 giorni a 12 mesi e 14 giorni**. Tradotto per chi vende: i tuoi clienti possono restituire per un anno.
+
+In questo articolo ti mostro cosa serve davvero per essere conforme su **PrestaShop** - i requisiti tecnici tradotti in specifiche, il codice, e l'errore che fa quasi tutti. Niente legalese inutile: quello lo trovi meglio dagli avvocati. Qui si parla di come si mette in piedi.
+
+<Callout type="key">
+La gestione resi nativa di PrestaShop **non basta** per essere a norma. Il reso è logistica; il recesso è un atto unilaterale del cliente, con etichette di legge, doppia conferma e ricevuta datata su supporto durevole. Sono due cose diverse, e la seconda va aggiunta.
+</Callout>
+
+## La norma in tre minuti
+
+Il nuovo **[art. 54-bis del Codice del Consumo](https://www.brocardi.it/codice-del-consumo/parte-iii/titolo-iii/capo-i/sezione-ii/art54bis.html)** è stato introdotto dal **[D.Lgs. 209/2025](https://www.gazzettaufficiale.it/eli/id/2026/01/08/26G00002/sg)** (in Gazzetta Ufficiale l'8 gennaio 2026), che recepisce la **[Direttiva (UE) 2023/2673](https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32023L2673)**. La regola operativa scatta il **19 giugno 2026** e si applica ai contratti conclusi online da quella data.
+
+A chi si applica: nella lettura ormai prevalente, a **tutti** i professionisti che vendono a consumatori tramite un'interfaccia online. Nessuna soglia di fatturato, nessuna esenzione per le piccole imprese. Se hai un e-commerce B2C, ci sei dentro - merci fisiche, servizi e prodotti digitali.
+
+Cosa **non** basta per essere a norma:
+
+- un link "Resi e rimborsi" generico nel footer;
+- la pagina delle condizioni di vendita con l'indirizzo PEC;
+- il modulo di reso nativo che gestisce solo la logistica della merce.
+
+<Callout type="warn" title="L'argomento che conta davvero">
+Le sanzioni dirette sono incerte e variano (la violazione viene trattata come pratica commerciale scorretta, di competenza AGCM). Ma c'è una conseguenza certa e automatica: **se manca l'informativa/funzione conforme, il termine di recesso si estende a 12 mesi più 14 giorni** (art. 53 Cod. Consumo). È questo che dovrebbe farti muovere prima del 19 giugno.
+</Callout>
+
+## I requisiti del pulsante, tradotti in specifiche
+
+L'art. 54-bis non dice "metti un bottone". Detta requisiti precisi. Eccoli come li traduco in specifiche tecniche quando metto mano a uno shop:
+
+1. **Funzione dedicata e distinta.** Una funzione di recesso, separata dal customer care e dai resi logistici. È un atto, non una richiesta di assistenza.
+2. **Etichetta inequivocabile.** Il pulsante deve riportare la dicitura **"recedere dal contratto qui"** (o equivalente altrettanto chiaro). Niente "Annulla" o "Richiedi assistenza".
+3. **Doppio passaggio.** Una dichiarazione, poi una **funzione di conferma** separata etichettata **"conferma recesso"**. Né un click solo, né tre conferme dissuasive.
+4. **Accessibile anche agli ospiti.** Chi ha comprato senza registrarsi deve poter recedere - tipicamente da un link nell'email d'ordine, senza login. È il requisito che salta quasi a tutti.
+5. **Ricevuta su supporto durevole.** Dopo la conferma, al cliente arriva senza ritardo un avviso di ricevimento (email o PDF) con il **contenuto della dichiarazione e la data e l'ora** di trasmissione.
+6. **Sempre visibile e raggiungibile** per tutta la finestra di recesso, in "I miei ordini" - non sepolto in un menu di terzo livello.
+
+Il **motivo** del recesso è facoltativo: renderlo obbligatorio è una barriera non conforme.
+
+## ⚠️ Recesso non è reso: perché il modulo nativo non basta
+
+Qui sta l'equivoco che vedo più spesso. PrestaShop ha il modulo "Resi merce" (Merchandise Returns): gestisce l'autorizzazione al reso, la logistica, il rientro della merce. Ma il recesso è un'altra cosa giuridica - è la dichiarazione unilaterale del consumatore di sciogliere il contratto, e la legge pretende etichette, doppio step e ricevuta datata che il reso nativo non implementa.
+
+| | Reso nativo PrestaShop | Recesso art. 54-bis |
+|---|---|---|
+| Natura | Logistica della merce | Atto unilaterale del consumatore |
+| Chi lo avvia | Spesso solo cliente registrato | Anche ospite, senza login |
+| Etichetta | "Resi merce" | "recedere dal contratto qui" + "conferma recesso" |
+| Conferma | Singola richiesta | Doppio step |
+| Prova | Stato ordine | Ricevuta su supporto durevole con data e ora |
+
+Morale: il reso nativo resta utile per la logistica, ma **accanto** serve la funzione di recesso conforme.
+
+![Area cliente PrestaShop, prima e dopo: senza e con il pulsante "Recedere dal contratto qui" conforme all'art. 54-bis](/blog/recesso-prima-dopo.svg)
+*Area cliente PrestaShop a confronto: senza la funzione di recesso e con il pulsante a norma.*
+
+## ✅ Il modulo di recesso per PrestaShop: pronto o su misura
+
+Sarò onesto, perché è la cosa che mi distingue da chi ti vuole solo vendere un modulo: **esiste già un modulo gratuito** che fa l'80% del lavoro ([Return Button / EU Withdrawal di MyPresta](https://mypresta.eu/modules/front-office-features/return-button-free-eu-withdrawal.html)). L'ho scaricato e ne ho letto il codice prima di consigliarlo: è scritto bene, con CSRF, sessioni ospite firmate, rate-limit reale, log immodificabile con timestamp server. Non ho rilevato falle critiche e copre i requisiti tecnici principali.
+
+<PullQuote>
+Un modulo gratis ben fatto esiste.<br /><em>Quello che ti rende davvero a norma è la configurazione, non l'installazione.</em>
+</PullQuote>
+
+Il punto è che **"installa e sei a posto" è falso**. Scaricarlo lo può fare chiunque - il valore non è quello. È renderlo davvero a norma: portare i testi in italiano con la dicitura esatta di legge ("recedere dal contratto qui" / "conferma recesso"), impostare lo stato "consegnato" da cui parte il conteggio dei 14 giorni, disattivare la telemetria, verificare che la ricevuta arrivi con data e ora, controllare che regga sul tema e con gli ordini ospite. Quando seguo un cliente è questo che faccio: non "installo un modulo", lo rendo conforme - o, se serve, lo costruisco su misura.
+
+## 🛠️ Cosa c'è sotto: il codice del pulsante su misura
+
+Quando serve controllo totale - integrazione con flussi propri, o semplicemente sapere cosa gira sul proprio shop - costruisco un modulo dedicato. Ti mostro la struttura, così capisci cosa rende un pulsante "a norma" e non un tasto che manda un'email.
+
+<Callout type="warn" title="Nota tecnica">
+Gli estratti qui sotto sono semplificati a scopo illustrativo (testati su PrestaShop 8.x): mostrano la **struttura** di un pulsante a norma, non sono un modulo pronto da incollare in produzione. Prima di toccare uno shop live fai sempre un backup. Se preferisci non metterci le mani, [me ne occupo io](/assistenza-prestashop).
+</Callout>
+
+Il cuore è un **controller front pubblico** (accessibile anche agli ospiti) e due punti d'ingresso via hook nell'area cliente:
+
+```php
+// modules/withdrawalbutton/withdrawalbutton.php
+public function install()
+{
+    return parent::install()
+        && $this->registerHook('displayCustomerAccount')   // link "I miei recessi"
+        && $this->registerHook('displayOrderDetail')        // pulsante sull'ordine
+        && $this->installDb();                              // tabella append-only
+}
+
+public function hookDisplayOrderDetail(array $params)
+{
+    $order = $params['order'];
+    if (!$this->isWithinWithdrawalWindow($order)) {
+        return ''; // mostra il pulsante solo entro i 14 giorni dalla consegna
+    }
+    $this->context->smarty->assign('withdraw_url', $this->context->link->getModuleLink(
+        'withdrawalbutton', 'withdraw',
+        ['id_order' => $order->id, 'token' => $this->makeToken($order)]
+    ));
+    return $this->display(__FILE__, 'order-detail-button.tpl');
+}
+```
+
+La dichiarazione si registra in una tabella **append-only**, con data e ora **lato server** (non lato client, che è falsificabile) e un hash del contenuto, per avere data certa in caso di contestazione:
+
+```sql
+CREATE TABLE `PREFIX_withdrawal_request` (
+  `id_withdrawal`    INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_order`         INT UNSIGNED NOT NULL,
+  `id_customer`      INT UNSIGNED NULL,            -- NULL = ospite
+  `order_reference`  VARCHAR(9)  NOT NULL,
+  `customer_name`    VARCHAR(255) NOT NULL,
+  `contact_email`    VARCHAR(255) NOT NULL,
+  `reason`           TEXT NULL,                    -- opzionale, mai obbligatorio
+  `declaration_hash` CHAR(64) NOT NULL,            -- SHA-256 del contenuto
+  `date_add`         DATETIME NOT NULL,            -- data/ora server (prova)
+  PRIMARY KEY (`id_withdrawal`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+Il controller pubblico gestisce i **due step** e l'accesso ospite (riferimento ordine + email, con rate-limit per evitare di indovinare i numeri d'ordine). Solo dopo la conferma scrive a DB e invia la ricevuta:
+
+```php
+// controllers/front/withdraw.php
+class WithdrawalButtonWithdrawModuleFrontController extends ModuleFrontController
+{
+    public $auth = false; // PUBBLICO: l'ospite deve poter recedere senza login
+
+    public function postProcess()
+    {
+        if (!Tools::isSubmit('confirm_withdrawal')) {
+            return; // STEP 1: mostra il form precompilato
+        }
+        if (!$this->isTokenValid()) {       // CSRF
+            $this->errors[] = $this->module->l('Sessione non valida.');
+            return;
+        }
+        $order = $this->resolveOrder();     // da id_order+token OPPURE reference+email (ospite)
+        if (!$order) {
+            $this->errors[] = $this->module->l('Ordine non trovato.');
+            return;
+        }
+
+        $now  = date('Y-m-d H:i:s');
+        $text = $this->buildDeclarationText($order);
+
+        $req = new WithdrawalRequest();
+        $req->id_order         = (int) $order->id;
+        $req->order_reference  = pSQL($order->reference);
+        $req->customer_name    = pSQL(Tools::getValue('name'));
+        $req->contact_email    = pSQL(Tools::getValue('email'));
+        $req->reason           = pSQL(Tools::getValue('reason')); // opzionale
+        $req->declaration_hash = hash('sha256', $text . '|' . $now);
+        $req->date_add         = $now;
+        $req->add();
+
+        $this->sendDurableReceipt($req, $text, $now); // email = supporto durevole
+    }
+}
+```
+
+La **ricevuta su supporto durevole** è il pezzo che quasi nessuno cura: una email (o un PDF allegato) con il testo della dichiarazione e la data/ora di trasmissione. È quello che separa un pulsante a norma da un form che manda una notifica e basta.
+
+![Ricevuta di recesso su supporto durevole: dichiarazione, data e ora certa e hash del contenuto](/blog/recesso-ricevuta.svg)
+*La ricevuta su supporto durevole: testo della dichiarazione, data e ora certe, hash del contenuto.*
+
+## ⚠️ Hai corsi o prodotti digitali?
+
+Un punto che sfugge: la norma **non** salva il digitale. Corsi, abbonamenti, contenuti scaricabili sono dentro in pieno. Se vendi un prodotto digitale, per evitare che il cliente scarichi/fruisca tutto e poi chieda il rimborso devi inserire al checkout un **checkbox esplicito** con cui rinuncia al diritto di recesso una volta iniziata la fruizione (l'eccezione dell'art. 59 sul contenuto digitale fornito con consenso espresso). Senza quel consenso raccolto correttamente, il recesso resta pieno - e con un corso significa che possono guardarselo tutto e chiedere indietro i soldi.
+
+## ✅ Checklist tecnica prima del 19 giugno
+
+- [ ] Pulsante con etichetta **"recedere dal contratto qui"** in "I miei ordini", visibile per tutta la finestra.
+- [ ] Flusso a **due step** con conferma separata ("conferma recesso").
+- [ ] Accesso **ospite** (riferimento ordine + email), senza login.
+- [ ] **Ricevuta** su supporto durevole con contenuto + data e ora.
+- [ ] **Log** server-side immodificabile (data certa).
+- [ ] Conteggio dei 14 giorni dallo stato **"consegnato"**, non dalla data ordine.
+- [ ] Per i **digitali**: checkbox di rinuncia al recesso al checkout.
+- [ ] Testi in **italiano** con la dicitura di legge (se usi un modulo che nasce in inglese).
+
+<Faq
+    items={[
+        {
+            question: 'Il modulo "Resi merce" nativo di PrestaShop mi mette già a norma?',
+            answer: "No. Gestisce la logistica del reso, non l'atto di recesso con etichette di legge, doppia conferma e ricevuta datata su supporto durevole. La funzione di recesso va aggiunta accanto.",
+        },
+        {
+            question: 'Il pulsante deve funzionare anche per chi ha comprato come ospite?',
+            answer: "Sì. Il recesso deve poter partire senza login, tipicamente da un link nell'email d'ordine che porta a una pagina pubblica con verifica tramite riferimento ordine ed email. Bloccarlo dietro autenticazione non è conforme.",
+        },
+        {
+            question: 'Serve per forza un modulo a pagamento o posso usare quello gratuito?',
+            answer: "Il modulo gratuito Return Button copre bene la parte tecnica - l'ho verificato a livello di codice. Ma va configurato e tradotto con la dicitura di legge: non è conforme \"appena installato\". Per shop con flussi particolari valuto uno sviluppo su misura.",
+        },
+        {
+            question: 'Come provo la data del recesso in caso di contestazione?',
+            answer: "Con un log server-side immodificabile: data e ora generate dal server (non dal browser), record append-only e hash del contenuto della dichiarazione, più la ricevuta inviata su supporto durevole. È questo che dà valore probatorio.",
+        },
+        {
+            question: 'Vale anche per corsi e prodotti digitali?',
+            answer: "Sì, in pieno. Per i contenuti digitali serve un checkbox esplicito al checkout con cui il cliente rinuncia al recesso una volta iniziata la fruizione; senza quel consenso il diritto resta intero.",
+        },
+    ]}
+/>
+
+## Ti adeguo io prima della scadenza
+
+Mancano pochi giorni al 19 giugno. Se gestisci un e-commerce PrestaShop e non sei sicuro di essere a norma, faccio una verifica del tuo shop e ti dico esattamente cosa manca. E se vuoi delegare la parte tecnica, mi occupo dell'**adeguamento completo** - pulsante conforme, ricevuta su supporto durevole, gestione ospiti e digitali, testi a norma - con documentazione di cosa è stato fatto. È parte del mio servizio di [assistenza PrestaShop](/assistenza-prestashop): [scrivimi dai contatti](/contatti) e ti rispondo in giornata.
+
+*Fonti: testo dell'[art. 54-bis del Codice del Consumo](https://www.brocardi.it/codice-del-consumo/parte-iii/titolo-iii/capo-i/sezione-ii/art54bis.html), [D.Lgs. 209/2025 in Gazzetta Ufficiale](https://www.gazzettaufficiale.it/eli/id/2026/01/08/26G00002/sg), [Direttiva (UE) 2023/2673](https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32023L2673), [ECC-Net Italia](https://ecc-netitalia.it/it/news/pulsante-di-recesso/). Immagine di copertina: form del modulo Return Button (fonte: mypresta.eu). Questo articolo è una guida tecnica e non sostituisce una consulenza legale: per i testi definitivi e i casi limite verifica con un legale.*

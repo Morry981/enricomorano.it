@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="PrestaShop lento: recupera i Core Web Vitals">
+    <rect width="800" height="480" fill="#0f1620"/>
+    <circle cx="40" cy="40" r="9" fill="#e74c3c"/>
+    <circle cx="72" cy="40" r="9" fill="#f39c12"/>
+    <circle cx="104" cy="40" r="9" fill="#2ecc71"/>
+    <line x1="24" y1="74" x2="776" y2="74" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/>
+    <text x="40" y="156" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" fill="#fd8e74">~/blog $ cat prestashop-performance.md</text>
+    <text x="40" y="240" font-family="Inter, system-ui, sans-serif" font-size="44" font-weight="800" fill="#E0FBFC">PrestaShop lento?</text>
+    <text x="40" y="298" font-family="Inter, system-ui, sans-serif" font-size="44" font-weight="800" fill="#E0FBFC">Recupera i Core Web Vitals</text>
+    <text x="40" y="384" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" fill="#98C1D9"># prestashop &#183; performance</text>
+    <rect x="430" y="364" width="15" height="28" fill="#fd8e74" opacity="0.9"/>
+</svg>

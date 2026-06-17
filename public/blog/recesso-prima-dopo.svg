@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 420" role="img" aria-label="Area cliente PrestaShop: prima senza pulsante di recesso, dopo con il pulsante conforme">
+    <rect width="860" height="420" fill="#0f1620"/>
+    <!-- PRIMA -->
+    <text x="40" y="44" font-family="ui-monospace, Menlo, monospace" font-size="20" fill="#e74c3c">PRIMA</text>
+    <rect x="40" y="60" width="360" height="320" rx="14" fill="#11202e" stroke="#ffffff" stroke-opacity="0.10"/>
+    <text x="64" y="100" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700" fill="#E0FBFC">I miei ordini</text>
+    <line x1="64" y1="116" x2="376" y2="116" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="64" y="150" font-family="Inter, sans-serif" font-size="15" fill="#98C1D9">Ordine #ABC123 - 03/06/2026</text>
+    <rect x="64" y="170" width="150" height="34" rx="8" fill="#1c2c3a"/>
+    <text x="139" y="192" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#98C1D9">Resi merce</text>
+    <text x="64" y="250" font-family="Inter, sans-serif" font-size="13" fill="#6b8299">Nessuna funzione di recesso.</text>
+    <text x="64" y="272" font-family="Inter, sans-serif" font-size="13" fill="#6b8299">Recesso solo via email/PEC.</text>
+    <text x="64" y="340" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#e74c3c">recesso esteso a 12 mesi + 14gg</text>
+    <!-- DOPO -->
+    <text x="460" y="44" font-family="ui-monospace, Menlo, monospace" font-size="20" fill="#2ecc71">DOPO</text>
+    <rect x="460" y="60" width="360" height="320" rx="14" fill="#11202e" stroke="#fd8e74" stroke-opacity="0.5"/>
+    <text x="484" y="100" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#E0FBFC">I miei ordini</text>
+    <line x1="484" y1="116" x2="796" y2="116" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="484" y="150" font-family="Inter, sans-serif" font-size="15" fill="#98C1D9">Ordine #ABC123 - 03/06/2026</text>
+    <rect x="484" y="170" width="150" height="34" rx="8" fill="#1c2c3a"/>
+    <text x="559" y="192" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#98C1D9">Resi merce</text>
+    <rect x="484" y="216" width="290" height="44" rx="10" fill="#fd8e74"/>
+    <text x="629" y="243" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1a2230">Recedere dal contratto qui</text>
+    <text x="484" y="300" font-family="Inter, sans-serif" font-size="13" fill="#98C1D9">Doppio step + ricevuta su supporto durevole</text>
+    <text x="484" y="340" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#2ecc71">a norma art. 54-bis</text>
+</svg>

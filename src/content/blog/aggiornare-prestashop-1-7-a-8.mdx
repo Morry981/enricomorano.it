@@ -1,0 +1,84 @@
+---
+title: "Aggiornare PrestaShop dalla 1.7 alla 8 senza perdere dati"
+titleHtml: 'Aggiornare PrestaShop alla <span class="hl">versione 8</span> senza perdere dati'
+description: "Aggiornare PrestaShop non è cliccare un pulsante e sperare. Lo staging, la compatibilità di temi e moduli, il test del checkout: come affronto una migrazione alla 8 senza sorprese."
+pubDate: 2026-06-04
+tags:
+    - prestashop
+    - migrazione
+    - aggiornamenti
+cluster: assistenza-prestashop
+pillar: /assistenza-prestashop
+cover: /blog/cover-prestashop-8-migrazione.svg
+draft: false
+---
+
+{/* SCAFFOLD: bozza di riempimento per vedere il layout del blog. Rivedere prima di pubblicare. */}
+
+import Callout from '../../components/Callout.astro';
+import Faq from '../../components/Faq.astro';
+
+Restare su PrestaShop 1.6 o 1.7 oggi significa accumulare debito: niente patch di sicurezza, moduli che smettono di essere mantenuti, PHP moderno non supportato. Aggiornare alla 8 è la strada giusta - ma è anche il momento in cui più spesso vedo shop che si rompono, perché l'aggiornamento è stato fatto "alla cieca" in produzione.
+
+<Callout type="key">
+L'aggiornamento non si fa mai sul sito live. Si lavora su una copia di staging, si verificano temi e moduli, si migra, si testa il checkout - e solo quando lo shop regge si va in produzione.
+</Callout>
+
+## Perché non si aggiorna alla cieca
+
+Tra la 1.6/1.7 e la 8 cambiano core, requisiti PHP e parecchie API interne. Un tema datato o un modulo non aggiornato possono mandare in errore il backoffice o, peggio, il checkout - senza che te ne accorga finché non è un cliente a segnalarlo.
+
+## Lo staging come rete di sicurezza
+
+Replico lo shop in un ambiente isolato, identico al live ma invisibile ai clienti. Lì eseguo l'aggiornamento, raccolgo gli errori e li risolvo con calma. Se qualcosa va storto, il negozio reale continua a vendere.
+
+## Moduli e temi: il punto critico
+
+- **Moduli core e ufficiali**: di solito hanno una versione compatibile con la 8.
+- **Moduli custom o datati**: vanno verificati uno per uno, a volte adattati.
+- **Tema**: se è molto personalizzato, è la parte che richiede più lavoro.
+
+L'obiettivo è arrivare in produzione sapendo già cosa funziona, non scoprirlo dopo.
+
+## Checklist prima di andare live
+
+```text
+[ ] backup completo (file + database) verificato
+[ ] staging aggiornato e testato
+[ ] checkout completo, dal carrello al pagamento
+[ ] email transazionali e fatture
+[ ] redirect e URL SEO invariati
+```
+
+## Cosa controllo prima di toccare qualcosa
+
+L'aggiornamento vero inizia con un censimento. Prima di partire verifico:
+
+- **Versione PHP** richiesta dalla 8 e compatibilità dell'hosting.
+- **Moduli**: quali hanno una versione per la 8, quali sono custom da adattare, quali abbandonati da sostituire.
+- **Tema**: quanto è personalizzato (è la parte che costa di più in una migrazione).
+- **Override del core**, che vanno rifatti in modo pulito invece di trascinarli.
+- **Volume dati**: catalogo, ordini, clienti da migrare senza perdite.
+
+Da qui esce il piano: cosa si aggiorna, cosa si rifà, quanto tempo serve. Niente sorprese a metà strada.
+
+## Dopo il go-live non sparisco
+
+Andare live non è la fine. Nei giorni successivi tengo d'occhio log di errore, checkout completati, email transazionali e posizionamento: è lì che emergono i problemi che lo staging non aveva fatto vedere. Un report finale racconta cosa è stato fatto e cosa monitorare.
+
+## Devi aggiornare e hai paura di rompere tutto?
+
+Gestisco la migrazione alla 8 su staging, con backup e test del checkout prima di andare live. Fa parte del mio servizio di [assistenza PrestaShop](/assistenza-prestashop). [Scrivimi dai contatti](/contatti) e vediamo da che versione parti.
+
+<Faq
+    items={[
+        {
+            question: 'Quanto dura un aggiornamento alla versione 8?',
+            answer: "Dipende da quanti moduli custom e quanta personalizzazione del tema ci sono. Uno shop standard è questione di giorni; uno molto personalizzato richiede più verifiche.",
+        },
+        {
+            question: 'Rischio di perdere prodotti, ordini o clienti?',
+            answer: "No, se si lavora con backup e staging. I dati restano: l'aggiornamento tocca il codice, non li cancella. Il rischio vero è il downtime, ed è proprio quello che lo staging evita.",
+        },
+    ]}
+/>

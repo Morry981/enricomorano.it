@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" role="img" aria-label="Ricevuta di recesso su supporto durevole: email con dichiarazione, data e ora, hash">
+    <rect width="860" height="360" fill="#0f1620"/>
+    <rect x="40" y="36" width="780" height="288" rx="14" fill="#11202e" stroke="#ffffff" stroke-opacity="0.10"/>
+    <rect x="40" y="36" width="780" height="50" rx="14" fill="#1c2c3a"/>
+    <circle cx="66" cy="61" r="6" fill="#fd8e74"/>
+    <text x="84" y="66" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#E0FBFC">Conferma di ricezione del recesso</text>
+    <text x="64" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#98C1D9">A:        cliente@example.it</text>
+    <text x="64" y="148" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#98C1D9">Ordine:   ABC123</text>
+    <text x="64" y="176" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#fd8e74">Data e ora: 17/06/2026 23:45:12  &#8592; data certa</text>
+    <text x="64" y="214" font-family="Inter, sans-serif" font-size="14" fill="#E0FBFC">"Dichiaro di recedere dal contratto relativo all'ordine ABC123."</text>
+    <line x1="64" y1="240" x2="796" y2="240" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="64" y="270" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#6b8299">hash SHA-256: 9f2a...e7b1  (log append-only server-side)</text>
+    <text x="64" y="300" font-family="Inter, sans-serif" font-size="13" fill="#2ecc71">Supporto durevole: email + PDF allegato</text>
+</svg>

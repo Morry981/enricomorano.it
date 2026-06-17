@@ -1,0 +1,68 @@
+---
+title: "Automatizzare i processi ripetitivi di una PMI"
+titleHtml: 'Automatizzare i processi <span class="hl">ripetitivi</span> di una PMI'
+description: "Copia-incolla tra gestionale ed e-commerce, file rinominati a mano, report compilati ogni lunedì. Quando conviene automatizzare un processo e come imposto un'automazione che dura."
+pubDate: 2026-05-28
+tags:
+    - automazione
+    - pmi
+    - integrazioni
+cluster: automazione
+cover: /blog/cover-automazione-pmi.svg
+draft: false
+---
+
+{/* SCAFFOLD: bozza di riempimento per vedere il layout del blog. Rivedere prima di pubblicare. */}
+
+import Callout from '../../components/Callout.astro';
+import Faq from '../../components/Faq.astro';
+
+In quasi ogni PMI c'è qualcuno che ogni settimana fa lo stesso lavoro a mano: esporta un file, lo sistema, lo reimporta da un'altra parte. Funziona, finché quella persona c'è e non sbaglia. L'automazione non serve a "sembrare moderni": serve a togliere errori e tempo da operazioni che si ripetono uguali.
+
+<Callout type="key">
+Si automatizza ciò che è **ripetitivo, regolare e a regole chiare**. Tutto ciò che richiede giudizio caso per caso resta in mano alle persone: l'obiettivo è liberarle dal lavoro meccanico, non sostituirle.
+</Callout>
+
+## Quando conviene automatizzare
+
+La regola pratica: se un'operazione si ripete uguale, prende tempo e un errore costa, è candidata all'automazione. Se invece cambia ogni volta e richiede decisioni, automatizzarla costa più di quanto rende.
+
+## Esempi concreti
+
+- **Sincronizzare gestionale ed e-commerce**: stock e prezzi allineati senza copia-incolla.
+- **Import/export massivi**: cataloghi, ordini, anagrafiche tra sistemi che non si parlano.
+- **Report ricorrenti**: generati e inviati da soli, sempre nello stesso formato.
+- **Rinomina e archiviazione file**: migliaia di immagini o documenti sistemati in un colpo.
+
+## Come imposto un'automazione
+
+Parto dal processo, non dallo strumento. Prima capisco i passaggi reali e i casi limite, poi scelgo la via più semplice che regge: a volte uno script da poche righe, a volte un'integrazione tra sistemi via API. La cosa importante è che sia **osservabile**: se qualcosa va storto, lo deve dire, non fallire in silenzio.
+
+## Cosa non automatizzare
+
+Le eccezioni rare, le decisioni che richiedono contesto, i processi che cambiano di continuo. Automatizzare un processo confuso non lo migliora: ne moltiplica solo gli errori, più in fretta.
+
+## Si parte dal processo, non dal software
+
+Prima di scrivere una riga di codice guardo come lavori davvero: quali passaggi fai, dove perdi tempo, dove nascono gli errori, quali sono i casi-limite. Un'automazione costruita su un processo capito male moltiplica gli errori invece di toglierli. Per questo la prima fase è osservare e mappare, non installare uno strumento.
+
+## Quanto si risparmia, con i numeri
+
+Un'automazione si giustifica se il tempo che fa risparmiare ripaga il lavoro per costruirla. Esempio concreto: due ore a settimana di copia-incolla tra gestionale ed e-commerce sono circa cento ore l'anno, più gli errori che ogni tanto costano un ordine sbagliato o un cliente perso. Una volta automatizzato, quel tempo torna alle persone per fare cose che contano. È così che valuto se ne vale la pena: non "è moderno", ma "quanto rende".
+
+## Hai un'operazione che ripeti ogni settimana?
+
+Se c'è un lavoro manuale che ti porta via tempo, lo guardo e ti dico se e come ha senso automatizzarlo. [Scrivimi dai contatti](/contatti) e raccontami il processo.
+
+<Faq
+    items={[
+        {
+            question: 'Automatizzare richiede di cambiare i programmi che già uso?',
+            answer: "Quasi mai. Di solito si fanno parlare i sistemi esistenti tra loro: il gestionale resta quello, l'e-commerce pure. Si aggiunge il ponte che oggi fai a mano.",
+        },
+        {
+            question: "Quanto costa un'automazione?",
+            answer: "Dipende dalla complessità del processo e dal numero di sistemi coinvolti. Spesso si rientra in fretta: il tempo risparmiato ogni settimana ripaga il lavoro iniziale.",
+        },
+    ]}
+/>

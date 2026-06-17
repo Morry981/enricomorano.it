@@ -1,0 +1,85 @@
+---
+title: "PrestaShop lento? Come recuperare i Core Web Vitals"
+titleHtml: 'PrestaShop lento? Come recuperare i <span class="hl">Core Web Vitals</span>'
+description: "TTFB alto, LCP fuori soglia, checkout che arranca. Le cause più comuni di un PrestaShop lento e l'ordine con cui intervengo per recuperare velocità reale, non solo punteggi."
+pubDate: 2026-06-10
+tags:
+    - prestashop
+    - performance
+    - core-web-vitals
+cluster: assistenza-prestashop
+pillar: /assistenza-prestashop
+cover: /blog/cover-prestashop-performance.svg
+draft: false
+---
+
+{/* SCAFFOLD: bozza di riempimento per vedere il layout del blog. Rivedere prima di pubblicare. */}
+
+import Callout from '../../components/Callout.astro';
+import Faq from '../../components/Faq.astro';
+
+Uno shop lento non perde "qualche secondo": perde ordini. Su PrestaShop la lentezza raramente ha una causa sola, ed è per questo che gli interventi a caso (installa un modulo cache e prega) di solito spostano poco. Conviene partire da cosa misura davvero Google e risalire alla causa.
+
+<Callout type="key">
+I Core Web Vitals premiano la velocità **percepita**, non il punteggio sintetico. Prima si sistema il TTFB del server, poi LCP e CLS lato tema: in quest'ordine, perché un tema ottimizzato su un backend lento resta lento.
+</Callout>
+
+## Cosa misura davvero Google
+
+I tre indicatori che contano sono LCP (quando compare il contenuto principale), INP (quanto risponde all'interazione) e CLS (quanto "salta" il layout). Sono dati di campo, raccolti dai browser reali: per questo un 100 su Lighthouse in locale non garantisce nulla se gli utenti navigano da mobile su rete media.
+
+## Le cause più comuni su PrestaShop
+
+- **TTFB alto**: hosting condiviso, assenza di cache full-page, query non indicizzate.
+- **LCP lento**: immagini prodotto non in formato moderno (WebP/AVIF) o senza dimensioni dichiarate.
+- **CLS**: banner, font che caricano tardi, slider che spingono il contenuto.
+- **Moduli di troppo**: ogni modulo aggiunge CSS e JS, spesso caricati ovunque anche dove non servono.
+
+## Cosa intervengo per primo
+
+L'ordine conta. Parto sempre dal server e dalla cache, perché è lì che si guadagnano i millisecondi che l'utente sente davvero:
+
+```text
+1. TTFB   -> cache full-page (LiteSpeed/Varnish) + OPcache + query lente
+2. LCP    -> immagini WebP responsive, preload del hero, CDN
+3. CLS/INP-> font-display, dimensioni esplicite, JS dei moduli solo dove serve
+```
+
+Solo dopo ha senso lavorare di fino sul tema. Misuro prima e dopo ogni intervento, così so cosa ha pagato e cosa no.
+
+## Quando non basta la cache
+
+Se lo shop resta lento con la cache attiva, di solito il collo di bottiglia è nel database (query non ottimizzate, tabelle gonfie) o in un modulo che gira a ogni richiesta. Lì serve profilare, non aggiungere altri layer.
+
+## Gli sprechi che trovo più spesso
+
+Prima di ottimizzare, di solito c'è da togliere. Le zavorre ricorrenti su uno shop lento:
+
+- **Moduli morti**: installati, mai disinstallati, caricano CSS e JS su ogni pagina.
+- **Immagini originali a piena risoluzione**: 2 MB per una foto che ne mostra 400 px.
+- **Cache mal configurata o assente**: ogni richiesta ricostruisce la pagina da zero.
+- **Slider e widget di terze parti** che bloccano il rendering above-the-fold.
+- **Query non indicizzate** che esplodono quando il catalogo cresce.
+
+Quasi sempre il 20% degli interventi porta l'80% del risultato: si parte da lì.
+
+## Misurare prima e dopo, sul campo
+
+Non mi fido del punteggio singolo di Lighthouse in locale. Guardo i **dati di campo** (Search Console, CrUX): utenti reali, su mobile, su rete media. Fisso una baseline, intervengo su una cosa alla volta e ri-misuro. Così so cosa ha pagato - e tu vedi il prima/dopo in numeri, non in promesse.
+
+## Hai uno shop che arranca?
+
+Se il tuo PrestaShop è lento e non sai da dove partire, lo analizzo e ti dico cosa pesa davvero - anche senza accessi SSH. Fa parte del mio servizio di [assistenza PrestaShop](/assistenza-prestashop). Hai un caso simile? [Scrivimi dai contatti](/contatti).
+
+<Faq
+    items={[
+        {
+            question: 'Migliorare i Core Web Vitals serve davvero al posizionamento?',
+            answer: "Sono un fattore di ranking, ma soprattutto incidono sul tasso di conversione: un sito veloce vende di più. Il guadagno SEO è la conseguenza, non l'unico motivo.",
+        },
+        {
+            question: 'Posso ottimizzare PrestaShop senza cambiare hosting?',
+            answer: "Spesso sì: cache, immagini e moduli danno il grosso del risultato. Se però il server è sottodimensionato, a un certo punto l'hosting diventa il limite reale.",
+        },
+    ]}
+/>

@@ -1,0 +1,123 @@
+---
+title: "ps_checkout sparisce dal checkout: colpa di LiteSpeed Cache"
+titleHtml: 'ps_checkout <span class="hl">sparisce dal checkout</span>: colpa di <span class="hl">LiteSpeed Cache</span>'
+description: "Il metodo di pagamento spariva dal checkout PrestaShop senza un errore a video. Ecco come l'ho diagnosticato e le due strade per risolverlo: una da pannello, una da codice."
+pubDate: 2026-06-16
+tags:
+    - prestashop
+    - litespeed
+    - debug
+cluster: assistenza-prestashop
+pillar: /assistenza-prestashop
+cover: /blog/ps-checkout-litespeed-cover.webp
+draft: false
+---
+
+import Callout from '../../components/Callout.astro';
+import PullQuote from '../../components/PullQuote.astro';
+import Diagram from '../../components/Diagram.astro';
+import Faq from '../../components/Faq.astro';
+
+Era un mercoledì mattina quando è arrivato il messaggio: *"il checkout non mostra più i metodi di pagamento"*. Lo shop attivo, gli ordini fermi, il cliente nel panico. Apro il backoffice: **ps_checkout** risulta installato, attivo, configurato a dovere. Eppure nel frontend, niente. E ps_checkout non è un modulo qualsiasi: è uno dei più importanti e recenti per chi vende online con PrestaShop. Se sparisce lui, sparisce il modo di pagare - e con lui il fatturato.
+
+<Callout type="key">
+LiteSpeed Cache sovrascrive `Hook.php` e concatena come stringa un hook che invece restituisce un array. La soluzione veloce, per tutti: escludere ps_checkout dall'ottimizzazione, dal pannello. La soluzione definitiva, da sviluppatore: una guardia di tipo nel codice.
+</Callout>
+
+*Ambiente del caso: PrestaShop 8, modulo ps_checkout 8.5, LiteSpeed Cache 1.4.*
+
+## Il sintomo: checkout senza metodi di pagamento
+
+Il cliente non riusciva a concludere l'ordine: la sezione dei pagamenti era semplicemente vuota. Nessuna schermata di errore, log puliti a un primo sguardo, modulo installato e attivo.
+
+E qui sta la parte peggiore. Un metodo di pagamento che non si vede è un danno gravissimo perché è **silenzioso**: non genera un alert, non rompe niente di evidente. Ma chi compra online è diffidente per natura: appena vede un errore, o qualcosa di diverso da quello che si aspetta, **scappa via in un attimo**. Non ti scrive per segnalare il problema, chiude la scheda e va altrove. Te ne accorgi dagli ordini che non arrivano, non da un messaggio di sistema.
+
+<Callout type="warn">
+Il checkout è l'ultimo metro prima dell'acquisto. Ogni attrito qui - un metodo mancante, un caricamento strano, un bottone fuori posto - si traduce in carrelli abbandonati che non vedrai mai.
+</Callout>
+
+## Perché LiteSpeed Cache lo rompe
+
+LiteSpeed Cache sostituisce (override) la classe `classes/Hook.php` di PrestaShop. Nel suo override concatena il marcatore con l'output dell'hook **senza verificare che quell'output sia davvero una stringa**:
+
+```php
+// override LiteSpeed (semplificato)
+$html = Hook::exec($hookName, $params);
+$output = $marker . $html; // se $html e un array, qui esplode
+```
+
+Il punto è che alcuni hook **non restituiscono HTML**: [`paymentOptions`](https://devdocs.prestashop-project.org/8/modules/concepts/hooks/list-of-hooks/actionpresentpaymentoptions/) restituisce un array di oggetti `PaymentOption[]`. La concatenazione lo forza a stringa, scatta un *Array to string conversion* e il metodo di pagamento svanisce dal checkout.
+
+<Diagram name="hook" caption="L'array dei pagamenti passa nell'override e viene concatenato come stringa: si rompe." />
+
+## La diagnosi senza accessi SSH
+
+Il cliente aveva solo l'FTP, niente accessi al server. Ho usato una tecnica che applico spesso: uno script PHP **read-only**, protetto da un token nell'URL, caricato in una cartella di servizio. Mi permette di eseguire l'hook in due modi e capire **dove** si rompe, senza chiedere credenziali sensibili:
+
+```text
+[ok]   $module->hookPaymentOptions()  =>  array(1) { [0] => PaymentOption }
+[FAIL] Hook::exec('paymentOptions')   =>  "Array to string conversion" (Hook.php override LiteSpeed)
+```
+
+Chiamato direttamente, il modulo funziona e restituisce l'array corretto. Passando dal dispatcher sovrascritto da LiteSpeed, salta tutto. Da lì la certezza: il problema non è nel modulo, è nell'override.
+
+<PullQuote>
+Chiamato direttamente il modulo funziona.<br /><em>È il dispatcher sovrascritto da LiteSpeed a rompere tutto.</em>
+</PullQuote>
+
+## ✅ La soluzione sostenibile: escludere il modulo
+
+Per la maggior parte dei siti **non serve toccare il codice**. Dal pannello di LiteSpeed Cache si esclude ps_checkout dall'ottimizzazione: è la strada più semplice, reversibile e alla portata anche di chi non sviluppa.
+
+<Callout type="note" title="Da pannello (consigliata)">
+LiteSpeed Cache -> impostazioni di ottimizzazione -> escludi il modulo ps_checkout (o la sua URL). Nessuna riga di codice, nessun rischio quando il modulo viene aggiornato.
+</Callout>
+
+![Pannello LiteSpeed Cache, sezione Customization: ps_checkout gestito come ESI block privato con TTL e cache tag dedicati](/blog/ps-checkout-litespeed-esclusione.webp)
+
+## Il fix definitivo: la guardia di tipo
+
+Chi mette le mani nel codice può chiudere il problema alla radice, con una guardia sul tipo prima di concatenare:
+
+```php
+$output = $marker . (is_string($html) ? $html : ''); // guardia sul tipo
+```
+
+Una riga, e il metodo di pagamento torna in checkout.
+
+<Diagram name="checkout" caption="Checkout prima e dopo il fix: il metodo di pagamento torna disponibile." />
+
+## Come prevenirlo (e perché non è un controllo una tantum)
+
+Ogni override della classe `Hook` deve distinguere il tipo del valore restituito: gli hook non sono solo HTML.
+
+Ma c'è un punto più importante. Questo non è un problema da sistemare una volta e dimenticare. I moduli cambiano **anche senza che te ne accorga**: un aggiornamento di LiteSpeed, una nuova versione di ps_checkout, un modulo terzo che entra in conflitto. È un *effetto butterfly*: basta un update apparentemente innocuo, da un'altra parte, e il checkout torna a perdere un pezzo. Dopo ogni aggiornamento varrebbe la pena ricontrollare che tutti i metodi di pagamento siano ancora al loro posto - cosa che, realisticamente, nessuno fa a mano.
+
+## 🛟 Hai lo stesso problema?
+
+Se sul tuo PrestaShop il checkout perde un metodo di pagamento, o un modulo sparisce dopo un aggiornamento, te lo diagnostico e risolvo - anche senza accessi SSH.<br />Fa parte del mio servizio di [assistenza PrestaShop professionale](/assistenza-prestashop).
+
+E se vuoi smettere di preoccupartene: posso metterti in piedi un **monitoraggio automatizzato** che verifica di continuo che metodi di pagamento e moduli critici siano sempre attivi, e ti avvisa **prima** che sia un cliente ad accorgersene.
+
+Hai un caso simile? [Scrivimi dai contatti](/contatti) e ti rispondo entro 24 ore.
+
+<Faq
+    items={[
+        {
+            question: 'Perché il metodo di pagamento sparisce solo con LiteSpeed attivo?',
+            answer: "Perché l'override di LiteSpeed sulla classe Hook concatena come stringa un valore che è un array. Con la cache disattivata, il dispatcher originale di PrestaShop gestisce correttamente il tipo e il metodo torna visibile.",
+        },
+        {
+            question: 'Devo per forza modificare il codice?',
+            answer: 'No. Nella maggior parte dei casi basta escludere ps_checkout dall\'ottimizzazione dal pannello LiteSpeed. La modifica al codice è la soluzione definitiva, ma riservata a chi sviluppa.',
+        },
+        {
+            question: 'Il problema può tornare dopo un aggiornamento?',
+            answer: "Sì. Se un update ripristina l'override o cambia il modulo, può ripresentarsi. Per questo conviene ricontrollare il checkout dopo ogni aggiornamento, o automatizzare il controllo.",
+        },
+        {
+            question: 'Vale solo per ps_checkout o anche per altri moduli?',
+            answer: 'Vale per qualunque hook che restituisce dati strutturati invece di HTML. Anche altri moduli di pagamento e layer di cache (Varnish, Cloudflare) possono dare problemi simili.',
+        },
+    ]}
+/>

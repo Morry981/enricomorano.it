@@ -1,0 +1,72 @@
+---
+title: "SEO tecnica e-commerce: cosa controllare dopo un Core Update"
+titleHtml: 'SEO tecnica e-commerce: cosa controllare dopo un <span class="hl">Core Update</span>'
+description: "Traffico crollato dopo un aggiornamento di Google? Prima di riscrivere tutto, conviene escludere i problemi tecnici. La checklist con cui affronto un e-commerce dopo un Core Update."
+pubDate: 2026-05-20
+tags:
+    - seo
+    - ecommerce
+    - core-web-vitals
+cluster: seo
+cover: /blog/cover-seo-ecommerce.svg
+draft: false
+---
+
+{/* SCAFFOLD: bozza di riempimento per vedere il layout del blog. Rivedere prima di pubblicare. */}
+
+import Callout from '../../components/Callout.astro';
+import Faq from '../../components/Faq.astro';
+
+Dopo un Core Update la reazione tipica è il panico: si riscrivono pagine, si cambiano titoli, si stravolge tutto in pochi giorni. Quasi sempre è l'errore più costoso. Prima di toccare i contenuti conviene escludere i problemi tecnici, che sono più frequenti di quanto si pensi e più veloci da sistemare.
+
+<Callout type="key">
+Un Core Update non "punisce" un sito: rivaluta la qualità complessiva. Prima si verifica che Google riesca a leggere e capire bene le pagine (la parte tecnica), poi si ragiona su contenuto e intento.
+</Callout>
+
+## Cosa cambia con un Core Update
+
+Google non aggiunge una nuova regola: ricalibra come pesa segnali che già usava. Per questo un calo non indica per forza una penalizzazione, ma spesso che altri risultati sono diventati più rilevanti del tuo per quelle ricerche.
+
+## Prima i fondamentali tecnici
+
+- **Indicizzazione**: le pagine importanti sono indicizzate? Ci sono `noindex` o canonical sbagliati?
+- **Crawl budget**: filtri e parametri non generano migliaia di URL inutili?
+- **Core Web Vitals**: la velocità reale regge, soprattutto da mobile?
+- **Dati strutturati**: prodotti, prezzi e disponibilità sono marcati correttamente?
+
+## Contenuto e intento
+
+Solo dopo aver escluso i problemi tecnici ha senso guardare i contenuti: rispondono davvero a quello che cerca chi atterra sulla pagina? Una scheda prodotto con tre righe duplicate dal fornitore non compete con chi spiega, mostra e rassicura.
+
+## Cosa NON fare nel panico
+
+- Riscrivere tutto in pochi giorni: rende impossibile capire cosa ha funzionato.
+- Cancellare pagine in massa senza dati alla mano.
+- Rincorrere ogni aggiornamento con interventi drastici: si perde la rotta.
+
+Meglio cambiare poche cose alla volta e misurare, aggiornamento dopo aggiornamento.
+
+## Gli strumenti con cui parto
+
+La diagnosi non è a sensazione, è sui dati: **Search Console** (copertura, query e pagine che hanno perso), **CrUX/PageSpeed** per i Core Web Vitals reali, i **log del server** per vedere come Googlebot scansiona davvero, e un **crawl** del sito per scovare noindex, canonical e redirect sbagliati. Prima capisco cosa è successo, poi decido dove intervenire.
+
+## L'errore che costa di più: agire senza dati
+
+Dopo un calo la tentazione è cambiare tutto subito. È il modo migliore per peggiorare e non capire più niente. Meglio una modifica alla volta, misurata: così, aggiornamento dopo aggiornamento, si vede cosa funziona e si costruisce su quello. La SEO tecnica premia chi tiene la rotta, non chi rincorre ogni oscillazione.
+
+## Traffico in calo dopo un aggiornamento?
+
+Faccio un audit tecnico dell'e-commerce e ti dico se il problema è di crawling, performance o contenuto, con priorità chiare. [Scrivimi dai contatti](/contatti) e vediamo i dati di Search Console.
+
+<Faq
+    items={[
+        {
+            question: 'Quanto tempo serve per recuperare dopo un Core Update?',
+            answer: "Non c'è un tempo fisso: i miglioramenti vengono rivalutati negli aggiornamenti successivi. Sistemare i problemi tecnici dà spesso un recupero più rapido del lavoro sui contenuti.",
+        },
+        {
+            question: 'Come faccio a sapere se è un problema tecnico o di contenuto?',
+            answer: "Si parte dai dati: Search Console mostra se è un problema di copertura/indicizzazione o di posizionamento. Da lì si capisce dove guardare prima.",
+        },
+    ]}
+/>
