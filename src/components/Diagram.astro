@@ -1,0 +1,116 @@
+---
+interface Props {
+    name: 'hook' | 'checkout';
+    caption?: string;
+}
+const { name, caption } = Astro.props;
+---
+
+<figure class="diag">
+    {
+        name === 'hook' && (
+            <svg viewBox="0 0 640 150" role="img" aria-label="Flusso dell'hook che corrompe l'array">
+                <rect class="d-box" x="8" y="48" width="150" height="54" rx="10" />
+                <text class="d-txt" x="83" y="72" text-anchor="middle">paymentOptions</text>
+                <text class="d-mut" x="83" y="90" text-anchor="middle">PaymentOption[]</text>
+                <path class="d-line" d="M158 75 H214" />
+                <polygon class="d-acc" points="214,70 226,75 214,80" />
+                <rect class="d-box" x="232" y="40" width="176" height="70" rx="10" />
+                <text class="d-txt" x="320" y="66" text-anchor="middle">override LiteSpeed</text>
+                <text class="d-mut" x="320" y="86" text-anchor="middle">$marker . $html</text>
+                <path class="d-line" d="M408 75 H464" />
+                <polygon class="d-acc" points="464,70 476,75 464,80" />
+                <rect class="d-fail" x="482" y="48" width="150" height="54" rx="10" />
+                <text class="d-bad" x="557" y="72" text-anchor="middle">Array to string</text>
+                <text class="d-badmut" x="557" y="90" text-anchor="middle">metodo sparito</text>
+            </svg>
+        )
+    }
+    {
+        name === 'checkout' && (
+            <svg viewBox="0 0 640 160" role="img" aria-label="Checkout con e senza metodo di pagamento">
+                <text class="d-mut" x="150" y="20" text-anchor="middle">prima</text>
+                <rect class="d-card" x="40" y="30" width="220" height="110" rx="12" />
+                <rect class="d-ph" x="60" y="50" width="180" height="14" rx="4" />
+                <rect class="d-ph" x="60" y="74" width="120" height="10" rx="4" />
+                <text class="d-bad" x="150" y="114" text-anchor="middle">nessun pagamento</text>
+                <text class="d-mut" x="490" y="20" text-anchor="middle">dopo</text>
+                <rect class="d-card" x="380" y="30" width="220" height="110" rx="12" />
+                <rect class="d-ph" x="400" y="50" width="180" height="14" rx="4" />
+                <rect class="d-good" x="400" y="78" width="180" height="22" rx="6" />
+                <text class="d-ok" x="490" y="93" text-anchor="middle">Carta / PayPal</text>
+                <rect class="d-ph" x="400" y="108" width="180" height="20" rx="6" />
+            </svg>
+        )
+    }
+    {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+    .diag {
+        margin: 2rem 0;
+        padding: 1.2rem;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--surface);
+    }
+    .diag svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    figcaption {
+        margin-top: 0.7rem;
+        text-align: center;
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.78rem;
+        color: color-mix(in srgb, var(--fg) 55%, transparent);
+    }
+    .d-box {
+        fill: var(--surface);
+        stroke: var(--border);
+    }
+    .d-card {
+        fill: var(--code-bg);
+        stroke: var(--code-border);
+    }
+    .d-ph {
+        fill: color-mix(in srgb, var(--fg) 12%, transparent);
+    }
+    .d-line {
+        stroke: var(--fg-secondary);
+        stroke-width: 1.5;
+        fill: none;
+    }
+    .d-txt {
+        fill: var(--fg);
+        font: 600 13px var(--font-sans, sans-serif);
+    }
+    .d-mut {
+        fill: color-mix(in srgb, var(--fg) 55%, transparent);
+        font: 500 11px var(--font-mono, monospace);
+    }
+    .d-acc {
+        fill: var(--color-accent);
+    }
+    .d-fail {
+        fill: color-mix(in srgb, #e74c3c 14%, transparent);
+        stroke: #e74c3c;
+    }
+    .d-good {
+        fill: color-mix(in srgb, #2ecc71 18%, transparent);
+        stroke: #2ecc71;
+    }
+    .d-bad {
+        fill: #e74c3c;
+        font: 700 13px var(--font-sans, sans-serif);
+    }
+    .d-badmut {
+        fill: #e74c3c;
+        font: 600 11px var(--font-mono, monospace);
+    }
+    .d-ok {
+        fill: #2ecc71;
+        font: 600 11px var(--font-mono, monospace);
+    }
+</style>

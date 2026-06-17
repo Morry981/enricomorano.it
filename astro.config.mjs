@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
 import indexnow from 'astro-indexnow';
+import mdx from '@astrojs/mdx';
 import { markdownGenerator } from './src/integrations/markdown-generator';
 
 // IndexNow pinga i motori a ogni build: lo attiviamo SOLO quando esplicitamente
@@ -18,6 +19,15 @@ const enableIndexNow = process.env.INDEXNOW === 'on';
 export default defineConfig({
     site: 'https://www.enricomorano.it',
     output: 'server',
+
+    // Shiki dual-theme: i code block espongono --shiki-light/--shiki-dark,
+    // agganciati a [data-theme] nel CSS di ArticleLayout (seguono dark/light).
+    markdown: {
+        shikiConfig: {
+            themes: { light: 'github-light', dark: 'github-dark' },
+            defaultColor: false,
+        },
+    },
 
     adapter: node({
         mode: 'standalone',
@@ -34,6 +44,7 @@ export default defineConfig({
                 isCustomElement: (tag) => ['ClientRouter'].includes(tag),
             },
         }),
+        mdx(),
         sitemap({
             filter: (page) =>
                 !['/projects', '/skills', '/about-me', '/404'].some(
@@ -43,6 +54,7 @@ export default defineConfig({
             serialize(item) {
                 const priorities = {
                     '/': { priority: 1.0, changefreq: 'weekly' },
+                    '/assistenza-prestashop': { priority: 0.9, changefreq: 'monthly' },
                     '/progetti': { priority: 0.8, changefreq: 'monthly' },
                     '/competenze': { priority: 0.8, changefreq: 'monthly' },
                     '/chi-sono': { priority: 0.7, changefreq: 'monthly' },

@@ -1,0 +1,540 @@
+---
+import Layout from './Layout.astro';
+import CtaContact from '../components/CtaContact.astro';
+import { articleSchema } from '../data/schemas';
+
+interface Props {
+    title: string;
+    titleHtml?: string;
+    description: string;
+    pubDate: Date;
+    updatedDate?: Date;
+    tags?: string[];
+    slug: string;
+    cover?: string;
+    minutes?: number;
+    pillar?: string;
+}
+
+const { title, titleHtml, description, pubDate, updatedDate, tags = [], slug, cover, minutes, pillar } = Astro.props;
+
+const PILLAR_LABELS: Record<string, string> = {
+    '/assistenza-prestashop': 'Assistenza PrestaShop',
+};
+const pillarLabel = pillar
+    ? (PILLAR_LABELS[pillar] ?? pillar.replace(/^\//, '').replace(/-/g, ' '))
+    : '';
+
+const siteUrl = (Astro.site ?? 'https://www.enricomorano.it').toString().replace(/\/$/, '');
+const url = `/blog/${slug}`;
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+const fmt = (d: Date) =>
+    d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const schema = articleSchema(siteUrl, {
+    title,
+    description,
+    slug: url,
+    datePublished: iso(pubDate),
+    dateModified: updatedDate ? iso(updatedDate) : undefined,
+    image: cover,
+    keywords: tags,
+});
+
+const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: title, url },
+];
+---
+
+<Layout title={title} description={description} type="article" image={cover} breadcrumbs={breadcrumbs}>
+    <div id="read-progress" aria-hidden="true"></div>
+
+    <div class="art-wrap">
+        <article class="art-main">
+            <!-- title-bar terminale (decorativa) -->
+            <div class="term-bar corner-squircle">
+                <span class="tl r" aria-hidden="true">&times;</span>
+                <span class="tl a" aria-hidden="true">&minus;</span>
+                <span class="tl g" aria-hidden="true">+</span>
+                <span class="term-path">enricomorano.it{url}</span>
+                <a href="/blog" class="term-back">&larr; ../</a>
+            </div>
+
+            <div class="art-hero">
+                {cover && <img class="art-cover corner-squircle" src={cover} alt={title} loading="eager" />}
+                <header class="art-head">
+                    <p class="term-prompt" aria-hidden="true">~/blog $ cat {slug}.md<span class="term-cursor">▮</span></p>
+                    {pillar && <a class="art-kicker" href={pillar}>&#9656; {pillarLabel}</a>}
+                    <h1 set:html={titleHtml ?? title}></h1>
+                    <p class="dek">{description}</p>
+                    <div class="meta">
+                        <span>{fmt(pubDate)}</span>
+                        {updatedDate && <span>agg. {fmt(updatedDate)}</span>}
+                        {minutes && <span>{minutes} min</span>}
+                        {tags.map((t) => <span class="tag">#{t}</span>)}
+                    </div>
+                </header>
+            </div>
+
+            <div class="article-prose">
+                <slot />
+            </div>
+
+            <div class="art-author">
+                <div class="av" aria-hidden="true">EM</div>
+                <div>
+                    <a class="nm" href="/chi-sono">Enrico Morano</a>
+                    <div class="ro">Sviluppatore PrestaShop freelance da quasi 10 anni - debug, performance, moduli custom</div>
+                </div>
+            </div>
+
+            <div class="art-cta">
+                <CtaContact from={slug} />
+            </div>
+        </article>
+
+        <aside class="art-toc">
+            <div class="toc-h">In questa pagina</div>
+            <nav class="toc" id="toc" aria-label="Indice dell'articolo"></nav>
+        </aside>
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Layout>
+
+<style is:global>
+    /* ---- reading progress ---- */
+    #read-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        z-index: 60;
+        transition: transform 0.08s linear;
+        pointer-events: none;
+    }
+
+    /* ---- layout 2 colonne: contenuto SX, TOC DX ---- */
+    .art-wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 3rem 1.25rem 4rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 240px;
+        gap: 3.5rem;
+        align-items: start;
+    }
+    .art-main {
+        min-width: 0;
+    }
+    @media (max-width: 960px) {
+        .art-wrap {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+        .art-toc {
+            display: none;
+        }
+    }
+
+    /* ---- title-bar terminale ---- */
+    .term-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 0.85rem;
+        background: var(--code-bg);
+        border: 1px solid var(--code-border);
+        border-radius: 14px 14px 0 0;
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.8rem;
+        color: var(--code-fg);
+    }
+    .term-bar .tl {
+        width: 0.85rem;
+        height: 0.85rem;
+        border-radius: 9999px;
+        display: grid;
+        place-items: center;
+        font-size: 0.6rem;
+        font-weight: 700;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.55);
+        flex: 0 0 auto;
+    }
+    .term-bar .tl.r { background: #e74c3c; }
+    .term-bar .tl.a { background: #f39c12; }
+    .term-bar .tl.g { background: #2ecc71; }
+    .term-path {
+        margin-left: 0.5rem;
+        opacity: 0.7;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .term-back {
+        margin-left: auto;
+        color: var(--color-accent);
+        text-decoration: none;
+        flex: 0 0 auto;
+    }
+    .term-back:hover { text-decoration: underline; }
+
+    /* ---- hero: cover grande "dentro" la finestra terminale (attaccata alla term-bar), header sotto ---- */
+    .art-hero {
+        margin-top: 0;
+    }
+    .art-cover {
+        width: 100%;
+        height: auto;
+        max-height: 440px;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+        border: 1px solid var(--code-border);
+        border-top: none;
+        border-radius: 0 0 14px 14px;
+        margin-bottom: 1.6rem;
+    }
+    @media (max-width: 640px) {
+        .art-cover { max-height: 280px; }
+    }
+
+    /* ---- header ---- */
+    .art-head {
+        margin: 0 0 1.4rem;
+        min-width: 0;
+    }
+    .art-head .term-prompt {
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.8rem;
+        color: var(--color-accent);
+        margin: 0 0 0.6rem;
+        opacity: 0.85;
+    }
+    .art-head .art-kicker {
+        display: inline-block;
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.82rem;
+        color: var(--color-accent);
+        text-decoration: none;
+        margin: 0 0 0.7rem;
+    }
+    .art-head .art-kicker:hover { text-decoration: underline; }
+    .art-head h1 {
+        font-size: clamp(1.9rem, 4.5vw, 3rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+        margin: 0;
+    }
+    .art-head h1 .hl { color: var(--color-accent); }
+    .art-head .dek {
+        margin: 0.9rem 0 0;
+        color: var(--fg-secondary);
+        font-size: 1.15rem;
+        line-height: 1.5;
+        text-wrap: balance;
+    }
+    .art-head .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 1rem;
+        margin-top: 1.1rem;
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.78rem;
+        color: color-mix(in srgb, var(--fg) 55%, transparent);
+    }
+    .art-head .meta .tag { color: var(--color-accent); }
+    .art-head .meta::before { content: '# '; opacity: 0.55; }
+    .term-cursor {
+        display: inline-block;
+        margin-left: 0.12em;
+        animation: term-blink 1.1s step-end infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .term-cursor { animation: none; }
+    }
+    @keyframes term-blink {
+        0%, 50% { opacity: 1; }
+        50.01%, 100% { opacity: 0; }
+    }
+
+    /* ---- corpo articolo: leggibilita prima ---- */
+    .article-prose {
+        color: var(--fg);
+        font-size: 1.075rem;
+        line-height: 1.8;
+    }
+    .article-prose > * + * { margin-top: 1.25rem; }
+    .article-prose h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.25;
+        margin: 3rem 0 0.2rem;
+        padding-left: 0.8rem;
+        border-left: 3px solid var(--color-accent);
+        scroll-margin-top: 90px;
+    }
+    /* prompt terminale: "> " dopo il pipe (border-left) degli header */
+    .article-prose h2::before {
+        content: '❯ ';
+        color: var(--color-accent);
+        font-family: var(--font-mono, ui-monospace, monospace);
+    }
+    .article-prose h3 {
+        font-size: 1.22rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        scroll-margin-top: 90px;
+    }
+    .article-prose a {
+        color: var(--color-accent);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+    .article-prose strong { color: var(--fg); font-weight: 700; }
+    .article-prose ul, .article-prose ol { padding-left: 1.4rem; }
+    .article-prose ul { list-style: disc; }
+    .article-prose ol { list-style: decimal; }
+    .article-prose li + li { margin-top: 0.4rem; }
+    .article-prose :not(pre) > code {
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.88em;
+        background: color-mix(in srgb, var(--fg) 12%, transparent);
+        padding: 0.12em 0.4em;
+        border-radius: 6px;
+    }
+    .article-prose img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 16px;
+    }
+    .article-prose table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.6rem 0;
+        font-size: 0.95rem;
+        display: block;
+        overflow-x: auto;
+    }
+    .article-prose th,
+    .article-prose td {
+        border: 1px solid var(--code-border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+        vertical-align: top;
+    }
+    .article-prose thead th {
+        background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+        color: var(--fg);
+        font-weight: 700;
+    }
+    .article-prose tbody tr:nth-child(even) {
+        background: color-mix(in srgb, var(--fg) 4%, transparent);
+    }
+    /* drop cap col font dell'home: ~2 righe piene (initial-letter dove supportato, float come fallback) */
+    .article-prose > p:first-of-type::first-letter {
+        font-family: var(--font-retro);
+        color: var(--color-accent);
+        float: left;
+        font-size: 4.8em;
+        line-height: 0.6;
+        padding: 0.02em 0.12em 0 0;
+        -webkit-initial-letter: 2;
+        initial-letter: 2;
+    }
+
+    /* ---- code block come finestra IDE, theme-aware (Shiki dual) ---- */
+    .article-prose pre {
+        position: relative;
+        background: var(--code-bg) !important;
+        border: 1px solid var(--code-border);
+        border-radius: 14px;
+        padding: 2.6rem 1.1rem 1.1rem;
+        overflow-x: auto;
+        font-size: 0.86rem;
+        line-height: 1.65;
+    }
+    .article-prose pre::before {
+        content: '';
+        position: absolute;
+        top: 0.9rem;
+        left: 1.1rem;
+        width: 0.62rem;
+        height: 0.62rem;
+        border-radius: 9999px;
+        background: #e74c3c;
+        box-shadow: 1rem 0 0 #f39c12, 2rem 0 0 #2ecc71;
+    }
+    .article-prose pre code {
+        font-family: var(--font-mono, ui-monospace, monospace);
+        background: none;
+        padding: 0;
+    }
+    /* aggancia i token Shiki al tema del sito */
+    .article-prose pre code,
+    .article-prose pre code span { color: var(--shiki-dark); }
+    :root[data-theme='light'] .article-prose pre code,
+    :root[data-theme='light'] .article-prose pre code span { color: var(--shiki-light); }
+    .article-prose pre .copy-btn {
+        position: absolute;
+        top: 0.55rem;
+        right: 0.65rem;
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.72rem;
+        color: color-mix(in srgb, var(--code-fg) 70%, transparent);
+        background: color-mix(in srgb, var(--code-fg) 8%, transparent);
+        border: 1px solid var(--code-border);
+        border-radius: 7px;
+        padding: 0.12rem 0.5rem;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+    }
+    .article-prose pre .copy-btn:hover {
+        color: var(--color-accent);
+        border-color: var(--color-accent);
+    }
+
+    /* ---- author box ---- */
+    .art-author {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-top: 3rem;
+        padding: 1.2rem;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--surface);
+    }
+    .art-author .av {
+        width: 58px;
+        height: 58px;
+        flex: 0 0 auto;
+        border-radius: 9999px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        font-family: var(--font-retro);
+        color: #fff;
+        font-size: 1.25rem;
+    }
+    .art-author .nm { font-weight: 700; color: var(--fg); text-decoration: none; }
+    .art-author a.nm:hover { color: var(--color-accent); }
+    .art-author .ro { font-size: 0.85rem; color: color-mix(in srgb, var(--fg) 55%, transparent); }
+
+    .art-cta { margin-top: 1.6rem; }
+
+    /* ---- TOC sticky DX ---- */
+    .art-toc { position: sticky; top: 110px; margin-top: 3.5rem; }
+    .toc-h {
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: color-mix(in srgb, var(--fg) 50%, transparent);
+        margin-bottom: 0.7rem;
+    }
+    .toc a {
+        display: block;
+        color: var(--fg-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        line-height: 1.3;
+        padding: 0.28rem 0 0.28rem 0.7rem;
+        border-left: 2px solid var(--border);
+    }
+    .toc a.lvl3 { padding-left: 1.4rem; font-size: 0.8rem; }
+    .toc a:hover { color: var(--color-accent); }
+    .toc a.active {
+        color: var(--color-accent);
+        border-left-color: var(--color-accent);
+    }
+    /* voce TOC attiva: barra colorata (gia) + prompt ">" */
+    .toc a.active::before {
+        content: '❯ ';
+        color: var(--color-accent);
+        font-family: var(--font-mono, ui-monospace, monospace);
+    }
+</style>
+
+<script>
+    function slugify(s: string) {
+        return s
+            .toLowerCase()
+            .replace(/[^\p{Letter}\p{Number}]+/gu, '-')
+            .replace(/^-+|-+$/g, '');
+    }
+
+    function initArticle() {
+        // reading progress
+        const bar = document.getElementById('read-progress');
+        if (bar) {
+            const upd = () => {
+                const h = document.documentElement;
+                const max = h.scrollHeight - h.clientHeight;
+                bar.style.transform = `scaleX(${max > 0 ? Math.min(1, h.scrollTop / max) : 0})`;
+            };
+            upd();
+            window.addEventListener('scroll', upd, { passive: true });
+            window.addEventListener('resize', upd, { passive: true });
+        }
+
+        // copy buttons sui code block
+        document.querySelectorAll<HTMLElement>('.article-prose pre').forEach((pre) => {
+            if (pre.querySelector('.copy-btn')) return;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'copy-btn';
+            btn.textContent = 'copia';
+            btn.addEventListener('click', () => {
+                const code = pre.querySelector('code');
+                navigator.clipboard?.writeText(code ? code.innerText : pre.innerText);
+                btn.textContent = 'copiato';
+                setTimeout(() => (btn.textContent = 'copia'), 1400);
+            });
+            pre.appendChild(btn);
+        });
+
+        // TOC generato dagli heading + scroll-spy
+        const toc = document.getElementById('toc');
+        const headings = Array.from(
+            document.querySelectorAll<HTMLElement>('.article-prose h2, .article-prose h3'),
+        );
+        if (toc && headings.length) {
+            toc.innerHTML = '';
+            const map = new Map<string, HTMLAnchorElement>();
+            headings.forEach((h) => {
+                if (!h.id) h.id = slugify(h.textContent || '');
+                const a = document.createElement('a');
+                a.href = `#${h.id}`;
+                a.textContent = h.textContent;
+                if (h.tagName === 'H3') a.className = 'lvl3';
+                toc.appendChild(a);
+                map.set(h.id, a);
+            });
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            map.forEach((a) => a.classList.remove('active'));
+                            map.get((e.target as HTMLElement).id)?.classList.add('active');
+                        }
+                    });
+                },
+                { rootMargin: '-80px 0px -70% 0px' },
+            );
+            headings.forEach((h) => io.observe(h));
+        }
+    }
+
+    initArticle();
+    document.addEventListener('astro:page-load', initArticle);
+</script>
