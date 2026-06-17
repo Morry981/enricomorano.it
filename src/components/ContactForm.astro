@@ -1,0 +1,249 @@
+---
+// Form di contatto qualificante. Struttura/UX da strategia/contatti-decisioni.md:
+// single-column, campo nome unico (nome+cognome+ruolo), email O telefono (almeno uno),
+// il campo sito diventa "Azienda o link Google Maps" se si sceglie Ottimizzazione GMB.
+// Preselezione del tipo via ?tipo= (no-JS friendly) dai box percorso. POST a /api/contatti
+// (SSR) con enhancement fetch.
+const inputClass =
+    'w-full rounded-lg bg-dark/40 border border-secondary/30 px-4 py-3 text-light placeholder:text-secondary/45 focus:border-accent focus:outline-none transition-colors';
+const labelClass = 'block text-sm font-medium text-light/90 mb-1.5';
+
+const projectTypes = [
+    'Nuovo e-commerce o sito vetrina',
+    'Migrazione / aggiornamento PrestaShop',
+    'Assistenza / problema sullo shop',
+    'Automazione / integrazione',
+    'Gestionale / ERP',
+    'SEO tecnica',
+    'Ottimizzazione GMB',
+    'Altro',
+];
+
+const budgets = ['Fino a 1.000 EUR', '1.000 - 5.000 EUR', 'Oltre 5.000 EUR', 'Non lo so ancora'];
+
+// Preselezione server-side dal box percorso (?tipo=...), funziona anche senza JS.
+const preTipo = (Astro.url.searchParams.get('tipo') ?? '').trim();
+const isGmb = preTipo === 'Ottimizzazione GMB';
+const sitoLabel = isGmb ? 'Azienda o link Google Maps' : 'Sito o azienda';
+const sitoPlaceholder = isGmb
+    ? 'Nome attività o link Google Maps'
+    : 'es. www.tuoshop.it (anche se in costruzione)';
+---
+
+<form id="contact-form" action="/api/contatti" method="POST" class="space-y-5" novalidate>
+    <div>
+        <label class={labelClass} for="cf-nome">Nome, cognome e ruolo *</label>
+        <input class={inputClass} id="cf-nome" name="nome" type="text" required minlength="2"
+            autocomplete="name" placeholder="Es. Mario Rossi, titolare di shop-x.it" />
+    </div>
+
+    <div>
+        <label class={labelClass} for="cf-email">
+            Email o telefono <span class="font-normal text-secondary/70">- almeno uno</span>
+        </label>
+        <div class="grid sm:grid-cols-2 gap-5">
+            <input class={inputClass} id="cf-email" name="email" type="text" inputmode="email"
+                autocomplete="email" placeholder="dove ti rispondo via mail" />
+            <input class={inputClass} id="cf-tel" name="telefono" type="tel"
+                autocomplete="tel" placeholder="oppure numero / WhatsApp" />
+        </div>
+    </div>
+
+    <div>
+        <label class={labelClass} for="cf-sito" id="cf-sito-label">{sitoLabel} *</label>
+        <input class={inputClass} id="cf-sito" name="sito" type="text" required
+            autocomplete="url" placeholder={sitoPlaceholder} />
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+            <label class={labelClass} for="cf-tipo">Di cosa hai bisogno *</label>
+            <select class={inputClass} id="cf-tipo" name="tipo_progetto" required>
+                <option value="" disabled selected={!projectTypes.includes(preTipo)}>Seleziona...</option>
+                {projectTypes.map((t) => <option value={t} selected={t === preTipo}>{t}</option>)}
+            </select>
+        </div>
+        <div>
+            <label class={labelClass} for="cf-budget">Budget indicativo</label>
+            <select class={inputClass} id="cf-budget" name="budget">
+                <option value="" disabled selected>Seleziona...</option>
+                {budgets.map((b) => <option value={b}>{b}</option>)}
+            </select>
+        </div>
+    </div>
+
+    <div>
+        <label class={labelClass} for="cf-messaggio">Raccontami il progetto *</label>
+        <textarea class={inputClass} id="cf-messaggio" name="messaggio" rows="5" required minlength="10"
+            placeholder="Cosa ti serve, cosa non funziona, che obiettivo hai..."></textarea>
+    </div>
+
+    {/* honeypot anti-spam: nascosto agli umani, i bot lo compilano */}
+    <div class="hidden" aria-hidden="true">
+        <label>Non compilare questo campo
+            <input name="azienda_extra" type="text" tabindex="-1" autocomplete="off" />
+        </label>
+    </div>
+
+    <label class="flex items-start gap-3 text-sm text-secondary">
+        <input type="checkbox" name="privacy" required
+            class="mt-1 size-4 rounded border-secondary/40 bg-dark/40 text-accent focus:ring-accent" />
+        <span>Ho letto la <a href="/privacy-policy" class="text-accent underline">privacy policy</a>
+            e acconsento al trattamento dei dati per essere ricontattato. *</span>
+    </label>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+        <button type="submit"
+            class="inline-flex items-center justify-center px-8 py-4 bg-accent text-dark font-semibold rounded-lg hover:bg-accent/85 transition-colors text-lg disabled:opacity-60 disabled:cursor-not-allowed">
+            Invia la richiesta
+        </button>
+        <p id="form-status" role="status" aria-live="polite" class="text-sm text-secondary"></p>
+    </div>
+</form>
+
+<script>
+    import { trackEvent } from '../lib/analytics';
+
+    function initContactForm() {
+        const form = document.getElementById('contact-form') as HTMLFormElement | null;
+        if (!form || form.dataset.bound) return;
+        form.dataset.bound = '1';
+
+        const status = document.getElementById('form-status') as HTMLElement | null;
+        const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+        const email = document.getElementById('cf-email') as HTMLInputElement | null;
+        const tel = document.getElementById('cf-tel') as HTMLInputElement | null;
+        const tipo = document.getElementById('cf-tipo') as HTMLSelectElement | null;
+        const sito = document.getElementById('cf-sito') as HTMLInputElement | null;
+        const sitoLabel = document.getElementById('cf-sito-label') as HTMLElement | null;
+
+        const setStatus = (msg: string, tone: 'muted' | 'ok' | 'err') => {
+            if (!status) return;
+            status.textContent = msg;
+            status.className =
+                'text-sm ' +
+                (tone === 'ok' ? 'text-accent' : tone === 'err' ? 'text-red-400' : 'text-secondary');
+        };
+
+        // Campo sito contestuale: se scelgo "Ottimizzazione GMB" diventa azienda/Maps.
+        const syncSito = () => {
+            if (!tipo || !sito || !sitoLabel) return;
+            const gmb = tipo.value === 'Ottimizzazione GMB';
+            sitoLabel.textContent = gmb ? 'Azienda o link Google Maps *' : 'Sito o azienda *';
+            sito.placeholder = gmb
+                ? 'Nome attività o link Google Maps'
+                : 'es. www.tuoshop.it (anche se in costruzione)';
+        };
+        tipo?.addEventListener('change', syncSito);
+
+        // --- bozza locale (localStorage): non perdere quanto scritto navigando via ---
+        const DRAFT_KEY = 'cf-draft';
+        const DRAFT_TTL = 30 * 24 * 60 * 60 * 1000; // 30 giorni
+        const draftFields = ['nome', 'email', 'telefono', 'sito', 'tipo_progetto', 'budget', 'messaggio'];
+        const getEl = (n: string) =>
+            form.elements.namedItem(n) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+        try {
+            const raw = localStorage.getItem(DRAFT_KEY);
+            if (raw) {
+                const d = JSON.parse(raw);
+                if (d && d.t && Date.now() - d.t < DRAFT_TTL && d.v) {
+                    draftFields.forEach((n) => {
+                        const el = getEl(n);
+                        if (el && d.v[n] != null && !el.value) el.value = d.v[n];
+                    });
+                    syncSito();
+                } else {
+                    localStorage.removeItem(DRAFT_KEY);
+                }
+            }
+        } catch {}
+        let saveTimer: ReturnType<typeof setTimeout>;
+        const saveDraft = () => {
+            const v: Record<string, string> = {};
+            draftFields.forEach((n) => { const el = getEl(n); if (el) v[n] = el.value; });
+            try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ t: Date.now(), v })); } catch {}
+        };
+        form.addEventListener('input', () => { clearTimeout(saveTimer); saveTimer = setTimeout(saveDraft, 400); });
+
+        // al primo focus su un campo chiudo l'avviso cookie (solo informativo) così non copre il form
+        form.addEventListener('focusin', () => {
+            document.getElementById('cookie-notice')?.style.setProperty('display', 'none');
+        }, { once: true });
+
+        // --- tracking ANONIMO di abbandono: solo QUALI campi erano compilati, mai i valori ---
+        let abandonTracked = false;
+        const trackAbandon = () => {
+            if (abandonTracked || form.dataset.submitted === '1') return;
+            const filled = draftFields.filter((n) => {
+                const el = getEl(n);
+                return el && String(el.value).trim() !== '';
+            });
+            if (!filled.length) return;
+            abandonTracked = true;
+            trackEvent('Form Abandoned', { filled, count: filled.length, page: location.pathname });
+        };
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') trackAbandon();
+        });
+        window.addEventListener('pagehide', trackAbandon);
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // almeno uno tra email e telefono
+            const hasContact = !!(email?.value.trim() || tel?.value.trim());
+            if (!hasContact) {
+                email?.setCustomValidity('Inserisci almeno email o telefono');
+                form.reportValidity();
+                email?.setCustomValidity('');
+                return;
+            }
+            // l'email e facoltativa (basta un recapito): la valido solo SE compilata
+            const emailVal = email?.value.trim() || '';
+            if (emailVal && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailVal)) {
+                email?.setCustomValidity('Email non valida - oppure lascia vuoto e usa il telefono');
+                form.reportValidity();
+                email?.setCustomValidity('');
+                return;
+            }
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const payload = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+            if (!payload.budget) payload.budget = 'Non lo so ancora';
+
+            if (btn) btn.disabled = true;
+            setStatus('Invio in corso...', 'muted');
+            try {
+                const res = await fetch('/api/contatti', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                const json = await res.json().catch(() => ({}));
+                if (res.ok && json.ok) {
+                    form.dataset.submitted = '1';
+                    try { localStorage.removeItem('cf-draft'); } catch {}
+                    form.reset();
+                    syncSito();
+                    setStatus('Messaggio inviato. Ti rispondo entro 24 ore.', 'ok');
+                    trackEvent('Contact Form Submit', { type: String(payload.tipo_progetto || '') });
+                } else {
+                    setStatus(
+                        json.message || 'Qualcosa è andato storto. Riprova o scrivimi via email.',
+                        'err',
+                    );
+                }
+            } catch {
+                setStatus('Errore di rete. Riprova o scrivimi via email.', 'err');
+            } finally {
+                if (btn) btn.disabled = false;
+            }
+        });
+    }
+
+    initContactForm();
+    document.addEventListener('astro:page-load', initContactForm);
+</script>

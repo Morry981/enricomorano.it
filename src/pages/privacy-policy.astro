@@ -11,7 +11,7 @@ export const prerender = true;
 >
     <div class="max-w-4xl mx-auto px-8 py-20">
         <h1 class="text-5xl font-bold mb-8">Privacy e <span class="text-accent">Cookie Policy</span></h1>
-        <p class="text-secondary/80 text-sm mb-12">Ultimo aggiornamento: 3 aprile 2026</p>
+        <p class="text-secondary/80 text-sm mb-12">Ultimo aggiornamento: 17 giugno 2026</p>
 
         <div class="prose prose-invert prose-lg text-light/90 space-y-12">
 
@@ -64,15 +64,17 @@ export const prerender = true;
                     Maggiori informazioni: <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Privacy Policy di Mixpanel</a>.
                 </p>
 
-                <h3 class="text-xl font-bold mt-8 mb-4">c) Dati forniti volontariamente</h3>
+                <h3 class="text-xl font-bold mt-8 mb-4">c) Dati forniti volontariamente (form di contatto, email, WhatsApp)</h3>
                 <p>
-                    Il sito non dispone di form di contatto. La comunicazione avviene tramite email o WhatsApp.
-                    I dati inviati dall'utente attraverso questi canali sono trattati esclusivamente per rispondere alla richiesta.
+                    Tramite il form della pagina Contatti puoi inviare: nome e ruolo, un recapito (email e/o telefono), il sito o l'azienda, il tipo di richiesta, un budget indicativo e un messaggio. In alternativa puoi scrivere via email o WhatsApp.
+                </p>
+                <p>
+                    I dati del form <strong>non vengono salvati in alcun database né ceduti a terzi</strong>: sono unicamente inoltrati via email alla casella del titolare attraverso il provider di posta (Host S.p.A., vedi punto 3), per consentire la risposta. Lo stesso vale per i messaggi inviati via email o WhatsApp.
                 </p>
                 <ul class="list-disc pl-6 space-y-1">
-                    <li><strong>Finalita:</strong> riscontro alle richieste dell'utente.</li>
-                    <li><strong>Base giuridica:</strong> misure precontrattuali su richiesta dell'interessato (Art. 6.1.b GDPR).</li>
-                    <li><strong>Conservazione:</strong> per il tempo necessario a gestire la richiesta, poi cancellati.</li>
+                    <li><strong>Finalita:</strong> riscontro e gestione della richiesta dell'utente.</li>
+                    <li><strong>Base giuridica:</strong> misure precontrattuali su richiesta dell'interessato (Art. 6.1.b GDPR); per il recapito telefonico, facoltativo, il consenso prestato con l'invio (Art. 6.1.a GDPR).</li>
+                    <li><strong>Conservazione:</strong> nella casella di posta del titolare per il tempo necessario a gestire la richiesta ed eventuali rapporti conseguenti, poi cancellati.</li>
                 </ul>
             </section>
 
@@ -124,6 +126,12 @@ export const prerender = true;
                                 <td class="py-3 pr-4">Ricorda la chiusura dell'avviso cookie</td>
                                 <td class="py-3">Persistente (fino a cancellazione manuale)</td>
                             </tr>
+                            <tr class="border-b border-secondary/10">
+                                <td class="py-3 pr-4"><code class="text-accent/80">cf-draft</code></td>
+                                <td class="py-3 pr-4">localStorage</td>
+                                <td class="py-3 pr-4">Salva una bozza locale del form di contatto, per non perdere quanto scritto navigando tra le pagine. Resta solo nel tuo browser, non viene trasmesso.</td>
+                                <td class="py-3">Cancellato dopo l'invio o dopo 30 giorni</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -145,7 +153,7 @@ export const prerender = true;
             <section>
                 <h2 class="text-3xl font-bold mb-6">6. Diritti dell'interessato</h2>
                 <p>
-                    In qualita di interessato, hai diritto di:
+                    In qualità di interessato, hai diritto di:
                 </p>
                 <ul class="list-disc pl-6 space-y-1">
                     <li><strong>Accesso</strong> (Art. 15 GDPR): ottenere conferma dell'esistenza di un trattamento e accedere ai tuoi dati.</li>
