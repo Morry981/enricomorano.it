@@ -1,5 +1,14 @@
 import { defineMiddleware } from 'astro:middleware';
 
+// Astro node standalone + LiteSpeed (lsnode) non iniettano il .env nel processo: lo carico io
+// in process.env all'avvio del server (nativo node 22, zero dipendenze), così l'endpoint
+// /api/contatti vede SMTP_HOST/USER/PASS a runtime. Gira una volta, all'import del modulo.
+try {
+    (process as typeof process & { loadEnvFile?: (path?: string) => void }).loadEnvFile?.();
+} catch {
+    /* .env assente (build/CI): le PUBLIC_ restano da import.meta.env */
+}
+
 const publicDirs = ['/images', '/fonts'];
 
 const redirects: Record<string, string> = {
