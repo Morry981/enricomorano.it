@@ -19,6 +19,31 @@
 }
 @plugin "@toolwind/corner-shape";
 
+/* Squircle ovunque: ogni angolo arrotondato del sito usa la superellisse (convenzione UI).
+   corner-shape senza border-radius non ha effetto, quindi tocca solo cio che e gia arrotondato.
+   Browser senza supporto degradano al border-radius classico. */
+@layer base {
+    *,
+    ::before,
+    ::after {
+        corner-shape: superellipse(2);
+    }
+}
+
+/* Reveal-on-scroll sobrio: stato iniziale nascosto SOLO con JS attivo (html.js) e
+   senza reduced-motion. Senza JS o con prefers-reduced-motion gli elementi restano visibili. */
+@media (prefers-reduced-motion: no-preference) {
+    html.js [data-reveal] {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+    html.js [data-reveal].is-visible {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 @theme {
     --color-primary: #3D5A80;
     --color-accent: #fd8e74;
@@ -41,6 +66,11 @@
     --border: rgba(255,255,255,0.10);
     --gradient-a: rgba(61, 90, 128, 0.15);
     --gradient-b: rgba(238, 108, 77, 0.10);
+
+    --code-bg: #0f1620;
+    --code-fg: #cfe6ef;
+    --code-border: rgba(255, 255, 255, 0.12);
+    --code-gutter: rgba(255, 255, 255, 0.05);
 }
 
 :root[data-theme="light"] {
@@ -51,6 +81,11 @@
     --border: rgba(0,0,0,0.10);
     --gradient-a: rgba(61, 90, 128, 0.08);
     --gradient-b: rgba(238, 108, 77, 0.06);
+
+    --code-bg: #eef3f8;
+    --code-fg: #27323f;
+    --code-border: rgba(0, 0, 0, 0.12);
+    --code-gutter: rgba(0, 0, 0, 0.04);
 }
 
 @layer base {

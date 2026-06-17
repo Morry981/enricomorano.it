@@ -14,6 +14,8 @@ interface Props {
     fullscreen?: boolean;
     noFooter?: boolean;
     breadcrumbs?: { name: string; url: string }[];
+    type?: 'website' | 'article';
+    image?: string;
 }
 
 const {
@@ -22,12 +24,17 @@ const {
     fullscreen = false,
     noFooter = false,
     breadcrumbs,
+    type = 'website',
+    image = '/og-image.png',
 } = Astro.props;
 ---
 
 <html lang="it">
     <head>
         <meta charset="utf-8" />
+        <script is:inline>
+            document.documentElement.classList.add('js');
+        </script>
         <link
             rel="icon"
             type="image/png"
@@ -78,6 +85,8 @@ const {
         <SEO
             title={title}
             description={description}
+            type={type}
+            image={image}
             breadcrumbs={breadcrumbs}
         />
         <ClientRouter prefetch="viewport" />
@@ -127,19 +136,37 @@ const {
         <WhatsAppButton />
 
         <script>
-            // Event delegation: 1 listener globale, dedupe-safe contro view transitions.
-            if (!(window as any).__trackingDelegated) {
-                (window as any).__trackingDelegated = true;
-                document.addEventListener('click', (e) => {
-                    const el = (e.target as HTMLElement | null)?.closest(
-                        '[data-track="whatsapp"]',
-                    );
-                    if (!el) return;
-                    import('../lib/analytics').then(({ trackWhatsApp }) =>
-                        trackWhatsApp(),
-                    );
-                });
+            // Tracking link CENTRALIZZATO: 1 solo delegato href-based (mailto/tel/whatsapp/outbound).
+            // Niente data-track da ricordarsi pagina per pagina. Vedi lib/analytics -> setupLinkTracking.
+            import('../lib/analytics').then(({ setupLinkTracking }) => setupLinkTracking());
+        </script>
+        <script>
+            function initReveal() {
+                const els = Array.from(
+                    document.querySelectorAll<HTMLElement>('[data-reveal]'),
+                ).filter((el) => !el.classList.contains('is-visible'));
+                if (!els.length) return;
+                const reduce = window.matchMedia(
+                    '(prefers-reduced-motion: reduce)',
+                ).matches;
+                if (reduce || !('IntersectionObserver' in window)) {
+                    els.forEach((el) => el.classList.add('is-visible'));
+                    return;
+                }
+                const io = new IntersectionObserver(
+                    (entries, obs) => {
+                        entries.forEach((e) => {
+                            if (e.isIntersecting) {
+                                (e.target as HTMLElement).classList.add('is-visible');
+                                obs.unobserve(e.target);
+                            }
+                        });
+                    },
+                    { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+                );
+                els.forEach((el) => io.observe(el));
             }
+            document.addEventListener('astro:page-load', initReveal);
         </script>
         <script is:inline>
             document.body.addEventListener('dragstart', (e) => {

@@ -77,3 +77,38 @@ export function trackEmail() {
 export function trackSocial(platform: string) {
     trackEvent('Social Click', { platform, page: window.location.pathname });
 }
+
+// Host considerati "interni" (NON generano evento Outbound). Aggiornare se cambia il dominio.
+const INTERNAL_HOSTS = ['enricomorano.it', 'www.enricomorano.it', 'localhost', '127.0.0.1'];
+
+/**
+ * Tracking link centralizzato e generico: UN solo listener delegato classifica i click
+ * sui link dall'href (mailto / tel / whatsapp / host esterno). Niente data-track per pagina,
+ * niente codice da ricordarsi pagina per pagina. Idempotente (dedupe-safe vs view transitions).
+ */
+export function setupLinkTracking() {
+    const w = window as Window & { __linkTracking?: boolean };
+    if (w.__linkTracking) return;
+    w.__linkTracking = true;
+
+    document.addEventListener('click', (e) => {
+        const a = (e.target as HTMLElement | null)?.closest('a');
+        if (!a) return;
+        const href = a.getAttribute('href') ?? '';
+        if (!href || href.startsWith('#')) return;
+        const from = window.location.pathname;
+
+        if (href.startsWith('mailto:')) return trackEvent('Email Click', { from });
+        if (href.startsWith('tel:')) return trackEvent('Phone Click', { from });
+        if (/wa\.me|whatsapp\.com/i.test(href)) return trackEvent('WhatsApp Click', { from });
+
+        try {
+            const url = new URL(href, window.location.href);
+            if (url.protocol.startsWith('http') && !INTERNAL_HOSTS.includes(url.hostname)) {
+                trackEvent('Outbound Link Click', { from, url: url.href, host: url.hostname });
+            }
+        } catch {
+            /* href relativo o malformato: nessun tracking */
+        }
+    });
+}
