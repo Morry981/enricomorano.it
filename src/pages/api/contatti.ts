@@ -18,9 +18,17 @@ const PROJECT_TYPES = new Set([
 const hits = new Map<string, number[]>();
 const RL_WINDOW = 60_000;
 const RL_MAX = 4;
+const RL_MAX_KEYS = 5000; // oltre questa soglia faccio sweep, così la mappa non cresce all'infinito
 
 function rateLimited(ip: string): boolean {
     const now = Date.now();
+    if (hits.size > RL_MAX_KEYS) {
+        for (const [k, ts] of hits) {
+            const live = ts.filter((t) => now - t < RL_WINDOW);
+            if (live.length) hits.set(k, live);
+            else hits.delete(k);
+        }
+    }
     const recent = (hits.get(ip) ?? []).filter((t) => now - t < RL_WINDOW);
     recent.push(now);
     hits.set(ip, recent);
@@ -70,6 +78,11 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
         }
     }
 
+    // cap dimensione richiesta: evita payload multi-MB (memoria + email enormi)
+    if (Number(request.headers.get('content-length') || 0) > 64_000) {
+        return fail(413, 'Richiesta troppo grande.');
+    }
+
     const data = await readBody(request);
 
     // honeypot: se compilato fingo successo, così non istruisco il bot
@@ -83,6 +96,15 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
     const sito = (data.sito ?? '').trim();
     const budget = (data.budget ?? '').trim() || 'Non lo so ancora';
     const privacy = ['on', 'true', '1', 'yes'].includes((data.privacy ?? '').toLowerCase());
+
+    // cap lunghezze: blocca campi abnormi (anti-abuso, email contenute)
+    if (
+        nome.length > 200 || email.length > 254 || telefono.length > 50 ||
+        sito.length > 300 || tipo.length > 80 || budget.length > 60 ||
+        messaggio.length > 5000
+    ) {
+        return fail(422, 'Uno dei campi supera la lunghezza massima.');
+    }
 
     // contatto: almeno uno tra email (valida) e telefono (>= 6 cifre).
     const emailOk = email !== '' && EMAIL_RE.test(email);
@@ -99,7 +121,9 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
         return fail(422, 'Controlla i campi: nome, almeno email o telefono, messaggio e privacy.');
     }
 
-    const ip = clientAddress || request.headers.get('x-forwarded-for') || 'unknown';
+    // primo IP di X-Forwarded-For (client reale) invece dell'header intero come chiave
+    const xff = (request.headers.get('x-forwarded-for') ?? '').split(',')[0].trim();
+    const ip = clientAddress || xff || 'unknown';
     if (rateLimited(ip)) {
         return fail(429, 'Troppe richieste. Riprova tra un minuto.');
     }
