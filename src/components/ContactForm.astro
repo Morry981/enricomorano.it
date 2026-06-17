@@ -23,6 +23,7 @@ const budgets = ['Fino a 1.000 EUR', '1.000 - 5.000 EUR', 'Oltre 5.000 EUR', 'No
 
 // Preselezione server-side dal box percorso (?tipo=...), funziona anche senza JS.
 const preTipo = (Astro.url.searchParams.get('tipo') ?? '').trim();
+const fromParam = (Astro.url.searchParams.get('from') ?? '').trim();
 const isGmb = preTipo === 'Ottimizzazione GMB';
 const sitoLabel = isGmb ? 'Azienda o link Google Maps' : 'Sito o azienda';
 const sitoPlaceholder = isGmb
@@ -78,6 +79,9 @@ const sitoPlaceholder = isGmb
             placeholder="Cosa ti serve, cosa non funziona, che obiettivo hai..."></textarea>
     </div>
 
+    {/* provenienza del lead: precompilata da ?from, raffinata via referrer lato client */}
+    <input type="hidden" name="from" value={fromParam} />
+
     {/* honeypot anti-spam: nascosto agli umani, i bot lo compilano */}
     <div class="hidden" aria-hidden="true">
         <label>Non compilare questo campo
@@ -108,6 +112,19 @@ const sitoPlaceholder = isGmb
         const form = document.getElementById('contact-form') as HTMLFormElement | null;
         if (!form || form.dataset.bound) return;
         form.dataset.bound = '1';
+
+        // provenienza del lead: ?from esplicito (non il generico 'sito') -> referrer interno -> 'diretto'
+        const fromEl = form.elements.namedItem('from') as HTMLInputElement | null;
+        if (fromEl) {
+            let f = fromEl.value.trim();
+            if ((!f || f === 'sito') && document.referrer) {
+                try {
+                    const r = new URL(document.referrer);
+                    if (r.host === location.host && r.pathname !== '/contatti') f = r.pathname;
+                } catch {}
+            }
+            fromEl.value = f || 'diretto';
+        }
 
         const status = document.getElementById('form-status') as HTMLElement | null;
         const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
@@ -229,7 +246,10 @@ const sitoPlaceholder = isGmb
                     form.reset();
                     syncSito();
                     setStatus('Messaggio inviato. Ti rispondo entro 24 ore.', 'ok');
-                    trackEvent('Contact Form Submit', { type: String(payload.tipo_progetto || '') });
+                    trackEvent('Contact Form Submit', {
+                        type: String(payload.tipo_progetto || ''),
+                        from: String(payload.from || ''),
+                    });
                 } else {
                     setStatus(
                         json.message || 'Qualcosa è andato storto. Riprova o scrivimi via email.',

@@ -95,6 +95,7 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
     const tipo = (data.tipo_progetto ?? '').trim();
     const sito = (data.sito ?? '').trim();
     const budget = (data.budget ?? '').trim() || 'Non lo so ancora';
+    const from = (data.from ?? '').trim().replace(/[\r\n]/g, '').slice(0, 200);
     const privacy = ['on', 'true', '1', 'yes'].includes((data.privacy ?? '').toLowerCase());
 
     // cap lunghezze: blocca campi abnormi (anti-abuso, email contenute)
@@ -152,7 +153,7 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
             from: `"Sito enricomorano.it" <${process.env.CONTACT_FROM || user}>`,
             to,
             replyTo: emailOk ? email : undefined,
-            subject: `Nuovo contatto dal sito - ${tipo || 'richiesta'}`,
+            subject: `Nuovo contatto dal sito${from ? ` [${from}]` : ''} - ${tipo || 'richiesta'}`,
             text: [
                 `Nome / ruolo: ${nome}`,
                 `Email: ${email || '-'}`,
@@ -160,6 +161,7 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
                 `Sito / azienda: ${sito || '-'}`,
                 `Tipo: ${tipo || '-'}`,
                 `Budget: ${budget}`,
+                `Pagina di provenienza: ${from || '-'}`,
                 '',
                 'Messaggio:',
                 messaggio,
