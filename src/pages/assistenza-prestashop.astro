@@ -1,0 +1,333 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaContact from '../components/CtaContact.astro';
+import FaqSection from '../components/FaqSection.astro';
+import type { FaqItem } from '../components/FaqSection.astro';
+import { getCollection } from 'astro:content';
+
+export const prerender = true;
+
+const siteUrl = (Astro.site ?? 'https://www.enricomorano.it').toString().replace(/\/$/, '');
+
+const clusterPosts = (
+    await getCollection('blog', ({ data }) => !data.draft && data.cluster === 'assistenza-prestashop')
+).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const faqs: FaqItem[] = [
+    {
+        question: 'Quanto costa l\'assistenza PrestaShop?',
+        answer: 'Dipende dal tipo di intervento. Un problema singolo si risolve a intervento puntuale; per esigenze ricorrenti propongo un pacchetto ore o un supporto continuativo. In ogni caso ti dico in anticipo cosa serve e quanto costa, senza preventivi a scatola chiusa.',
+    },
+    {
+        question: 'Puoi intervenire senza darti gli accessi FTP/SSH al server?',
+        answer: 'In molti casi si. Faccio una prima valutazione da remoto con URL, screenshot del back-office e log, senza chiedere credenziali sensibili. Quando serve mettere mano al codice concordiamo l\'accesso minimo necessario, in sicurezza.',
+    },
+    {
+        question: 'Aggiorni PrestaShop da 1.6 o 1.7 alla versione 8 senza perdere dati e moduli?',
+        answer: 'Sì. Lavoro su una copia di staging, verifico la compatibilità di temi e moduli, migro i dati e testo il checkout prima di andare in produzione. L\'aggiornamento si fa quando sono sicuro che lo shop regge, non a scatola chiusa.',
+    },
+    {
+        question: 'In quanto tempo risolvi un errore 500 o un sito PrestaShop down?',
+        answer: 'Un sito down è una priorità: intervengo nel più breve tempo possibile per rimettere in piedi lo shop. La diagnosi della causa radice e l\'eventuale fix definitivo seguono subito dopo, con un report di cosa era successo.',
+    },
+    {
+        question: 'Offri assistenza PrestaShop continuativa o solo interventi singoli?',
+        answer: 'Entrambi. Puoi chiamarmi per un singolo problema, oppure attivare il Presidio Continuativo che include il monitoraggio proattivo dei moduli critici, così i problemi si intercettano prima che li veda un cliente.',
+    },
+    {
+        question: 'Fai assistenza PrestaShop da remoto in tutta Italia, anche a Roma?',
+        answer: 'Sì. Lavoro da remoto su qualsiasi hosting, in tutta Italia - Roma compresa. La distanza non incide: conta l\'accesso allo shop e un canale di comunicazione diretto.',
+    },
+];
+
+const serviceSchema = {
+    '@context': 'https://schema.org/',
+    '@type': 'ProfessionalService',
+    name: 'Assistenza PrestaShop - Enrico Morano',
+    description:
+        'Assistenza PrestaShop professionale: debug, aggiornamenti, performance e diagnosi, con monitoraggio proattivo dei moduli. Sviluppatore freelance, interventi documentati.',
+    url: `${siteUrl}/assistenza-prestashop`,
+    provider: {
+        '@type': 'Person',
+        name: 'Enrico Morano',
+        url: siteUrl,
+    },
+    areaServed: {
+        '@type': 'Country',
+        name: 'Italia',
+    },
+    serviceType: 'Assistenza e supporto tecnico PrestaShop',
+};
+---
+
+<Layout
+    title="Assistenza PrestaShop: supporto, debug e aggiornamenti - Enrico Morano"
+    description="Assistenza PrestaShop su misura: debug, aggiornamenti, performance e diagnosi senza accessi SSH, con monitoraggio proattivo dei moduli. Sviluppatore freelance, interventi documentati."
+    breadcrumbs={[
+        { name: 'Home', url: '/' },
+        { name: 'Assistenza PrestaShop', url: '/assistenza-prestashop' },
+    ]}
+>
+    <div class="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-20">
+        <!-- HERO -->
+        <header class="max-w-3xl mb-16">
+            <a href="/competenze#prestashop" class="text-accent font-mono text-sm mb-4 inline-block hover:underline">Competenze - PrestaShop</a>
+            <h1 class="text-4xl md:text-6xl font-bold leading-[1.08] mb-5 text-balance">
+                Assistenza PrestaShop per il tuo <span class="text-accent">e-commerce</span>
+            </h1>
+            <p class="text-secondary text-xl leading-relaxed mb-8 text-balance">
+                Supporto tecnico, aggiornamenti e diagnosi per shop PrestaShop che si bloccano,
+                rallentano o vanno aggiornati. Interventi documentati, anche senza accessi al
+                server, con monitoraggio proattivo dei moduli critici.
+            </p>
+            <a
+                href="#richiedi"
+                class="inline-block bg-accent text-[#1a2230] font-bold px-6 py-3 rounded-xl hover:brightness-110 transition"
+            >
+                Richiedi assistenza
+            </a>
+        </header>
+
+        <!-- COSA RISOLVO -->
+        <section class="mb-16" data-reveal>
+            <h2 class="text-3xl font-bold mb-4">Cosa risolvo, e per chi</h2>
+            <p class="text-secondary text-lg max-w-3xl text-balance">
+                Lavoro con chi gestisce un e-commerce PrestaShop e ha bisogno di un interlocutore
+                tecnico diretto: un negozio che si e bloccato dopo un aggiornamento, un checkout
+                che perde un metodo di pagamento, uno shop diventato lento, un modulo che non fa
+                più il suo lavoro. Non apro ticket che rimbalzano tra reparti: analizzo il
+                problema, ti spiego cosa sta succedendo e intervengo. Quando uno shop e fermo,
+                ogni ora conta - e si vede sul fatturato.
+            </p>
+        </section>
+
+        <!-- SERVIZI -->
+        <section class="mb-16" data-reveal>
+            <h2 class="text-3xl font-bold mb-8">Servizi di assistenza e supporto PrestaShop</h2>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">Risoluzione errori e bug</h3>
+                    <p class="text-secondary">
+                        Errore 500, schermata bianca, checkout che perde un metodo di pagamento,
+                        moduli che smettono di funzionare. Trovo la causa radice e la sistemo,
+                        spiegandoti cosa era successo. Un esempio documentato:
+                        <a href="/blog/ps-checkout-litespeed" class="text-accent underline"
+                            >ps_checkout rotto da LiteSpeed Cache</a
+                        >.
+                    </p>
+                </div>
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">
+                        Aggiornamento e migrazione versioni
+                    </h3>
+                    <p class="text-secondary">
+                        Aggiornamento PrestaShop dalla 1.6 / 1.7 alla 8, su staging, verificando
+                        compatibilità di temi e moduli e testando il checkout prima di andare
+                        live. Niente aggiornamenti alla cieca.
+                    </p>
+                </div>
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">Configurazione moduli e conflitti</h3>
+                    <p class="text-secondary">
+                        Moduli che vanno in conflitto tra loro, override che si pestano i piedi,
+                        cache che rompe gli hook. Isolo il modulo colpevole e lo sistemo senza
+                        smontare tutto il resto.
+                    </p>
+                </div>
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">Performance e Core Web Vitals</h3>
+                    <p class="text-secondary">
+                        Shop lento, TTFB alto, Core Web Vitals fuori soglia. Intervengo su cache,
+                        query, immagini e tema per recuperare velocità reale, non solo punteggi
+                        sintetici.
+                    </p>
+                </div>
+                <div class="bento-card md:col-span-2">
+                    <h3 class="text-xl font-semibold mb-2">Sviluppo custom e moduli su misura</h3>
+                    <p class="text-secondary">
+                        Quando serve, sviluppo moduli e personalizzazioni su misura: conosco il
+                        core, gli hook, gli override. Scrivo codice che sopravvive agli
+                        aggiornamenti, non patch usa e getta.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DIAGNOSI SENZA SSH -->
+        <section class="mb-16" data-reveal>
+            <h2 class="text-3xl font-bold mb-4">Diagnosi senza accessi SSH: come lavoro</h2>
+            <p class="text-secondary text-lg max-w-3xl text-balance mb-4">
+                Dare a qualcuno le chiavi del proprio server e una richiesta legittima di
+                cautela. Per questo molte valutazioni le faccio da remoto senza credenziali
+                sensibili: mi bastano l'URL, qualche screenshot del back-office e i log. Da li
+                capisco dove sta il problema e cosa serve davvero.
+            </p>
+            <p class="text-secondary text-lg max-w-3xl text-balance">
+                Quando un intervento richiede di mettere mano al codice, concordiamo l'accesso
+                minimo necessario - e te lo documento. E un modo di lavorare che riduce la
+                frizione iniziale e tiene il controllo dalla tua parte.
+            </p>
+        </section>
+
+        <!-- MONITORAGGIO PROATTIVO -->
+        <section class="mb-16" data-reveal>
+            <h2 class="text-3xl font-bold mb-4">Monitoraggio proattivo dei moduli</h2>
+            <p class="text-secondary text-lg max-w-3xl text-balance mb-4">
+                La maggior parte dell'assistenza PrestaShop e reattiva: si interviene quando
+                qualcosa si e già rotto. Il problema è che i moduli cambiano anche senza che te
+                ne accorga - un aggiornamento, una nuova versione, un conflitto - ed e un effetto
+                a catena: una modifica innocua da una parte, e dall'altra il checkout perde un
+                pezzo.
+            </p>
+            <p class="text-secondary text-lg max-w-3xl text-balance">
+                Per questo offro un monitoraggio automatizzato che verifica di continuo che i
+                moduli critici e i metodi di pagamento siano sempre attivi, e ti avvisa
+                <strong class="text-light">prima</strong> che sia un cliente ad accorgersene.
+                Sposto l'assistenza da "ti aggiusto quando si rompe" a "ti tengo lo shop sano".
+            </p>
+        </section>
+
+        <!-- CASI REALI -->
+        <section class="mb-16" data-reveal>
+            <h2 class="text-3xl font-bold mb-8">Casi reali</h2>
+            <div class="space-y-5">
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">
+                        Il checkout perdeva un metodo di pagamento
+                    </h3>
+                    <p class="text-secondary">
+                        Su uno shop con LiteSpeed Cache attivo, ps_checkout spariva dal checkout
+                        senza un solo errore a video. Ho diagnosticato il conflitto (un override
+                        che concatenava un array come stringa) anche senza accessi SSH, e
+                        risolto in due modi: esclusione dal pannello e fix di tipo nel codice.
+                        <a href="/blog/ps-checkout-litespeed" class="text-accent underline"
+                            >Leggi la diagnosi completa</a
+                        >.
+                    </p>
+                </div>
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">Errore dopo un aggiornamento</h3>
+                    <p class="text-secondary">
+                        Shop che restituiva errore dopo un update fatto in fretta. Ripristino del
+                        servizio come prima cosa, poi diagnosi della causa (un override
+                        incompatibile con la nuova versione) e fix stabile, con un report di cosa
+                        era andato storto e come evitarlo.
+                    </p>
+                </div>
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">Conflitto tra moduli di cache</h3>
+                    <p class="text-secondary">
+                        Comportamenti intermittenti difficili da riprodurre, causati da un layer
+                        di cache che interferiva con gli hook di PrestaShop. Isolato il modulo
+                        responsabile e messa in sicurezza la configurazione, senza rinunciare ai
+                        benefici della cache.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PACCHETTI -->
+        <section class="mb-16" data-reveal>
+            <h2 class="text-3xl font-bold mb-8">Pacchetti e modalità di intervento</h2>
+            <div class="grid md:grid-cols-3 gap-5 items-start">
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">Intervento puntuale</h3>
+                    <p class="text-secondary mb-4">
+                        Un problema, una soluzione. Diagnosi, fix e report. Ideale per
+                        emergenze o blocchi singoli.
+                    </p>
+                    <p class="text-light font-bold">a partire da 60 EUR/ora</p>
+                </div>
+                <div class="bento-card relative ring-2 ring-accent">
+                    <span class="absolute -top-3 left-5 bg-accent text-dark text-xs font-bold px-3 py-1 rounded-full">Più scelto</span>
+                    <h3 class="text-xl font-semibold mb-2">Pacchetto ore</h3>
+                    <p class="text-secondary mb-4">
+                        Un monte ore prepagato a tariffa ridotta (50 EUR/ora), da usare nel
+                        tempo per interventi, evolutive e manutenzione, senza riaprire ogni
+                        volta la trattativa.
+                    </p>
+                    <ul class="text-light font-bold space-y-1">
+                        <li>4 ore <span class="text-secondary font-normal">- 200 EUR</span></li>
+                        <li>10 ore <span class="text-secondary font-normal">- 500 EUR</span></li>
+                        <li>25 ore <span class="text-secondary font-normal">- 1.250 EUR</span></li>
+                    </ul>
+                </div>
+                <div class="bento-card">
+                    <h3 class="text-xl font-semibold mb-2">Presidio Continuativo</h3>
+                    <p class="text-secondary mb-4">
+                        Un modulo non aggiornato può bloccarti lo shop nel weekend. Ci penso io:
+                        monitoraggio proattivo dei moduli, aggiornamenti, protezione anti-bot e
+                        ore di manutenzione incluse, con onboarding e audit iniziale.
+                    </p>
+                    <p class="text-light font-bold">da 450 EUR/mese</p>
+                </div>
+            </div>
+            <p class="text-secondary mt-5">
+                Prezzi IVA esclusa. Ti dico sempre in anticipo cosa serve e quanto costa:
+                nessun preventivo a scatola chiusa.
+            </p>
+        </section>
+
+        <!-- ESPERTO / CONSULENTE -->
+        <section class="mb-16" data-reveal>
+            <h2 class="text-3xl font-bold mb-4">
+                Consulente ed esperto PrestaShop: la mia esperienza
+            </h2>
+            <p class="text-secondary text-lg max-w-3xl text-balance">
+                Ho seguito decine di e-commerce PrestaShop, prima in agenzia e poi gestendo in
+                autonomia uno shop con migliaia di referenze: catalogo, ordini, customer care,
+                performance e SEO tecnica. Come <strong class="text-light">esperto PrestaShop
+                freelance</strong> sei tu a parlare direttamente con chi mette le mani nel
+                codice: niente intermediari, niente risposte da manuale. Conosco il core, gli
+                hook, gli override e i moduli - e li tratto con il rispetto di chi sa che dietro
+                c'è un negozio che deve incassare.
+            </p>
+        </section>
+
+        <!-- GEO -->
+        <section class="mb-16" data-reveal>
+            <h2 class="text-3xl font-bold mb-4">Assistenza PrestaShop a Roma e in tutta Italia</h2>
+            <p class="text-secondary text-lg max-w-3xl text-balance">
+                Lavoro da remoto su qualsiasi hosting, in tutta Italia - Roma, Milano, Napoli e i
+                tanti centri più piccoli dove c'è un e-commerce che ha bisogno di assistenza. La
+                distanza non conta: contano l'accesso allo shop e un canale di comunicazione
+                diretto. Intervengo dove serve, quando serve.
+            </p>
+        </section>
+
+        {clusterPosts.length > 0 && (
+            <section class="mb-16" data-reveal>
+                <h2 class="text-3xl font-bold mb-8">Approfondimenti dal blog</h2>
+                <div class="grid md:grid-cols-3 gap-5">
+                    {clusterPosts.map((post) => (
+                        <a href={`/blog/${post.id}`} class="bento-card group block no-underline">
+                            {post.data.cover && (
+                                <img
+                                    src={post.data.cover}
+                                    alt=""
+                                    loading="lazy"
+                                    class="w-full h-36 object-cover rounded-lg corner-squircle mb-4 border border-(--border)"
+                                />
+                            )}
+                            <h3 class="text-lg font-semibold mb-2 transition-colors group-hover:text-accent text-balance">
+                                {post.data.title}
+                            </h3>
+                            <p class="text-secondary text-sm text-balance">{post.data.description}</p>
+                            <p class="mt-3 text-xs text-accent/80">
+                                {post.data.tags.map((t) => `#${t}`).join(' ')}
+                            </p>
+                        </a>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        <FaqSection faqs={faqs} title="Domande frequenti sull'assistenza PrestaShop" />
+
+        <div id="richiedi">
+            <CtaContact from="assistenza-prestashop" />
+        </div>
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</Layout>

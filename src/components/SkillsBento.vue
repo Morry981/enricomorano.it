@@ -79,6 +79,7 @@ const allCategories: SkillCategory[] = [
                 icon: ShoppingCart,
                 size: 'large',
                 desc: 'Sviluppo moduli, temi custom, ottimizzazione flussi ordini e catalogo su PrestaShop 8+',
+                id: 'prestashop',
             },
             {
                 name: 'Marketplace',
