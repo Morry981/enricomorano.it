@@ -8,6 +8,13 @@ function loadMixpanel(): Promise<void> {
     const token = import.meta.env.PUBLIC_MIXPANEL_TOKEN;
     if (!token) return Promise.resolve();
 
+    // Niente tracking in locale (astro dev/preview, build servita in localhost):
+    // i test di sviluppo non devono inquinare i dati di produzione.
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local')) {
+        return Promise.resolve();
+    }
+
     loadPromise = import('mixpanel-browser').then((mod) => {
         mp = mod.default;
         mp.init(token, {
