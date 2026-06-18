@@ -8,6 +8,7 @@ import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
 import indexnow from 'astro-indexnow';
 import mdx from '@astrojs/mdx';
+import rehypeExternalLinks from 'rehype-external-links';
 import { markdownGenerator } from './src/integrations/markdown-generator';
 
 // IndexNow pinga i motori a ogni build: lo attiviamo SOLO quando esplicitamente
@@ -27,6 +28,22 @@ export default defineConfig({
             themes: { light: 'github-light', dark: 'github-dark' },
             defaultColor: false,
         },
+        // Outlink (solo domini esterni) aperti in nuova scheda + rel sicuro.
+        // I link interni relativi non hanno protocollo e restano in-tab;
+        // il test esclude anche eventuali link assoluti al nostro dominio.
+        rehypePlugins: [
+            [
+                rehypeExternalLinks,
+                {
+                    target: '_blank',
+                    rel: ['noopener', 'noreferrer'],
+                    test: (el) =>
+                        !/^https?:\/\/(www\.)?enricomorano\.it(\/|$)/i.test(
+                            String(el.properties?.href ?? ''),
+                        ),
+                },
+            ],
+        ],
     },
 
     adapter: node({
